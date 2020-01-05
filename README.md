@@ -16,7 +16,7 @@
 - Swift 5+
 
 ## Preview
-![Slider preview](https://github.com/ramiz69/Slider/blob/master/example.jpeg)
+<img src="https://github.com/ramiz69/Slider/blob/master/example.jpeg" width="200" height="400">
 
 ## Installation
 

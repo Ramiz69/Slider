@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4B2EB6C723C1E11F00FB91AD /* Slider.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B2EB6C523C1E11F00FB91AD /* Slider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B2EB6CE23C1E18C00FB91AD /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB6CD23C1E18C00FB91AD /* Slider.swift */; };
-		4B2EB6D023C1E25700FB91AD /* DirectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB6CF23C1E25700FB91AD /* DirectionEnum.swift */; };
 		4B2EB6D223C1E32B00FB91AD /* SliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB6D123C1E32B00FB91AD /* SliderTrackLayer.swift */; };
 		4B2EB6D423C1E40B00FB91AD /* SliderTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB6D323C1E40B00FB91AD /* SliderTextLayer.swift */; };
 		4B2EB6D823C1E46000FB91AD /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB6D723C1E46000FB91AD /* String.swift */; };
@@ -21,9 +20,13 @@
 		4B2EB6EC23C1E5AA00FB91AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2EB6EA23C1E5AA00FB91AD /* Main.storyboard */; };
 		4B2EB6EE23C1E5AA00FB91AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2EB6ED23C1E5AA00FB91AD /* Assets.xcassets */; };
 		4B2EB6F123C1E5AA00FB91AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2EB6EF23C1E5AA00FB91AD /* LaunchScreen.storyboard */; };
-		4B2EB6F723C1E7B400FB91AD /* DirectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB6F623C1E7B400FB91AD /* DirectionType.swift */; };
 		4B2EB6F923C1E85E00FB91AD /* Slider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2EB6C223C1E11F00FB91AD /* Slider.framework */; };
 		4B2EB6FA23C1E85E00FB91AD /* Slider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2EB6C223C1E11F00FB91AD /* Slider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4B889B692433375D002FCE02 /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B682433375D002FCE02 /* CodeViewController.swift */; };
+		4B889B7124333BE2002FCE02 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B7024333BE2002FCE02 /* MainTableViewController.swift */; };
+		4B889B7424333C09002FCE02 /* MainTableViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B7324333C09002FCE02 /* MainTableViewController+UITableViewDelegate.swift */; };
+		4B889B7624333E7C002FCE02 /* CodeViewController+SliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */; };
+		4B889B792433402F002FCE02 /* DirectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B782433402F002FCE02 /* DirectionEnum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +58,6 @@
 		4B2EB6C523C1E11F00FB91AD /* Slider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Slider.h; sourceTree = "<group>"; };
 		4B2EB6C623C1E11F00FB91AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B2EB6CD23C1E18C00FB91AD /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
-		4B2EB6CF23C1E25700FB91AD /* DirectionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionEnum.swift; sourceTree = "<group>"; };
 		4B2EB6D123C1E32B00FB91AD /* SliderTrackLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTrackLayer.swift; sourceTree = "<group>"; };
 		4B2EB6D323C1E40B00FB91AD /* SliderTextLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTextLayer.swift; sourceTree = "<group>"; };
 		4B2EB6D723C1E46000FB91AD /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -69,7 +71,11 @@
 		4B2EB6ED23C1E5AA00FB91AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B2EB6F023C1E5AA00FB91AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B2EB6F223C1E5AA00FB91AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B2EB6F623C1E7B400FB91AD /* DirectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionType.swift; sourceTree = "<group>"; };
+		4B889B682433375D002FCE02 /* CodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewController.swift; sourceTree = "<group>"; };
+		4B889B7024333BE2002FCE02 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		4B889B7324333C09002FCE02 /* MainTableViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTableViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeViewController+SliderDelegate.swift"; sourceTree = "<group>"; };
+		4B889B782433402F002FCE02 /* DirectionEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +123,7 @@
 				4B2EB6C623C1E11F00FB91AD /* Info.plist */,
 				4B2EB6DB23C1E52600FB91AD /* Protocols */,
 				4B2EB6D623C1E45100FB91AD /* Extensions */,
-				4B2EB6D523C1E44800FB91AD /* Enums */,
+				4B889B772433401C002FCE02 /* Enums */,
 				4B2EB6CD23C1E18C00FB91AD /* Slider.swift */,
 				4B2EB6D123C1E32B00FB91AD /* SliderTrackLayer.swift */,
 				4B2EB6D323C1E40B00FB91AD /* SliderTextLayer.swift */,
@@ -125,20 +131,11 @@
 			path = Slider;
 			sourceTree = "<group>";
 		};
-		4B2EB6D523C1E44800FB91AD /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				4B2EB6CF23C1E25700FB91AD /* DirectionEnum.swift */,
-			);
-			path = Enums;
-			sourceTree = "<group>";
-		};
 		4B2EB6D623C1E45100FB91AD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				4B2EB6D723C1E46000FB91AD /* String.swift */,
 				4B2EB6D923C1E48000FB91AD /* Slider+UITouch.swift */,
-				4B2EB6F623C1E7B400FB91AD /* DirectionType.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -154,13 +151,9 @@
 		4B2EB6E323C1E5AA00FB91AD /* Slider_Example */ = {
 			isa = PBXGroup;
 			children = (
-				4B2EB6E423C1E5AA00FB91AD /* AppDelegate.swift */,
-				4B2EB6E623C1E5AA00FB91AD /* SceneDelegate.swift */,
-				4B2EB6E823C1E5AA00FB91AD /* ViewController.swift */,
-				4B2EB6EA23C1E5AA00FB91AD /* Main.storyboard */,
-				4B2EB6ED23C1E5AA00FB91AD /* Assets.xcassets */,
-				4B2EB6EF23C1E5AA00FB91AD /* LaunchScreen.storyboard */,
-				4B2EB6F223C1E5AA00FB91AD /* Info.plist */,
+				4B889B6A24333B9F002FCE02 /* Application */,
+				4B889B6B24333BAB002FCE02 /* Flows */,
+				4B889B6F24333BC8002FCE02 /* Supporting Files */,
 			);
 			path = Slider_Example;
 			sourceTree = "<group>";
@@ -170,6 +163,78 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4B889B6A24333B9F002FCE02 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				4B2EB6E423C1E5AA00FB91AD /* AppDelegate.swift */,
+				4B2EB6E623C1E5AA00FB91AD /* SceneDelegate.swift */,
+				4B2EB6EF23C1E5AA00FB91AD /* LaunchScreen.storyboard */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		4B889B6B24333BAB002FCE02 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				4B889B6C24333BB2002FCE02 /* Main */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		4B889B6C24333BB2002FCE02 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				4B889B7224333BF5002FCE02 /* Extensions */,
+				4B889B6D24333BBB002FCE02 /* View */,
+				4B889B6E24333BC2002FCE02 /* Controllers */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		4B889B6D24333BBB002FCE02 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4B2EB6EA23C1E5AA00FB91AD /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4B889B6E24333BC2002FCE02 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4B889B7024333BE2002FCE02 /* MainTableViewController.swift */,
+				4B2EB6E823C1E5AA00FB91AD /* ViewController.swift */,
+				4B889B682433375D002FCE02 /* CodeViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4B889B6F24333BC8002FCE02 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4B2EB6ED23C1E5AA00FB91AD /* Assets.xcassets */,
+				4B2EB6F223C1E5AA00FB91AD /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4B889B7224333BF5002FCE02 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4B889B7324333C09002FCE02 /* MainTableViewController+UITableViewDelegate.swift */,
+				4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4B889B772433401C002FCE02 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				4B889B782433402F002FCE02 /* DirectionEnum.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,12 +352,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B2EB6DA23C1E48000FB91AD /* Slider+UITouch.swift in Sources */,
-				4B2EB6F723C1E7B400FB91AD /* DirectionType.swift in Sources */,
 				4B2EB6D223C1E32B00FB91AD /* SliderTrackLayer.swift in Sources */,
 				4B2EB6DD23C1E53300FB91AD /* Protocols.swift in Sources */,
+				4B889B792433402F002FCE02 /* DirectionEnum.swift in Sources */,
 				4B2EB6D423C1E40B00FB91AD /* SliderTextLayer.swift in Sources */,
 				4B2EB6D823C1E46000FB91AD /* String.swift in Sources */,
-				4B2EB6D023C1E25700FB91AD /* DirectionEnum.swift in Sources */,
 				4B2EB6CE23C1E18C00FB91AD /* Slider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,7 +366,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B2EB6E923C1E5AA00FB91AD /* ViewController.swift in Sources */,
+				4B889B7424333C09002FCE02 /* MainTableViewController+UITableViewDelegate.swift in Sources */,
+				4B889B692433375D002FCE02 /* CodeViewController.swift in Sources */,
 				4B2EB6E523C1E5AA00FB91AD /* AppDelegate.swift in Sources */,
+				4B889B7124333BE2002FCE02 /* MainTableViewController.swift in Sources */,
+				4B889B7624333E7C002FCE02 /* CodeViewController+SliderDelegate.swift in Sources */,
 				4B2EB6E723C1E5AA00FB91AD /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,7 +584,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8AD8N54BY6;
-				INFOPLIST_FILE = Slider_Example/Info.plist;
+				INFOPLIST_FILE = "Slider_Example/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -534,7 +602,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8AD8N54BY6;
-				INFOPLIST_FILE = Slider_Example/Info.plist;
+				INFOPLIST_FILE = "Slider_Example/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

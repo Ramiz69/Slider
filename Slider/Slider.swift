@@ -1,7 +1,7 @@
 //
 //  Slider.swift
 //
-//  Copyright (c) 2019 Ramiz Kichibekov (https://t.me/Ramiz69)
+//  Copyright (c) 2020 Ramiz Kichibekov (https://t.me/Ramiz69)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -45,6 +45,8 @@ open class Slider: UIControl {
             updateThumbLayersText()
         }
     }
+    
+    // MARK: - Customization properties
     
     @IBInspectable
     public var value: CGFloat = 10 {
@@ -131,6 +133,73 @@ open class Slider: UIControl {
         }
     }
     
+    @IBInspectable
+    public var trackHeight: CGFloat = 36 {
+        didSet {
+            layoutSubviews()
+        }
+    }
+    
+    @IBInspectable
+    public var trackInset: CGFloat = 0 {
+        didSet {
+            layoutSubviews()
+        }
+    }
+    
+    @IBInspectable
+    public var thumbHeight: CGFloat = 36 {
+        didSet {
+            initThumbLayer()
+            layoutSubviews()
+            redrawLayers()
+        }
+    }
+    
+    @IBInspectable
+    open var thumbWidth: CGFloat = 60 {
+        didSet {
+            initThumbLayer()
+            layoutSubviews()
+            redrawLayers()
+        }
+    }
+    
+    @IBInspectable
+    open var trackMaxColor: UIColor = UIColor(red: 191 / 255,
+                                              green: 194 / 255,
+                                              blue: 209 / 255,
+                                              alpha: 1) {
+        didSet {
+            reinitComponentValues()
+            redrawLayers()
+        }
+    }
+    
+    @IBInspectable
+    open var trackMinColor: UIColor = UIColor(red: 0,
+                                              green: 122 / 255,
+                                              blue: 1,
+                                              alpha: 1) {
+        didSet {
+            reinitComponentValues()
+            redrawLayers()
+        }
+    }
+    
+    @IBInspectable
+    open var reverseTrackMinColor: UIColor = UIColor(red: 247 / 255,
+                                                     green: 73 / 255,
+                                                     blue: 2 / 255,
+                                                     alpha: 1) {
+        didSet {
+            reinitComponentValues()
+            redrawLayers()
+        }
+    }
+    
+    // MARK: - Properties
+    
     public var direction: DirectionEnum = .leftToRight {
         didSet {
             CATransaction.begin()
@@ -146,17 +215,16 @@ open class Slider: UIControl {
             redrawLayers()
         }
     }
-    public var animator: UIViewPropertyAnimator?
+    open var animator: UIViewPropertyAnimator?
     public let trackLayer = SliderTrackLayer()
     public let thumbLayer = SliderTextLayer()
     public let minimumLayer = SliderMinimumTextLayer()
     public let maximumLayer = SliderMaximumTextLayer()
     public var previousTouchPoint: CGPoint = .zero
     public var usableTrackingLength: CGFloat = 0
-    private let trackHeight: CGFloat = 36
-    private let trackInset: CGFloat = 0
-    private let thumbHeight: CGFloat = 36
-    private var thumbWidth: CGFloat = 60
+    private let trackMaskLayer = CAShapeLayer()
+    
+    // MARK: - Life cycle
     
     required public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -206,6 +274,10 @@ open class Slider: UIControl {
         trackLayer.contentsScale = UIScreen.main.scale
         trackLayer.frame = trackRectForBound(bounds)
         trackLayer.setNeedsDisplay()
+        trackMaskLayer.path = UIBezierPath(roundedRect: trackRectForBound(bounds),
+                                      cornerRadius: cornerRadius).cgPath
+        trackMaskLayer.fillRule = .evenOdd
+        layer.mask = trackMaskLayer
         reinitComponentValues()
         initThumbLayer()
         initMinimumLayer()
@@ -218,7 +290,7 @@ open class Slider: UIControl {
         thumbLayer.bounds = CGRect(x: 0, y: 0, width: thumbWidth, height: thumbHeight)
         let xPosition = positionForValue(value: minimum)
         thumbLayer.position = CGPoint(x: xPosition, y: bounds.size.height / 2)
-        thumbLayer.foregroundColor = direction.trackMinColor.cgColor
+        thumbLayer.foregroundColor = trackMinColor.cgColor
         thumbLayer.cornerRadius = thumbHeight / 2
         thumbLayer.font = UIFont.systemFont(ofSize: fontSize, weight: .black)
         thumbLayer.fontSize = fontSize
@@ -267,7 +339,8 @@ open class Slider: UIControl {
     private func reinitComponentValues() {
         trackLayer.minimumValue = minimum
         trackLayer.maximumValue = maximum
-        trackLayer.direction = direction
+        trackLayer.trackMaxColor = trackMaxColor
+        trackLayer.trackMinColor = direction == .leftToRight ? trackMinColor : reverseTrackMinColor
         trackLayer.thumbWidth = thumbWidth
         trackLayer.value = value
         trackLayer.cornerRadius = cornerRadius
@@ -279,10 +352,12 @@ open class Slider: UIControl {
     private func redrawLayers() {
         trackLayer.setNeedsDisplay()
         thumbLayer.setNeedsDisplay()
+        trackMaskLayer.setNeedsDisplay()
     }
     
     private func updateThumbLayersText() {
-        thumbLayer.direction = direction
+        thumbLayer.trackMinColor = direction == .leftToRight ? trackMinColor : reverseTrackMinColor
+        thumbLayer.trackMaxColor = trackMaxColor
         thumbLayer.string = textForValue(value)
         minimumLayer.string = textForValue(minimum)
         maximumLayer.string = textForValue(maximum)

@@ -1,7 +1,7 @@
 //
 //  SliderTrackLayer.swift
 //
-//  Copyright (c) 2019 Ramiz Kichibekov (https://t.me/Ramiz69)
+//  Copyright (c) 2020 Ramiz Kichibekov (https://t.me/Ramiz69)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -30,10 +30,11 @@ public final class SliderTrackLayer: CALayer {
     public var minimumValue: CGFloat = .zero
     public var maximumValue: CGFloat = 1
     public var thumbWidth: CGFloat = .zero
-    public var direction: DirectionType!
+    public var trackMaxColor: UIColor!
+    public var trackMinColor: UIColor!
     
     override public func draw(in ctx: CGContext) {
-        ctx.setFillColor(direction.trackMaxColor.cgColor)
+        ctx.setFillColor(trackMaxColor.cgColor)
         ctx.addPath(UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath)
         ctx.fillPath()
         
@@ -50,7 +51,7 @@ public final class SliderTrackLayer: CALayer {
         let trackMinSize = CGSize(width: width, height: bounds.height)
         let trackMinRect = CGRect(origin: .zero, size: trackMinSize)
         let trackMinPath = UIBezierPath(roundedRect: trackMinRect, cornerRadius: cornerRadius)
-        ctx.setFillColor(direction.trackMinColor.cgColor)
+        ctx.setFillColor(trackMinColor.cgColor)
         ctx.addPath(trackMinPath.cgPath)
         ctx.fillPath()
         
@@ -60,7 +61,7 @@ public final class SliderTrackLayer: CALayer {
                                   height: bounds.height)
         let trackMaxPath = UIBezierPath(roundedRect: trackMaxRect,
                                         cornerRadius: cornerRadius)
-        ctx.setFillColor(direction.trackMinColor.cgColor)
+        ctx.setFillColor(trackMinColor.cgColor)
         ctx.addPath(trackMaxPath.cgPath)
         ctx.fillPath()
     }

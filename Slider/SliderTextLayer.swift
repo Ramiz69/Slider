@@ -1,7 +1,7 @@
 //
 //  SliderTextLayer.swift
 //
-//  Copyright (c) 2019 Ramiz Kichibekov (https://t.me/Ramiz69)
+//  Copyright (c) 2020 Ramiz Kichibekov (https://t.me/Ramiz69)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,8 @@ import UIKit
 
 public class SliderTextLayer: CATextLayer {
     
-    public var direction: DirectionType!
+    public var trackMaxColor: UIColor!
+    public var trackMinColor: UIColor!
     
     public override func setNeedsDisplay() {
         super.setNeedsDisplay()
@@ -46,9 +47,9 @@ public class SliderTextLayer: CATextLayer {
     }
     
     open func configureBorder() {
-        foregroundColor = direction.trackMinColor.cgColor
+        foregroundColor = trackMinColor.cgColor
         borderWidth = 4
-        borderColor = direction.trackMinColor.cgColor
+        borderColor = trackMinColor.cgColor
     }
     
 }

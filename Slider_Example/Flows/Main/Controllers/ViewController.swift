@@ -9,14 +9,10 @@
 import UIKit
 import Slider
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
+    
+    // MARK: - Outlets
     
     @IBOutlet weak var slider: Slider!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-
 }
-

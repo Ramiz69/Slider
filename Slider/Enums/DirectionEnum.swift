@@ -1,7 +1,7 @@
 //
 //  DirectionEnum.swift
 //
-//  Copyright (c) 2019 Ramiz Kichibekov (https://t.me/Ramiz69)
+//  Copyright (c) 2020 Ramiz Kichibekov (https://t.me/Ramiz69)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,21 +24,9 @@
 
 import UIKit
 
-public enum DirectionEnum: DirectionType {
+public enum DirectionEnum {
     
     case leftToRight
     case rightToLeft
     
-    public var trackMaxColor: UIColor {
-        return UIColor(red: 191 / 255, green: 194 / 255, blue: 209 / 255, alpha: 1)
-    }
-    
-    public var trackMinColor: UIColor {
-        switch self {
-        case .leftToRight:
-            return UIColor(red: 0, green: 122 / 255, blue: 1, alpha: 1)
-        case .rightToLeft:
-            return UIColor(red: 247 / 255, green: 73 / 255, blue: 2 / 255, alpha: 1)
-        }
-    }
 }

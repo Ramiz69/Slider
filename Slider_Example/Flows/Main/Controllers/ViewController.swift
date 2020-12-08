@@ -15,4 +15,11 @@ final class ViewController: UIViewController {
     
     @IBOutlet weak var slider: Slider!
     
+    // MARK: - Custom methods
+    // MARK: - Actions
+    
+    @IBAction private func didChangeSegment(_ sender: UISegmentedControl) {
+        slider.direction = DirectionEnum(withValue: sender.selectedSegmentIndex)
+    }
+    
 }

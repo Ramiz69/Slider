@@ -1,7 +1,7 @@
 //
 //  DirectionEnum.swift
 //
-//  Copyright (c) 2020 Ramiz Kichibekov (https://t.me/Ramiz69)
+//  Copyright (c) 2020 Ramiz Kichibekov (https://instagram.com/kichibekov69)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,13 @@ import UIKit
 
 public enum DirectionEnum {
     
-    case leftToRight
-    case rightToLeft
+    case leftToRight, rightToLeft
+    
+    public init(withValue value: Int) {
+        switch value {
+        case .zero: self = .leftToRight
+        default: self = .rightToLeft
+        }
+    }
     
 }

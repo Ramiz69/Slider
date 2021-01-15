@@ -29,6 +29,8 @@ extension Slider {
     public override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         previousTouchPoint = touch.location(in: self)
         if thumbLayer.frame.contains(previousTouchPoint) {
+            didBeginTracking?(self)
+            
             return true
         }
         
@@ -53,6 +55,7 @@ extension Slider {
         }
         value = currentValue
         previousTouchPoint = touchPoint
+        didContinueTracking?(self)
         if continuous {
             sendActions(for: .valueChanged)
         }
@@ -66,6 +69,7 @@ extension Slider {
         if step > .zero {
             let noOfStep = (value / step).rounded(.toNearestOrEven)
             value = noOfStep * step
+            didEndTracking?(self)
         }
         if !continuous {
             sendActions(for: .valueChanged)

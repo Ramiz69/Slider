@@ -29,10 +29,12 @@ open class Slider: UIControl {
     
     @IBOutlet weak public var delegate: SliderDelegate? {
         didSet {
-            if let maxText: String = delegate?.slider(self, displayTextForValue: maximum)
+            if let maxText: String = delegate?.slider(self, displayTextForValue: maximum),
+               !maxText.isEmpty
             {
-                thumbWidth = maxText.width(withConstraintedHeight: thumbHeight,
-                                           font: UIFont.boldSystemFont(ofSize: fontSize))
+                let newWidth = maxText.width(withConstraintedHeight: thumbHeight,
+                                             font: UIFont.boldSystemFont(ofSize: fontSize))
+                thumbWidth = CGFloat(max(newWidth, thumbWidth))
                 thumbLayer.bounds = CGRect(origin: .zero,
                                            size: CGSize(width: thumbWidth,
                                                         height: thumbHeight))
@@ -49,7 +51,7 @@ open class Slider: UIControl {
     // MARK: - Customization properties
     
     @IBInspectable
-    public var value: CGFloat = 10 {
+    final public var value: CGFloat = 10 {
         didSet {
             if value > maximum {
                 maximum = value
@@ -63,7 +65,7 @@ open class Slider: UIControl {
     }
     
     @IBInspectable
-    public var minimum: CGFloat = 10 {
+    final public var minimum: CGFloat = 10 {
         didSet {
             if minimum > maximum {
                 maximum = minimum
@@ -74,7 +76,7 @@ open class Slider: UIControl {
     }
     
     @IBInspectable
-    public var maximum: CGFloat = 800 {
+    final public var maximum: CGFloat = 800 {
         didSet {
             if maximum < minimum {
                 minimum = maximum
@@ -88,10 +90,10 @@ open class Slider: UIControl {
     }
     
     @IBInspectable
-    public var step: CGFloat = 10 {
+    final public var step: CGFloat = 10 {
         didSet {
-            if step < 0 {
-                step = 0
+            if step < .zero {
+                step = .zero
             }
             if step > (maximum - minimum) {
                 maximum = minimum + step
@@ -100,7 +102,7 @@ open class Slider: UIControl {
     }
     
     @IBInspectable
-    public var cornerRadius: CGFloat = 16 {
+    final public var cornerRadius: CGFloat = 16 {
         didSet {
             reinitComponentValues()
             redrawLayers()
@@ -108,7 +110,7 @@ open class Slider: UIControl {
     }
     
     @IBInspectable
-    public var thumbBackgroundColor: UIColor = UIColor.white {
+    final public var thumbBackgroundColor: UIColor = UIColor.white {
         didSet {
             thumbLayer.backgroundColor = thumbBackgroundColor.cgColor
             redrawLayers()
@@ -116,7 +118,10 @@ open class Slider: UIControl {
     }
     
     @IBInspectable
-    public var thumbTextColor: UIColor = UIColor(red: 0, green: 74 / 255, blue: 150 / 255, alpha: 1) {
+    final public var thumbTextColor: UIColor = UIColor(red: .zero,
+                                                       green: 74 / 255,
+                                                       blue: 150 / 255,
+                                                       alpha: 1) {
         didSet {
             thumbLayer.foregroundColor = thumbTextColor.cgColor
             redrawLayers()
@@ -124,31 +129,31 @@ open class Slider: UIControl {
     }
     
     @IBInspectable
-    public var continuous: Bool = true
+    final public var continuous: Bool = true
     
     @IBInspectable
-    public var fontSize: CGFloat = 14 {
+    final public var fontSize: CGFloat = 14 {
         didSet {
             thumbLayer.setNeedsDisplay()
         }
     }
     
     @IBInspectable
-    public var trackHeight: CGFloat = 36 {
+    final public var trackHeight: CGFloat = 36 {
         didSet {
             layoutSubviews()
         }
     }
     
     @IBInspectable
-    public var trackInset: CGFloat = 0 {
+    final public var trackInset: CGFloat = 0 {
         didSet {
             layoutSubviews()
         }
     }
     
     @IBInspectable
-    public var thumbHeight: CGFloat = 36 {
+    final public var thumbHeight: CGFloat = 36 {
         didSet {
             initThumbLayer()
             layoutSubviews()
@@ -157,7 +162,7 @@ open class Slider: UIControl {
     }
     
     @IBInspectable
-    open var thumbWidth: CGFloat = 60 {
+    final public var thumbWidth: CGFloat = 60 {
         didSet {
             initThumbLayer()
             layoutSubviews()
@@ -200,7 +205,10 @@ open class Slider: UIControl {
     
     // MARK: - Properties
     
-    public var direction: DirectionEnum = .leftToRight {
+    final public var didBeginTracking: ((Slider) -> Void)?
+    final public var didContinueTracking: ((Slider) -> Void)?
+    final public var didEndTracking: ((Slider) -> Void)?
+    final public var direction: DirectionEnum = .leftToRight {
         didSet {
             CATransaction.begin()
             CATransaction.setDisableActions(true)
@@ -220,8 +228,8 @@ open class Slider: UIControl {
     public let thumbLayer = SliderTextLayer()
     public let minimumLayer = SliderMinimumTextLayer()
     public let maximumLayer = SliderMaximumTextLayer()
-    public var previousTouchPoint: CGPoint = .zero
-    public var usableTrackingLength: CGFloat = 0
+    final public var previousTouchPoint: CGPoint = .zero
+    final public var usableTrackingLength: CGFloat = 0
     private let trackMaskLayer = CAShapeLayer()
     
     // MARK: - Life cycle

@@ -29,7 +29,7 @@ extension Slider {
     public override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         previousTouchPoint = touch.location(in: self)
         if thumbLayer.frame.contains(previousTouchPoint) {
-            didBeginTracking?(self)
+            delegate?.didBeginTracking(self)
             
             return true
         }
@@ -45,6 +45,9 @@ extension Slider {
         let tempValue = value + valueDelta
         let noOfStep = (tempValue / step).rounded(.toNearestOrEven)
         var currentValue = noOfStep * step
+        if (currentValue == maximum || currentValue == minimum) && currentValue != value {
+            hapticConfiguration.reachValueGenerate()
+        }
         if currentValue > maximum {
             currentValue = maximum
         } else if currentValue < minimum {
@@ -54,8 +57,9 @@ extension Slider {
             return true
         }
         value = currentValue
+        hapticConfiguration.valueGenerate()
         previousTouchPoint = touchPoint
-        didContinueTracking?(self)
+        delegate?.didContinueTracking(self)
         if continuous {
             sendActions(for: .valueChanged)
         }
@@ -69,7 +73,7 @@ extension Slider {
         if step > .zero {
             let noOfStep = (value / step).rounded(.toNearestOrEven)
             value = noOfStep * step
-            didEndTracking?(self)
+            delegate?.didEndTracking(self)
         }
         if !continuous {
             sendActions(for: .valueChanged)

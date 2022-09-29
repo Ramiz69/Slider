@@ -14,6 +14,9 @@ final class CodeViewController: UIViewController {
     // MARK: - Outlets
     
     @IBOutlet weak var segmentControl: UISegmentedControl!
+    @IBOutlet weak var reachSwitch: UISwitch!
+    @IBOutlet weak var valueSwitch: UISwitch!
+    @IBOutlet weak var directionSwitch: UISwitch!
     
     // MARK: - Properties
     
@@ -47,10 +50,32 @@ final class CodeViewController: UIViewController {
     }
     
     // MARK: - Custom methods
+    // MARK: Private methods
+    
+    private func configureHaptic() {
+        slider.hapticConfiguration = .init(reachLimitValueHapticEnabled: reachSwitch.isOn,
+                                           changeValueHapticEnabled: valueSwitch.isOn,
+                                           changeDirectionHapticEnabled: directionSwitch.isOn,
+                                           reachImpactGeneratorStyle: .medium,
+                                           changeValueImpactGeneratorStyle: .light)
+    }
+    
     // MARK: - Actions
     
     @IBAction private func didChangeSegment(_ sender: UISegmentedControl) {
         slider.direction = DirectionEnum(withValue: sender.selectedSegmentIndex)
+    }
+    
+    @IBAction func didChangeReachValue(_ sender: UISwitch) {
+        configureHaptic()
+    }
+    
+    @IBAction func didChangeValue(_ sender: UISwitch) {
+        configureHaptic()
+    }
+    
+    @IBAction func didChangeDirectionValue(_ sender: UISwitch) {
+        configureHaptic()
     }
     
 }

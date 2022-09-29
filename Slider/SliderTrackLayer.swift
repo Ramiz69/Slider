@@ -40,14 +40,19 @@ public final class SliderTrackLayer: CALayer {
         
         let trackWidth = bounds.width - cornerRadius
         let range = maximumValue - minimumValue
-        var thresholdX: CGFloat = (value - minimumValue) / range * trackWidth
-        if (value - minimumValue) > .zero {
-            thresholdX += thumbWidth / 3
+        var thresholdX: CGFloat = ((value - minimumValue) / range * trackWidth)
+        let averangeValue = value - minimumValue
+        if averangeValue > .zero {
+            if averangeValue >= maximumValue / 2 {
+                thresholdX += thumbWidth / 6
+            } else {
+                thresholdX += thumbWidth / 3
+            }
         }
         if value == maximumValue {
             thresholdX += -thumbWidth / 3
         }
-        let width = thresholdX.rounded()
+        let width = thresholdX.rounded(.down)
         let trackMinSize = CGSize(width: width, height: bounds.height)
         let trackMinRect = CGRect(origin: .zero, size: trackMinSize)
         let trackMinPath = UIBezierPath(roundedRect: trackMinRect, cornerRadius: cornerRadius)

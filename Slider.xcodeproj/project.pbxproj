@@ -25,6 +25,7 @@
 		4B889B692433375D002FCE02 /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B682433375D002FCE02 /* CodeViewController.swift */; };
 		4B889B7624333E7C002FCE02 /* CodeViewController+SliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */; };
 		4B889B792433402F002FCE02 /* DirectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B782433402F002FCE02 /* DirectionEnum.swift */; };
+		4BE5924828E60EA400199721 /* HapticConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE5924728E60EA400199721 /* HapticConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		4B889B682433375D002FCE02 /* CodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewController.swift; sourceTree = "<group>"; };
 		4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeViewController+SliderDelegate.swift"; sourceTree = "<group>"; };
 		4B889B782433402F002FCE02 /* DirectionEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionEnum.swift; sourceTree = "<group>"; };
+		4BE5924728E60EA400199721 /* HapticConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				4B2EB6DB23C1E52600FB91AD /* Protocols */,
 				4B2EB6D623C1E45100FB91AD /* Extensions */,
 				4B889B772433401C002FCE02 /* Enums */,
+				4BE5924628E60E8300199721 /* Configurations */,
 				4B2EB6CD23C1E18C00FB91AD /* Slider.swift */,
 				4B2EB6D123C1E32B00FB91AD /* SliderTrackLayer.swift */,
 				4B2EB6D323C1E40B00FB91AD /* SliderTextLayer.swift */,
@@ -231,6 +234,14 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		4BE5924628E60E8300199721 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				4BE5924728E60EA400199721 /* HapticConfiguration.swift */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -289,7 +300,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = "Ramiz Kichibekov";
 				TargetAttributes = {
 					4B2EB6C123C1E11E00FB91AD = {
@@ -350,6 +361,7 @@
 				4B2EB6DD23C1E53300FB91AD /* Protocols.swift in Sources */,
 				4B889B792433402F002FCE02 /* DirectionEnum.swift in Sources */,
 				4B2EB6D423C1E40B00FB91AD /* SliderTextLayer.swift in Sources */,
+				4BE5924828E60EA400199721 /* HapticConfiguration.swift in Sources */,
 				4B2EB6D823C1E46000FB91AD /* String.swift in Sources */,
 				4B2EB6CE23C1E18C00FB91AD /* Slider.swift in Sources */,
 			);
@@ -423,6 +435,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -486,6 +499,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

@@ -32,8 +32,8 @@ open class Slider: UIControl {
             if let maxText: String = delegate?.slider(self, displayTextForValue: maximum),
                !maxText.isEmpty
             {
-                let newWidth = maxText.width(withConstraintedHeight: thumbHeight,
-                                             font: UIFont.boldSystemFont(ofSize: fontSize))
+                let newWidth = maxText.size(withConstrainedWidth: thumbHeight,
+                                            font: UIFont.boldSystemFont(ofSize: fontSize)).width
                 thumbWidth = CGFloat(max(newWidth, thumbWidth))
                 thumbLayer.bounds = CGRect(origin: .zero,
                                            size: CGSize(width: thumbWidth,
@@ -146,7 +146,7 @@ open class Slider: UIControl {
     }
     
     @IBInspectable
-    final public var trackInset: CGFloat = 0 {
+    final public var trackInset: CGFloat = .zero {
         didSet {
             layoutSubviews()
         }
@@ -182,7 +182,7 @@ open class Slider: UIControl {
     }
     
     @IBInspectable
-    open var trackMinColor: UIColor = UIColor(red: 0,
+    open var trackMinColor: UIColor = UIColor(red: .zero,
                                               green: 122 / 255,
                                               blue: 1,
                                               alpha: 1) {
@@ -205,11 +205,9 @@ open class Slider: UIControl {
     
     // MARK: - Properties
     
-    final public var didBeginTracking: ((Slider) -> Void)?
-    final public var didContinueTracking: ((Slider) -> Void)?
-    final public var didEndTracking: ((Slider) -> Void)?
     final public var direction: DirectionEnum = .leftToRight {
         didSet {
+            hapticConfiguration.directionGenerate()
             CATransaction.begin()
             CATransaction.setDisableActions(true)
             CATransaction.setAnimationDuration(.zero)
@@ -224,12 +222,17 @@ open class Slider: UIControl {
         }
     }
     open var animator: UIViewPropertyAnimator?
+    public var hapticConfiguration: HapticConfiguration = .init(reachLimitValueHapticEnabled: true,
+                                                                changeValueHapticEnabled: false,
+                                                                changeDirectionHapticEnabled: true,
+                                                                reachImpactGeneratorStyle: .medium,
+                                                                changeValueImpactGeneratorStyle: .light)
     public let trackLayer = SliderTrackLayer()
     public let thumbLayer = SliderTextLayer()
     public let minimumLayer = SliderMinimumTextLayer()
     public let maximumLayer = SliderMaximumTextLayer()
     final public var previousTouchPoint: CGPoint = .zero
-    final public var usableTrackingLength: CGFloat = 0
+    final public var usableTrackingLength: CGFloat = .zero
     private let trackMaskLayer = CAShapeLayer()
     
     // MARK: - Life cycle
@@ -254,6 +257,8 @@ open class Slider: UIControl {
         super.layoutSubviews()
         
         trackLayer.frame = trackRectForBound(bounds)
+        trackMaskLayer.path = UIBezierPath(roundedRect: trackRectForBound(bounds),
+                                      cornerRadius: cornerRadius).cgPath
         commonInit()
         updateThumbLayersPosition()
         redrawLayers()
@@ -295,7 +300,7 @@ open class Slider: UIControl {
     
     private func initThumbLayer() {
         thumbLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        thumbLayer.bounds = CGRect(x: 0, y: 0, width: thumbWidth, height: thumbHeight)
+        thumbLayer.bounds = CGRect(x: .zero, y: .zero, width: thumbWidth, height: thumbHeight)
         let xPosition = positionForValue(value: minimum)
         thumbLayer.position = CGPoint(x: xPosition, y: bounds.size.height / 2)
         thumbLayer.foregroundColor = trackMinColor.cgColor
@@ -317,7 +322,7 @@ open class Slider: UIControl {
     
     private func initMinimumLayer() {
         minimumLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        minimumLayer.bounds = CGRect(x: 0, y: 0, width: thumbWidth, height: thumbHeight)
+        minimumLayer.bounds = CGRect(x: .zero, y: .zero, width: thumbWidth, height: thumbHeight)
         let xPosition = positionForValue(value: minimum)
         minimumLayer.position = CGPoint(x: xPosition, y: bounds.size.height / 2)
         minimumLayer.foregroundColor = UIColor.white.cgColor
@@ -328,7 +333,7 @@ open class Slider: UIControl {
     
     private func initMaximumLayer() {
         maximumLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        maximumLayer.bounds = CGRect(x: 0, y: 0, width: thumbWidth, height: thumbHeight)
+        maximumLayer.bounds = CGRect(x: .zero, y: .zero, width: thumbWidth, height: thumbHeight)
         let xPosition = positionForValue(value: maximum)
         maximumLayer.position = CGPoint(x: xPosition, y: bounds.size.height / 2)
         maximumLayer.foregroundColor = UIColor.white.cgColor
@@ -409,7 +414,7 @@ open class Slider: UIControl {
     }
     
     private func textForValue(_ value: CGFloat) -> String {
-        guard let `delegate` = delegate else {
+        guard let delegate = delegate else {
             return String(format: "%.0f", value)
         }
         

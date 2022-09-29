@@ -272,7 +272,7 @@ open class Slider: UIControl {
     }
     
     // MARK: - Custom methods
-    // MARK: - Private methods
+    // MARK: Private methods
     
     private func initialControl() {
         backgroundColor = .clear

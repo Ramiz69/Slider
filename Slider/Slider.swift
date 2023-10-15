@@ -235,7 +235,7 @@ open class Slider: UIControl {
     final public var usableTrackingLength: CGFloat = .zero
     private let trackMaskLayer = CAShapeLayer()
     
-    // MARK: - Life cycle
+    // MARK: - Initial methods
     
     required public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -252,6 +252,8 @@ open class Slider: UIControl {
         initLayers()
         commonInit()
     }
+    
+    // MARK: - Life cycle
     
     public override func layoutSubviews() {
         super.layoutSubviews()
@@ -271,8 +273,7 @@ open class Slider: UIControl {
         redrawLayers()
     }
     
-    // MARK: - Custom methods
-    // MARK: Private methods
+    // MARK: - Private methods
     
     private func initialControl() {
         backgroundColor = .clear
@@ -347,7 +348,7 @@ open class Slider: UIControl {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    // MARK: - Update methods
+    // MARK: Update methods
     
     private func reinitComponentValues() {
         trackLayer.minimumValue = minimum

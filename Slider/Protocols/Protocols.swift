@@ -23,7 +23,8 @@
 //
 import UIKit
 
-@objc public protocol SliderDelegate: AnyObject {
+@objc
+public protocol SliderDelegate: AnyObject {
     func slider(_ slider: Slider, displayTextForValue value: CGFloat) -> String
     func didBeginTracking(_ slider: Slider)
     func didContinueTracking(_ slider: Slider)

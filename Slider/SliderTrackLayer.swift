@@ -26,12 +26,16 @@ import UIKit
 
 public final class SliderTrackLayer: CALayer {
     
+    // MARK: - Properties
+    
     public var value: CGFloat = .zero
     public var minimumValue: CGFloat = .zero
     public var maximumValue: CGFloat = 1
     public var thumbWidth: CGFloat = .zero
     public var trackMaxColor: UIColor!
     public var trackMinColor: UIColor!
+    
+    // MARK: - Life cycle
     
     override public func draw(in ctx: CGContext) {
         ctx.setFillColor(trackMaxColor.cgColor)

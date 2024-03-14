@@ -12,16 +12,19 @@ jobs:
   iOS:
     name: Build Slider 
     runs-on: macOS-latest
-    env: 
-      DEVELOPER_DIR: /Applications/Xcode_15.2.app/Contents/Developer
-      timeout-minutes: 10
-    strategy:
-      matrix:
-        destination: ["OS=17.2,name=iPhone 15 Pro"] #, "OS=16.2,name=iPhone 15 Pro Max", "OS=16.1,name=iPhone 15 Pro"]
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: latest-stable
-      - name: iOS - Build
-        run: xcodebuild -project "Slider.xcodeproj" -scheme "SliderScheme" -destination "${{ matrix.destination }}" build test
-        timeout-minutes: 10
+      - uses: actions/checkout@v4
+      - uses: futureware-tech/simulator-action@v3
+        with:
+          os: 'iOS'
+          os_version: >= 14.0
+      uses: sersoft-gmbh/xcodebuild-action@v3
+        with:
+          project: Slider.xcodeproj
+          scheme: Slider
+          destination: platform=iOS
+          action: test
+      timeout-minutes: 10

@@ -52,7 +52,7 @@ copy `Slider.swift` to your project
 ### Usage
 
 #### code
-- init Slider with frame
+- init Slider with frame or use Auto Layout
 - add a view to your superview
 
 ## Author

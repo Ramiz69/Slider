@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [0.0.8] - 2024-03-14
+
+### Added
+- Added SPM support;
+
 ## [0.0.7] - 2024-03-14
 
 ### Added

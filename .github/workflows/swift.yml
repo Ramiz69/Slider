@@ -24,6 +24,6 @@ jobs:
       - uses: sersoft-gmbh/xcodebuild-action@v3
         with:
             project: Slider.xcodeproj
-            destination: platform=iOS
-            action: test
+            scheme: `Slider`
+            action: build
         timeout-minutes: 10

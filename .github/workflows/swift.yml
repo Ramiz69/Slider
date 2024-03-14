@@ -20,7 +20,7 @@ jobs:
       - uses: futureware-tech/simulator-action@v3
         with:
           os: 'iOS'
-          os_version: >= 14.0
+          os_version: '>= 14.0'
       uses: sersoft-gmbh/xcodebuild-action@v3
         with:
           project: Slider.xcodeproj

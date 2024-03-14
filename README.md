@@ -1,9 +1,10 @@
 # Slider
 
-[![Build Status](https://github.com/Ramiz69/Slider/workflows/Slider%20CI/badge.svg?branch=master)](https://github.com/Ramiz69/Slider/actions)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ramiz69/Slider/swift.yml)
 [![Version](https://img.shields.io/cocoapods/v/RKSlider.svg?style=flat)](https://cocoapods.org/pods/RKSlider)
 [![License](https://img.shields.io/cocoapods/l/RKSlider.svg?style=flat)](https://cocoapods.org/pods/RKSlider)
 [![Platform](https://img.shields.io/cocoapods/p/RKSlider.svg?style=flat)](https://cocoapods.org/pods/RKSlider)
+![GitHub Release](https://img.shields.io/github/v/release/ramiz69/Slider)
 
 - [Installation](#installation)
 - [Author](#author)
@@ -12,7 +13,7 @@
 ## Requirements
 
 - iOS 14.0+
-- Xcode 11.3+
+- Xcode 15+
 - Swift 5+
 
 ## Preview

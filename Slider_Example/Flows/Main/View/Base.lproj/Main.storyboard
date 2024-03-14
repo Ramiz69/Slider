@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ElW-5N-lSE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ElW-5N-lSE">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Slider-->
         <scene sceneID="hzv-90-Ux9">
             <objects>
                 <tableViewController id="Vbb-tq-ev5" sceneMemberID="viewController">
@@ -20,28 +20,8 @@
                         <sections>
                             <tableViewSection id="frh-l3-UIC">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ogV-sT-95l" rowHeight="44" style="IBUITableViewCellStyleDefault" id="WBg-om-y89">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WBg-om-y89" id="G5W-AZ-E9B">
-                                            <rect key="frame" x="0.0" y="0.0" width="383.5" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Storyboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ogV-sT-95l">
-                                                    <rect key="frame" x="20" y="0.0" width="355.5" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="tPX-fm-luE"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="7ge-wI-BT2" rowHeight="44" style="IBUITableViewCellStyleDefault" id="5JS-8u-1zY">
-                                        <rect key="frame" x="0.0" y="94" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5JS-8u-1zY" id="hkK-nc-B7r">
                                             <rect key="frame" x="0.0" y="0.0" width="383.5" height="44"/>
@@ -68,7 +48,7 @@
                             <outlet property="delegate" destination="Vbb-tq-ev5" id="OaR-yV-LQ9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="fBH-2w-PjV"/>
+                    <navigationItem key="navigationItem" title="Slider" prompt="https://github.com/Ramiz69" id="fBH-2w-PjV"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5h-Ma-Jjc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -167,7 +147,6 @@
                             </segments>
                             <connections>
                                 <action selector="didChangeSegment:" destination="Jwd-0R-N5F" eventType="valueChanged" id="NbQ-7o-MQL"/>
-                                <action selector="didChangeSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="Yfj-wY-aea"/>
                             </connections>
                         </segmentedControl>
                     </navigationItem>
@@ -180,129 +159,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E2p-Wi-Qam" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="790" y="572"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="Slider_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LWV-Df-BX1" customClass="Slider" customModule="Slider">
-                                <rect key="frame" x="16" y="92" width="382" height="60"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="hfu-jy-psW"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="thumbTextColor">
-                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nXe-1J-FfL">
-                                <rect key="frame" x="16" y="224" width="382" height="113"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kmH-pv-BQ7">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="31"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reach Max/Min values" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJk-dn-ZVu">
-                                                <rect key="frame" x="0.0" y="0.0" width="333" height="31"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rAj-ix-AEq">
-                                                <rect key="frame" x="333" y="0.0" width="51" height="31"/>
-                                                <connections>
-                                                    <action selector="didChangeReachValue:" destination="BYZ-38-t0r" eventType="valueChanged" id="md5-A1-fjf"/>
-                                                </connections>
-                                            </switch>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eXT-DY-Yuz">
-                                        <rect key="frame" x="0.0" y="41" width="382" height="31"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value change" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iO8-vd-s1a">
-                                                <rect key="frame" x="0.0" y="0.0" width="333" height="31"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Tb-bg-5xG">
-                                                <rect key="frame" x="333" y="0.0" width="51" height="31"/>
-                                                <connections>
-                                                    <action selector="didChangeValue:" destination="BYZ-38-t0r" eventType="valueChanged" id="vcA-st-Uet"/>
-                                                </connections>
-                                            </switch>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QtN-tk-F2P">
-                                        <rect key="frame" x="0.0" y="82" width="382" height="31"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Direction change" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhn-5i-GGz">
-                                                <rect key="frame" x="0.0" y="0.0" width="333" height="31"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UKV-oi-WbS">
-                                                <rect key="frame" x="333" y="0.0" width="51" height="31"/>
-                                                <connections>
-                                                    <action selector="didChangeDirectionValue:" destination="BYZ-38-t0r" eventType="valueChanged" id="uN9-YI-n3f"/>
-                                                </connections>
-                                            </switch>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Haptic Generation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8E-Vw-6pG">
-                                <rect key="frame" x="16" y="176" width="382" height="24"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.80392156862745101" green="0.82352941176470584" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LWV-Df-BX1" secondAttribute="trailing" constant="16" id="7My-IG-INN"/>
-                            <constraint firstItem="nXe-1J-FfL" firstAttribute="top" secondItem="l8E-Vw-6pG" secondAttribute="bottom" constant="24" id="Luc-Rx-O4Z"/>
-                            <constraint firstItem="LWV-Df-BX1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="SKY-Bl-bXl"/>
-                            <constraint firstItem="LWV-Df-BX1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="SWO-iW-D19"/>
-                            <constraint firstItem="l8E-Vw-6pG" firstAttribute="top" secondItem="LWV-Df-BX1" secondAttribute="bottom" constant="24" id="Y6d-8Q-SRm"/>
-                            <constraint firstItem="l8E-Vw-6pG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="cmD-tX-4eg"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nXe-1J-FfL" secondAttribute="trailing" constant="16" id="pTD-an-DFe"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="l8E-Vw-6pG" secondAttribute="trailing" constant="16" id="vqF-q3-965"/>
-                            <constraint firstItem="nXe-1J-FfL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="y9x-0x-ELo"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="DsX-EQ-ReJ">
-                        <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="c6y-yf-YeD">
-                            <rect key="frame" x="111.5" y="5.5" width="191" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Left to Right"/>
-                                <segment title="Right to Left"/>
-                            </segments>
-                            <connections>
-                                <action selector="didChangeSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="Ahi-vB-zhn"/>
-                            </connections>
-                        </segmentedControl>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="directionSwitch" destination="UKV-oi-WbS" id="YDR-KX-Cnu"/>
-                        <outlet property="reachSwitch" destination="rAj-ix-AEq" id="Muq-tT-QYE"/>
-                        <outlet property="slider" destination="LWV-Df-BX1" id="cFA-LZ-9hL"/>
-                        <outlet property="valueSwitch" destination="9Tb-bg-5xG" id="yEF-ys-83n"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="791" y="-149"/>
+            <point key="canvasLocation" x="745" y="210"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ptw-Fz-nZc">

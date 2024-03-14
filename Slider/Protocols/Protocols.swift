@@ -1,7 +1,7 @@
 //
 //  Protocols.swift
 //
-//  Copyright (c) 2020 Ramiz Kichibekov (https://instagram.com/kichibekov69)
+//  Copyright (c) 2020 Ramiz Kichibekov (https://github.com/ramiz69)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 //
 import UIKit
 
-@objc
 public protocol SliderDelegate: AnyObject {
     func slider(_ slider: Slider, displayTextForValue value: CGFloat) -> String
     func didBeginTracking(_ slider: Slider)

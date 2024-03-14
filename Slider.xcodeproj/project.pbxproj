@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B22ED1B2AEECB7700208DD7 /* Slider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2EB6C223C1E11F00FB91AD /* Slider.framework */; };
+		4B22ED1C2AEECB7700208DD7 /* Slider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2EB6C223C1E11F00FB91AD /* Slider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4B2EB6C723C1E11F00FB91AD /* Slider.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B2EB6C523C1E11F00FB91AD /* Slider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B2EB6CE23C1E18C00FB91AD /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB6CD23C1E18C00FB91AD /* Slider.swift */; };
 		4B2EB6D223C1E32B00FB91AD /* SliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB6D123C1E32B00FB91AD /* SliderTrackLayer.swift */; };
@@ -16,12 +18,9 @@
 		4B2EB6DD23C1E53300FB91AD /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB6DC23C1E53300FB91AD /* Protocols.swift */; };
 		4B2EB6E523C1E5AA00FB91AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB6E423C1E5AA00FB91AD /* AppDelegate.swift */; };
 		4B2EB6E723C1E5AA00FB91AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB6E623C1E5AA00FB91AD /* SceneDelegate.swift */; };
-		4B2EB6E923C1E5AA00FB91AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB6E823C1E5AA00FB91AD /* ViewController.swift */; };
 		4B2EB6EC23C1E5AA00FB91AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2EB6EA23C1E5AA00FB91AD /* Main.storyboard */; };
 		4B2EB6EE23C1E5AA00FB91AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2EB6ED23C1E5AA00FB91AD /* Assets.xcassets */; };
 		4B2EB6F123C1E5AA00FB91AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2EB6EF23C1E5AA00FB91AD /* LaunchScreen.storyboard */; };
-		4B2EB6F923C1E85E00FB91AD /* Slider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2EB6C223C1E11F00FB91AD /* Slider.framework */; };
-		4B2EB6FA23C1E85E00FB91AD /* Slider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2EB6C223C1E11F00FB91AD /* Slider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4B889B692433375D002FCE02 /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B682433375D002FCE02 /* CodeViewController.swift */; };
 		4B889B7624333E7C002FCE02 /* CodeViewController+SliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */; };
 		4B889B792433402F002FCE02 /* DirectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B782433402F002FCE02 /* DirectionEnum.swift */; };
@@ -29,7 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4B2EB6FB23C1E85E00FB91AD /* PBXContainerItemProxy */ = {
+		4B22ED1D2AEECB7700208DD7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4B2EB6B923C1E11E00FB91AD /* Project object */;
 			proxyType = 1;
@@ -39,13 +38,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		4B2EB6FD23C1E85E00FB91AD /* Embed Frameworks */ = {
+		4B22ED192AEECADA00208DD7 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4B2EB6FA23C1E85E00FB91AD /* Slider.framework in Embed Frameworks */,
+				4B22ED1C2AEECB7700208DD7 /* Slider.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,7 +64,6 @@
 		4B2EB6E223C1E5AA00FB91AD /* Slider_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slider_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2EB6E423C1E5AA00FB91AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B2EB6E623C1E5AA00FB91AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4B2EB6E823C1E5AA00FB91AD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4B2EB6EB23C1E5AA00FB91AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B2EB6ED23C1E5AA00FB91AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B2EB6F023C1E5AA00FB91AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -88,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B2EB6F923C1E85E00FB91AD /* Slider.framework in Frameworks */,
+				4B22ED1B2AEECB7700208DD7 /* Slider.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +201,6 @@
 		4B889B6E24333BC2002FCE02 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4B2EB6E823C1E5AA00FB91AD /* ViewController.swift */,
 				4B889B682433375D002FCE02 /* CodeViewController.swift */,
 			);
 			path = Controllers;
@@ -281,14 +278,16 @@
 				4B2EB6DE23C1E5AA00FB91AD /* Sources */,
 				4B2EB6DF23C1E5AA00FB91AD /* Frameworks */,
 				4B2EB6E023C1E5AA00FB91AD /* Resources */,
-				4B2EB6FD23C1E85E00FB91AD /* Embed Frameworks */,
+				4B22ED192AEECADA00208DD7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4B2EB6FC23C1E85E00FB91AD /* PBXTargetDependency */,
+				4B22ED1E2AEECB7700208DD7 /* PBXTargetDependency */,
 			);
 			name = Slider_Example;
+			packageProductDependencies = (
+			);
 			productName = Slider_Example;
 			productReference = 4B2EB6E223C1E5AA00FB91AD /* Slider_Example.app */;
 			productType = "com.apple.product-type.application";
@@ -299,8 +298,9 @@
 		4B2EB6B923C1E11E00FB91AD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1530;
 				ORGANIZATIONNAME = "Ramiz Kichibekov";
 				TargetAttributes = {
 					4B2EB6C123C1E11E00FB91AD = {
@@ -313,7 +313,7 @@
 				};
 			};
 			buildConfigurationList = 4B2EB6BC23C1E11E00FB91AD /* Build configuration list for PBXProject "Slider" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 15.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -321,6 +321,8 @@
 				Base,
 			);
 			mainGroup = 4B2EB6B823C1E11E00FB91AD;
+			packageReferences = (
+			);
 			productRefGroup = 4B2EB6C323C1E11F00FB91AD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -371,7 +373,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B2EB6E923C1E5AA00FB91AD /* ViewController.swift in Sources */,
 				4B889B692433375D002FCE02 /* CodeViewController.swift in Sources */,
 				4B2EB6E523C1E5AA00FB91AD /* AppDelegate.swift in Sources */,
 				4B889B7624333E7C002FCE02 /* CodeViewController+SliderDelegate.swift in Sources */,
@@ -382,10 +383,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4B2EB6FC23C1E85E00FB91AD /* PBXTargetDependency */ = {
+		4B22ED1E2AEECB7700208DD7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4B2EB6C123C1E11E00FB91AD /* Slider */;
-			targetProxy = 4B2EB6FB23C1E85E00FB91AD /* PBXContainerItemProxy */;
+			targetProxy = 4B22ED1D2AEECB7700208DD7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -413,6 +414,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -447,6 +449,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -461,7 +464,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -477,6 +480,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -511,6 +515,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -519,7 +524,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -535,20 +540,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				INFOPLIST_FILE = Slider/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = "Ramiz-Kichibekov.Slider";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -562,20 +570,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				INFOPLIST_FILE = Slider/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = "Ramiz-Kichibekov.Slider";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -591,6 +602,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8AD8N54BY6;
 				INFOPLIST_FILE = "Slider_Example/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -609,6 +621,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8AD8N54BY6;
 				INFOPLIST_FILE = "Slider_Example/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

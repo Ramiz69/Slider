@@ -1,7 +1,7 @@
 //
 //  SliderTrackLayer.swift
 //
-//  Copyright (c) 2020 Ramiz Kichibekov (https://instagram.com/kichibekov69)
+//  Copyright (c) 2020 Ramiz Kichibekov (https://github.com/ramiz69)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -35,9 +35,41 @@ public final class SliderTrackLayer: CALayer {
     public var trackMaxColor: UIColor!
     public var trackMinColor: UIColor!
     
+    // MARK: - Initial methods
+    
+    public init(value: CGFloat = .zero,
+                minimumValue: CGFloat = .zero,
+                maximumValue: CGFloat = 1,
+                thumbWidth: CGFloat = .zero,
+                trackMaxColor: UIColor,
+                trackMinColor: UIColor) {
+        self.value = value
+        self.minimumValue = minimumValue
+        self.maximumValue = maximumValue
+        self.thumbWidth = thumbWidth
+        self.trackMaxColor = trackMaxColor
+        self.trackMinColor = trackMinColor
+        super.init()
+    }
+    
+    public override init(layer: Any) {
+        super.init(layer: layer)
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     // MARK: - Life cycle
     
     override public func draw(in ctx: CGContext) {
+        assert(trackMaxColor != nil, "trackMaxColor should not be nil. Check the color initialization.")
+        assert(trackMinColor != nil, "trackMinColor should not be nil. Check the color initialization.")
         ctx.setFillColor(trackMaxColor.cgColor)
         ctx.addPath(UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath)
         ctx.fillPath()

@@ -1,7 +1,7 @@
 //
 //  SliderTextLayer.swift
 //
-//  Copyright (c) 2020 Ramiz Kichibekov (https://instagram.com/kichibekov69)
+//  Copyright (c) 2020 Ramiz Kichibekov (https://github.com/ramiz69)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +26,33 @@ import UIKit
 
 public class SliderTextLayer: CATextLayer {
     
+    // MARK: - Properties
+    
     public var trackMaxColor: UIColor!
     public var trackMinColor: UIColor!
+    
+    // MARK: - Initial methods
+    
+    public init(trackMaxColor: UIColor, trackMinColor: UIColor) {
+        self.trackMaxColor = trackMaxColor
+        self.trackMinColor = trackMinColor
+        super.init()
+    }
+    
+    public override init(layer: Any) {
+        super.init(layer: layer)
+    }
+    
+    public override init() {
+        super.init()
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    // MARK: - Life cycle
     
     public override func setNeedsDisplay() {
         super.setNeedsDisplay()
@@ -47,6 +72,8 @@ public class SliderTextLayer: CATextLayer {
     }
     
     open func configureBorder() {
+        assert(trackMaxColor != nil, "trackMaxColor should not be nil. Check the color initialization.")
+        assert(trackMinColor != nil, "trackMinColor should not be nil. Check the color initialization.")
         foregroundColor = trackMinColor.cgColor
         borderWidth = 4
         borderColor = trackMinColor.cgColor

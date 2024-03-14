@@ -21,10 +21,10 @@ jobs:
         with:
           os: 'iOS'
           os_version: '>= 14.0'
-      uses: sersoft-gmbh/xcodebuild-action@v3
+      - uses: sersoft-gmbh/xcodebuild-action@v3
         with:
-          project: Slider.xcodeproj
-          scheme: Slider
-          destination: platform=iOS
-          action: test
-      timeout-minutes: 10
+            project: Slider.xcodeproj
+            scheme: Slider
+            destination: platform=iOS
+            action: test
+        timeout-minutes: 10

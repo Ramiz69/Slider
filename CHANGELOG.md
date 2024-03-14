@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [0.0.9] - 2024-03-14
+
+### Fixed
+- Fixed podspec and SPM dependencies;
+
 ## [0.0.8] - 2024-03-14
 
 ### Added

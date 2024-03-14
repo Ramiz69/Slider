@@ -14,17 +14,17 @@
 		4B2EB6EC23C1E5AA00FB91AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2EB6EA23C1E5AA00FB91AD /* Main.storyboard */; };
 		4B2EB6EE23C1E5AA00FB91AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2EB6ED23C1E5AA00FB91AD /* Assets.xcassets */; };
 		4B2EB6F123C1E5AA00FB91AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2EB6EF23C1E5AA00FB91AD /* LaunchScreen.storyboard */; };
-		4B6D55252BA2AF4E00B44A69 /* Slider+UITouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6D55172BA2AF4E00B44A69 /* Slider+UITouch.swift */; };
-		4B6D55262BA2AF4E00B44A69 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6D55182BA2AF4E00B44A69 /* String.swift */; };
-		4B6D55272BA2AF4E00B44A69 /* Slider.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B6D551A2BA2AF4E00B44A69 /* Slider.h */; };
-		4B6D55282BA2AF4E00B44A69 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6D551B2BA2AF4E00B44A69 /* Protocols.swift */; };
-		4B6D552A2BA2AF4E00B44A69 /* SliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6D551E2BA2AF4E00B44A69 /* SliderTrackLayer.swift */; };
-		4B6D552B2BA2AF4E00B44A69 /* DirectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6D551F2BA2AF4E00B44A69 /* DirectionEnum.swift */; };
-		4B6D552C2BA2AF4E00B44A69 /* HapticConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6D55212BA2AF4E00B44A69 /* HapticConfiguration.swift */; };
-		4B6D552D2BA2AF4E00B44A69 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6D55232BA2AF4E00B44A69 /* Slider.swift */; };
-		4B6D552E2BA2AF4E00B44A69 /* SliderTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6D55242BA2AF4E00B44A69 /* SliderTextLayer.swift */; };
 		4B889B692433375D002FCE02 /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B682433375D002FCE02 /* CodeViewController.swift */; };
 		4B889B7624333E7C002FCE02 /* CodeViewController+SliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */; };
+		4BF628A12BA2B38D0093637E /* HapticConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628922BA2B38D0093637E /* HapticConfiguration.swift */; };
+		4BF628A22BA2B38D0093637E /* DirectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628942BA2B38D0093637E /* DirectionEnum.swift */; };
+		4BF628A32BA2B38D0093637E /* Slider+UITouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628962BA2B38D0093637E /* Slider+UITouch.swift */; };
+		4BF628A42BA2B38D0093637E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628972BA2B38D0093637E /* String.swift */; };
+		4BF628A52BA2B38D0093637E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628992BA2B38D0093637E /* Protocols.swift */; };
+		4BF628A72BA2B38D0093637E /* Slider.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BF6289C2BA2B38D0093637E /* Slider.h */; };
+		4BF628A82BA2B38D0093637E /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6289D2BA2B38D0093637E /* Slider.swift */; };
+		4BF628A92BA2B38D0093637E /* SliderTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6289E2BA2B38D0093637E /* SliderTextLayer.swift */; };
+		4BF628AA2BA2B38D0093637E /* SliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6289F2BA2B38D0093637E /* SliderTrackLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,18 +60,18 @@
 		4B2EB6ED23C1E5AA00FB91AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B2EB6F023C1E5AA00FB91AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B2EB6F223C1E5AA00FB91AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B6D55172BA2AF4E00B44A69 /* Slider+UITouch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Slider+UITouch.swift"; sourceTree = "<group>"; };
-		4B6D55182BA2AF4E00B44A69 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		4B6D551A2BA2AF4E00B44A69 /* Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Slider.h; path = Sources/Slider.h; sourceTree = "<group>"; };
-		4B6D551B2BA2AF4E00B44A69 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		4B6D551D2BA2AF4E00B44A69 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Info.plist; sourceTree = "<group>"; };
-		4B6D551E2BA2AF4E00B44A69 /* SliderTrackLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SliderTrackLayer.swift; path = Sources/SliderTrackLayer.swift; sourceTree = "<group>"; };
-		4B6D551F2BA2AF4E00B44A69 /* DirectionEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionEnum.swift; sourceTree = "<group>"; };
-		4B6D55212BA2AF4E00B44A69 /* HapticConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HapticConfiguration.swift; sourceTree = "<group>"; };
-		4B6D55232BA2AF4E00B44A69 /* Slider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Slider.swift; path = Sources/Slider.swift; sourceTree = "<group>"; };
-		4B6D55242BA2AF4E00B44A69 /* SliderTextLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SliderTextLayer.swift; path = Sources/SliderTextLayer.swift; sourceTree = "<group>"; };
 		4B889B682433375D002FCE02 /* CodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewController.swift; sourceTree = "<group>"; };
 		4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeViewController+SliderDelegate.swift"; sourceTree = "<group>"; };
+		4BF628922BA2B38D0093637E /* HapticConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HapticConfiguration.swift; sourceTree = "<group>"; };
+		4BF628942BA2B38D0093637E /* DirectionEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionEnum.swift; sourceTree = "<group>"; };
+		4BF628962BA2B38D0093637E /* Slider+UITouch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Slider+UITouch.swift"; sourceTree = "<group>"; };
+		4BF628972BA2B38D0093637E /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		4BF628992BA2B38D0093637E /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		4BF6289B2BA2B38D0093637E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BF6289C2BA2B38D0093637E /* Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slider.h; sourceTree = "<group>"; };
+		4BF6289D2BA2B38D0093637E /* Slider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
+		4BF6289E2BA2B38D0093637E /* SliderTextLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderTextLayer.swift; sourceTree = "<group>"; };
+		4BF6289F2BA2B38D0093637E /* SliderTrackLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderTrackLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +96,7 @@
 		4B2EB6B823C1E11E00FB91AD = {
 			isa = PBXGroup;
 			children = (
-				4B2EB6C423C1E11F00FB91AD /* Slider */,
+				4BF628A02BA2B38D0093637E /* Sources */,
 				4B2EB6E323C1E5AA00FB91AD /* Slider_Example */,
 				4B2EB6C323C1E11F00FB91AD /* Products */,
 				4B2EB6F823C1E85E00FB91AD /* Frameworks */,
@@ -110,22 +110,6 @@
 				4B2EB6E223C1E5AA00FB91AD /* Slider_Example.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		4B2EB6C423C1E11F00FB91AD /* Slider */ = {
-			isa = PBXGroup;
-			children = (
-				4B6D55222BA2AF4E00B44A69 /* Configurations */,
-				4B6D55202BA2AF4E00B44A69 /* Enums */,
-				4B6D55192BA2AF4E00B44A69 /* Extensions */,
-				4B6D551D2BA2AF4E00B44A69 /* Info.plist */,
-				4B6D551C2BA2AF4E00B44A69 /* Protocols */,
-				4B6D551A2BA2AF4E00B44A69 /* Slider.h */,
-				4B6D55232BA2AF4E00B44A69 /* Slider.swift */,
-				4B6D55242BA2AF4E00B44A69 /* SliderTextLayer.swift */,
-				4B6D551E2BA2AF4E00B44A69 /* SliderTrackLayer.swift */,
-			);
-			path = Slider;
 			sourceTree = "<group>";
 		};
 		4B2EB6E323C1E5AA00FB91AD /* Slider_Example */ = {
@@ -143,43 +127,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		4B6D55192BA2AF4E00B44A69 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				4B6D55172BA2AF4E00B44A69 /* Slider+UITouch.swift */,
-				4B6D55182BA2AF4E00B44A69 /* String.swift */,
-			);
-			name = Extensions;
-			path = Sources/Extensions;
-			sourceTree = "<group>";
-		};
-		4B6D551C2BA2AF4E00B44A69 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				4B6D551B2BA2AF4E00B44A69 /* Protocols.swift */,
-			);
-			name = Protocols;
-			path = Sources/Protocols;
-			sourceTree = "<group>";
-		};
-		4B6D55202BA2AF4E00B44A69 /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				4B6D551F2BA2AF4E00B44A69 /* DirectionEnum.swift */,
-			);
-			name = Enums;
-			path = Sources/Enums;
-			sourceTree = "<group>";
-		};
-		4B6D55222BA2AF4E00B44A69 /* Configurations */ = {
-			isa = PBXGroup;
-			children = (
-				4B6D55212BA2AF4E00B44A69 /* HapticConfiguration.swift */,
-			);
-			name = Configurations;
-			path = Sources/Configurations;
 			sourceTree = "<group>";
 		};
 		4B889B6A24333B9F002FCE02 /* Application */ = {
@@ -243,6 +190,55 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		4BF628932BA2B38D0093637E /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				4BF628922BA2B38D0093637E /* HapticConfiguration.swift */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		4BF628952BA2B38D0093637E /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				4BF628942BA2B38D0093637E /* DirectionEnum.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		4BF628982BA2B38D0093637E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4BF628962BA2B38D0093637E /* Slider+UITouch.swift */,
+				4BF628972BA2B38D0093637E /* String.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4BF6289A2BA2B38D0093637E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4BF628992BA2B38D0093637E /* Protocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		4BF628A02BA2B38D0093637E /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				4BF628932BA2B38D0093637E /* Configurations */,
+				4BF628952BA2B38D0093637E /* Enums */,
+				4BF628982BA2B38D0093637E /* Extensions */,
+				4BF6289A2BA2B38D0093637E /* Protocols */,
+				4BF6289B2BA2B38D0093637E /* Info.plist */,
+				4BF6289C2BA2B38D0093637E /* Slider.h */,
+				4BF6289D2BA2B38D0093637E /* Slider.swift */,
+				4BF6289E2BA2B38D0093637E /* SliderTextLayer.swift */,
+				4BF6289F2BA2B38D0093637E /* SliderTrackLayer.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -250,7 +246,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B6D55272BA2AF4E00B44A69 /* Slider.h in Headers */,
+				4BF628A72BA2B38D0093637E /* Slider.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,14 +358,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B6D55282BA2AF4E00B44A69 /* Protocols.swift in Sources */,
-				4B6D552C2BA2AF4E00B44A69 /* HapticConfiguration.swift in Sources */,
-				4B6D552B2BA2AF4E00B44A69 /* DirectionEnum.swift in Sources */,
-				4B6D55262BA2AF4E00B44A69 /* String.swift in Sources */,
-				4B6D552A2BA2AF4E00B44A69 /* SliderTrackLayer.swift in Sources */,
-				4B6D552E2BA2AF4E00B44A69 /* SliderTextLayer.swift in Sources */,
-				4B6D55252BA2AF4E00B44A69 /* Slider+UITouch.swift in Sources */,
-				4B6D552D2BA2AF4E00B44A69 /* Slider.swift in Sources */,
+				4BF628A52BA2B38D0093637E /* Protocols.swift in Sources */,
+				4BF628A32BA2B38D0093637E /* Slider+UITouch.swift in Sources */,
+				4BF628A22BA2B38D0093637E /* DirectionEnum.swift in Sources */,
+				4BF628A42BA2B38D0093637E /* String.swift in Sources */,
+				4BF628A92BA2B38D0093637E /* SliderTextLayer.swift in Sources */,
+				4BF628A82BA2B38D0093637E /* Slider.swift in Sources */,
+				4BF628AA2BA2B38D0093637E /* SliderTrackLayer.swift in Sources */,
+				4BF628A12BA2B38D0093637E /* HapticConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,7 +548,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
-				INFOPLIST_FILE = Slider/Sources/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -582,7 +578,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
-				INFOPLIST_FILE = Slider/Sources/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (

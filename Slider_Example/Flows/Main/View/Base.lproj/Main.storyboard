@@ -63,7 +63,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jST-fa-fhl">
-                                <rect key="frame" x="16" y="391.5" width="382" height="113"/>
+                                <rect key="frame" x="16" y="725" width="382" height="113"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVm-yK-3ux">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="31"/>
@@ -119,7 +119,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Haptic Generation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82j-Ag-JjX">
-                                <rect key="frame" x="16" y="343.5" width="382" height="24"/>
+                                <rect key="frame" x="16" y="677" width="382" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -129,8 +129,8 @@
                         <color key="backgroundColor" red="0.80392156862745101" green="0.82352941176470584" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="jST-fa-fhl" firstAttribute="leading" secondItem="iUw-cM-Ddi" secondAttribute="leading" constant="16" id="9Vs-yM-vMQ"/>
+                            <constraint firstItem="iUw-cM-Ddi" firstAttribute="bottom" secondItem="jST-fa-fhl" secondAttribute="bottom" constant="24" id="O7g-Bs-wqc"/>
                             <constraint firstItem="iUw-cM-Ddi" firstAttribute="trailing" secondItem="82j-Ag-JjX" secondAttribute="trailing" constant="16" id="PlS-8B-MLN"/>
-                            <constraint firstItem="jST-fa-fhl" firstAttribute="centerY" secondItem="7zt-Yl-The" secondAttribute="centerY" id="avQ-fa-wuL"/>
                             <constraint firstItem="82j-Ag-JjX" firstAttribute="leading" secondItem="iUw-cM-Ddi" secondAttribute="leading" constant="16" id="gIb-U5-BW5"/>
                             <constraint firstItem="jST-fa-fhl" firstAttribute="top" secondItem="82j-Ag-JjX" secondAttribute="bottom" constant="24" id="mDM-Ue-9ex"/>
                             <constraint firstItem="iUw-cM-Ddi" firstAttribute="trailing" secondItem="jST-fa-fhl" secondAttribute="trailing" constant="16" id="uSy-Sa-ZOh"/>
@@ -138,12 +138,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="SP6-9T-O1p">
                         <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="p5Y-Zy-m84">
-                            <rect key="frame" x="111.5" y="6" width="191" height="32"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="p5Y-Zy-m84">
+                            <rect key="frame" x="50" y="5.5" width="344" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Left to Right"/>
                                 <segment title="Right to Left"/>
+                                <segment title="Bottom to Top"/>
+                                <segment title="Top to Bottom"/>
                             </segments>
                             <connections>
                                 <action selector="didChangeSegment:" destination="Jwd-0R-N5F" eventType="valueChanged" id="NbQ-7o-MQL"/>
@@ -151,6 +153,7 @@
                         </segmentedControl>
                     </navigationItem>
                     <connections>
+                        <outlet property="configView" destination="jST-fa-fhl" id="Iyz-RL-hGn"/>
                         <outlet property="directionSwitch" destination="L3U-ur-R8d" id="5Vf-yz-jSK"/>
                         <outlet property="reachSwitch" destination="Lna-4a-ZK1" id="g6X-ma-dcN"/>
                         <outlet property="segmentControl" destination="p5Y-Zy-m84" id="cIC-WZ-ERd"/>

@@ -1,7 +1,7 @@
 //
-//  DirectionEnum.swift
+//  Direction.swift
 //
-//  Copyright (c) 2020 Ramiz Kichibekov (https://github.com/ramiz69)
+//  Copyright (c) 2024 Ramiz Kichibekov (https://github.com/ramiz69)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,16 +22,30 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+import Foundation
+import CoreFoundation
 
-public enum DirectionEnum {
+public enum Direction {
     
     case leftToRight, rightToLeft
     
-    public init(withValue value: Int) {
-        switch value {
-        case .zero: self = .leftToRight
-        default: self = .rightToLeft
+    var transform: CGAffineTransform {
+        switch self {
+            case .leftToRight: .identity
+            case .rightToLeft: .identity.rotated(by: .pi)
+//            case .bottomToTop:
+//                    .identity.rotated(by: 3 * .pi / 2)
+//            case .topToBottom:
+//                    .identity.rotated(by: .pi / 2)
+        }
+    }
+    
+    var thumbTransform: CGAffineTransform {
+        switch self {
+            case .leftToRight: .identity
+            case .rightToLeft: .identity.rotated(by: .pi)
+//            case .bottomToTop: .identity.rotated(by: .pi / 2)
+//            case .topToBottom: .identity.rotated(by: 3 * .pi / 2)
         }
     }
     

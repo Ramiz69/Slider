@@ -17,6 +17,7 @@ final class CodeViewController: UIViewController {
     @IBOutlet var reachSwitch: UISwitch!
     @IBOutlet var valueSwitch: UISwitch!
     @IBOutlet var directionSwitch: UISwitch!
+    @IBOutlet var configView: UIStackView!
     
     // MARK: - Properties
     
@@ -34,16 +35,20 @@ final class CodeViewController: UIViewController {
     
     private func configureController() {
         //        slider.delegate = self
-        slider.direction = DirectionEnum(withValue: segmentControl.selectedSegmentIndex)
+        slider.direction = .leftToRight
         slider.maximum = 1500
         slider.minimum = .zero
         slider.value = .zero
         view.addSubview(slider)
+        slider.translatesAutoresizingMaskIntoConstraints = false
         let layoutMarginsGuide = view.layoutMarginsGuide
         let offset: CGFloat = 16
-        let constraints = [slider.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: offset),
-                           slider.leftAnchor.constraint(equalTo: view.leftAnchor, constant: offset),
-                           view.rightAnchor.constraint(equalTo: slider.rightAnchor, constant: offset)]
+        let constraints = [
+            slider.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: offset),
+            slider.leftAnchor.constraint(equalTo: view.leftAnchor, constant: offset),
+            view.rightAnchor.constraint(equalTo: slider.rightAnchor, constant: offset),
+//            configView.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: offset)
+        ]
         NSLayoutConstraint.activate(constraints)
     }
     
@@ -58,7 +63,16 @@ final class CodeViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction private func didChangeSegment(_ sender: UISegmentedControl) {
-        slider.direction = DirectionEnum(withValue: sender.selectedSegmentIndex)
+        switch sender.selectedSegmentIndex {
+            case 1:
+                slider.direction = .rightToLeft
+            case 2:
+                slider.direction = .bottomToTop
+            case 3:
+                slider.direction = .topToBottom
+            default:
+                slider.direction = .leftToRight
+        }
     }
     
     @IBAction private func didChangeReachValue(_ sender: UISwitch) {

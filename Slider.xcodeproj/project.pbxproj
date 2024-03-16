@@ -17,7 +17,7 @@
 		4B889B692433375D002FCE02 /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B682433375D002FCE02 /* CodeViewController.swift */; };
 		4B889B7624333E7C002FCE02 /* CodeViewController+SliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */; };
 		4BF628A12BA2B38D0093637E /* HapticConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628922BA2B38D0093637E /* HapticConfiguration.swift */; };
-		4BF628A22BA2B38D0093637E /* DirectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628942BA2B38D0093637E /* DirectionEnum.swift */; };
+		4BF628A22BA2B38D0093637E /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628942BA2B38D0093637E /* Direction.swift */; };
 		4BF628A32BA2B38D0093637E /* Slider+UITouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628962BA2B38D0093637E /* Slider+UITouch.swift */; };
 		4BF628A42BA2B38D0093637E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628972BA2B38D0093637E /* String.swift */; };
 		4BF628A52BA2B38D0093637E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628992BA2B38D0093637E /* Protocols.swift */; };
@@ -63,7 +63,7 @@
 		4B889B682433375D002FCE02 /* CodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewController.swift; sourceTree = "<group>"; };
 		4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeViewController+SliderDelegate.swift"; sourceTree = "<group>"; };
 		4BF628922BA2B38D0093637E /* HapticConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HapticConfiguration.swift; sourceTree = "<group>"; };
-		4BF628942BA2B38D0093637E /* DirectionEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionEnum.swift; sourceTree = "<group>"; };
+		4BF628942BA2B38D0093637E /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		4BF628962BA2B38D0093637E /* Slider+UITouch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Slider+UITouch.swift"; sourceTree = "<group>"; };
 		4BF628972BA2B38D0093637E /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		4BF628992BA2B38D0093637E /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 		4BF628952BA2B38D0093637E /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				4BF628942BA2B38D0093637E /* DirectionEnum.swift */,
+				4BF628942BA2B38D0093637E /* Direction.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -360,7 +360,7 @@
 			files = (
 				4BF628A52BA2B38D0093637E /* Protocols.swift in Sources */,
 				4BF628A32BA2B38D0093637E /* Slider+UITouch.swift in Sources */,
-				4BF628A22BA2B38D0093637E /* DirectionEnum.swift in Sources */,
+				4BF628A22BA2B38D0093637E /* Direction.swift in Sources */,
 				4BF628A42BA2B38D0093637E /* String.swift in Sources */,
 				4BF628A92BA2B38D0093637E /* SliderTextLayer.swift in Sources */,
 				4BF628A82BA2B38D0093637E /* Slider.swift in Sources */,

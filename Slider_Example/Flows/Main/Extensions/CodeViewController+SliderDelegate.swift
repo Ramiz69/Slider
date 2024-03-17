@@ -13,7 +13,7 @@ extension CodeViewController: SliderDelegate {
     
     func slider(_ slider: Slider, displayTextForValue value: CGFloat) -> String {
         print(value)
-        return "\(value)"
+        return "\(value + value + value + value + value)"
     }
     
     func didBeginTracking(_ slider: Slider) {

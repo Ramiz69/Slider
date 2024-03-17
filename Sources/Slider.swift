@@ -32,16 +32,15 @@ open class Slider: UIControl {
             if let maxText: String = delegate?.slider(self, displayTextForValue: maximum),
                !maxText.isEmpty
             {
-                let newWidth = maxText.size(withConstrainedWidth: thumbHeight,
-                                            font: UIFont.boldSystemFont(ofSize: fontSize)).width
-                thumbWidth = CGFloat(max(newWidth, thumbWidth))
-                thumbLayer.bounds = CGRect(origin: .zero,
-                                           size: CGSize(width: thumbWidth,
-                                                        height: thumbHeight))
+                let thumbSize = thumbConfiguration.size
+                let newWidth = maxText.size(withConstrainedWidth: thumbSize.height,
+                                            font: UIFont.boldSystemFont(ofSize: thumbConfiguration.fontSize)).width
+                thumbConfiguration.size.width = CGFloat(max(newWidth, thumbSize.width))
+                thumbLayer.bounds = CGRect(origin: .zero, size: thumbSize)
                 thumbLayer.position = positionForValue(value: minimum)
-                thumbLayer.cornerRadius = thumbHeight / 2
+                thumbLayer.cornerRadius = thumbSize.height / 2
                 thumbLayer.shadowPath = UIBezierPath(roundedRect: thumbLayer.bounds,
-                                                     cornerRadius: thumbHeight / 2).cgPath
+                                                     cornerRadius: thumbLayer.cornerRadius).cgPath
             }
             updateThumbLayersText()
         }
@@ -103,89 +102,30 @@ open class Slider: UIControl {
         }
     }
     
-    final public var thumbBackgroundColor: UIColor = UIColor.white {
-        didSet {
-            thumbLayer.backgroundColor = thumbBackgroundColor.cgColor
-            setNeedsLayersDisplay()
-        }
-    }
-    
-    final public var thumbTextColor: UIColor = UIColor(red: .zero,
-                                                       green: 74 / 255,
-                                                       blue: 150 / 255,
-                                                       alpha: 1) {
-        didSet {
-            thumbLayer.foregroundColor = thumbTextColor.cgColor
-            setNeedsLayersDisplay()
-        }
-    }
-    
-    final public var fontSize: CGFloat = 14 {
-        didSet {
-            thumbLayer.setNeedsDisplay()
-        }
-    }
-    
-    final public var trackHeight: CGFloat = 36 {
-        didSet {
-            layoutSubviews()
-        }
-    }
-    
-    final public var trackInset: CGFloat = .zero {
-        didSet {
-            layoutSubviews()
-        }
-    }
-    
-    final public var thumbHeight: CGFloat = 36 {
+    public var thumbConfiguration = ThumbConfiguration() {
         didSet {
             initThumbLayer()
-            layoutSubviews()
+            setNeedsLayersDisplay()
         }
     }
     
-    final public var thumbWidth: CGFloat = 60 {
-        didSet {
-            initThumbLayer()
-            layoutSubviews()
-        }
-    }
-    
-    open var trackMaxColor: UIColor = UIColor(red: 191 / 255,
-                                              green: 194 / 255,
-                                              blue: 209 / 255,
-                                              alpha: 1) {
+    public var trackConfiguration = TrackConfiguration() {
         didSet {
             reinitComponentValues()
             setNeedsLayersDisplay()
         }
     }
     
-    open var trackMinColor: UIColor = UIColor(red: .zero,
-                                              green: 122 / 255,
-                                              blue: 1,
-                                              alpha: 1) {
-        didSet {
-            reinitComponentValues()
-            setNeedsLayersDisplay()
-        }
-    }
-    
-    open var reverseTrackMinColor: UIColor = UIColor(red: 247 / 255,
-                                                     green: 73 / 255,
-                                                     blue: 2 / 255,
-                                                     alpha: 1) {
-        didSet {
-            reinitComponentValues()
-            setNeedsLayersDisplay()
-        }
-    }
+    public var hapticConfiguration: HapticConfiguration = .init(reachLimitValueHapticEnabled: true,
+                                                                changeValueHapticEnabled: false,
+                                                                changeDirectionHapticEnabled: true,
+                                                                reachImpactGeneratorStyle: .medium,
+                                                                changeValueImpactGeneratorStyle: .light)
     
     // MARK: Properties
     
     open override var intrinsicContentSize: CGSize {
-        CGSize(width: UIView.noIntrinsicMetric, height: trackHeight)
+        CGSize(width: UIView.noIntrinsicMetric, height: trackConfiguration.height)
     }
     
     final public var direction: Direction = .leftToRight {
@@ -200,12 +140,6 @@ open class Slider: UIControl {
     final public var usableTrackingLength: CGFloat = .zero
     final public var animationStyle: AnimationStyle = .none
     final public var continuous: Bool = true
-    
-    public var hapticConfiguration: HapticConfiguration = .init(reachLimitValueHapticEnabled: true,
-                                                                changeValueHapticEnabled: false,
-                                                                changeDirectionHapticEnabled: true,
-                                                                reachImpactGeneratorStyle: .medium,
-                                                                changeValueImpactGeneratorStyle: .light)
     
     let thumbLayer = SliderTextLayer()
     private let trackLayer = SliderTrackLayer()
@@ -235,7 +169,7 @@ open class Slider: UIControl {
         super.layoutSubviews()
         
         if !isDirectionChangeAnimationInProgress {
-            usableTrackingLength = bounds.width - thumbWidth
+            usableTrackingLength = bounds.width - thumbConfiguration.size.width
             trackLayer.frame = trackRectForBounds()
             minimumLayer.position = positionForValue(value: minimum)
             maximumLayer.position = positionForValue(value: maximum)
@@ -277,13 +211,13 @@ open class Slider: UIControl {
     
     private func initThumbLayer() {
         thumbLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        thumbLayer.bounds = CGRect(x: .zero, y: .zero, width: thumbWidth, height: thumbHeight)
+        thumbLayer.bounds = CGRect(origin: .zero, size: thumbConfiguration.size)
         thumbLayer.position = positionForValue(value: minimum)
-        thumbLayer.foregroundColor = trackMinColor.cgColor
-        thumbLayer.cornerRadius = thumbHeight / 2
-        thumbLayer.font = UIFont.systemFont(ofSize: fontSize, weight: .black)
-        thumbLayer.fontSize = fontSize
-        thumbLayer.backgroundColor = thumbBackgroundColor.cgColor
+        thumbLayer.foregroundColor = trackConfiguration.minColor.cgColor
+        thumbLayer.cornerRadius = thumbConfiguration.size.height / 2
+        thumbLayer.font = UIFont.systemFont(ofSize: thumbConfiguration.fontSize, weight: .black)
+        thumbLayer.fontSize = thumbConfiguration.fontSize
+        thumbLayer.backgroundColor = thumbConfiguration.backgroundColor.cgColor
         thumbLayer.alignmentMode = .center
         thumbLayer.contentsScale = getScallingFactor()
         
@@ -293,12 +227,12 @@ open class Slider: UIControl {
         thumbLayer.shadowRadius = 2
         thumbLayer.shadowOpacity = 0.125
         thumbLayer.shadowPath = UIBezierPath(roundedRect: thumbLayer.bounds,
-                                             cornerRadius: thumbHeight / 2).cgPath
+                                             cornerRadius: thumbLayer.cornerRadius).cgPath
     }
     
     private func initMinimumLayer() {
         minimumLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        minimumLayer.bounds = CGRect(x: .zero, y: .zero, width: thumbWidth, height: thumbHeight)
+        minimumLayer.bounds = CGRect(origin: .zero, size: thumbConfiguration.size)
         minimumLayer.position = positionForValue(value: minimum)
         minimumLayer.foregroundColor = UIColor.white.cgColor
         minimumLayer.fontSize = 12
@@ -308,7 +242,7 @@ open class Slider: UIControl {
     
     private func initMaximumLayer() {
         maximumLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        maximumLayer.bounds = CGRect(x: .zero, y: .zero, width: thumbWidth, height: thumbHeight)
+        maximumLayer.bounds = CGRect(origin: .zero, size: thumbConfiguration.size)
         maximumLayer.position = positionForValue(value: maximum)
         maximumLayer.foregroundColor = UIColor.white.cgColor
         maximumLayer.fontSize = 12
@@ -323,8 +257,8 @@ open class Slider: UIControl {
     // MARK: Update methods
     
     private func reinitComponentValues() {
-        trackLayer.trackBackgroundColor = trackMaxColor.cgColor
-        trackLayer.fillColor = direction == .leftToRight ? trackMinColor.cgColor : reverseTrackMinColor.cgColor
+        trackLayer.trackBackgroundColor = trackConfiguration.maxColor.cgColor
+        trackLayer.fillColor = direction == .leftToRight ? trackConfiguration.minColor.cgColor : trackConfiguration.reverseMinColor.cgColor
         trackLayer.cornerRadius = cornerRadius
         updateThumbLayersText()
     }
@@ -344,13 +278,14 @@ open class Slider: UIControl {
     }
     
     private func animateThumbLayer(_ completionBlock: (() -> Void)? = nil) {
+        let thumbSize = thumbConfiguration.size
         CATransaction.begin()
         CATransaction.setCompletionBlock(completionBlock)
         CATransaction.setAnimationDuration(animationStyle.animationDuration)
         CATransaction.setAnimationTimingFunction(CATransaction.animationTimingFunction())
         thumbLayer.position = positionForValue(value: value)
         trackLayer.updateFillLayerForAnimation(CGRect(origin: CGPoint(x: thumbLayer.position.x, y: .zero),
-                                                      size: CGSize(width: thumbWidth / 2, height: thumbHeight)))
+                                                      size: CGSize(width: thumbSize.width / 2, height: thumbSize.height)))
         updateSlider()
         CATransaction.commit()
     }
@@ -361,8 +296,8 @@ open class Slider: UIControl {
     }
     
     private func updateThumbLayersText() {
-        thumbLayer.trackMinColor = direction == .leftToRight ? trackMinColor : reverseTrackMinColor
-        thumbLayer.trackMaxColor = trackMaxColor
+        thumbLayer.trackMinColor = direction == .leftToRight ? trackConfiguration.minColor : trackConfiguration.reverseMinColor
+        thumbLayer.trackMaxColor = trackConfiguration.maxColor
         thumbLayer.string = textForValue(value)
         minimumLayer.string = textForValue(minimum)
         maximumLayer.string = textForValue(maximum)
@@ -371,19 +306,20 @@ open class Slider: UIControl {
     @objc
     private func updateSlider() {
         let valueRatio = (value - minimum) / (maximum - minimum)
-        let thumbPositionX = valueRatio * (bounds.width - thumbWidth) + (value == minimum ? thumbWidth : thumbWidth / 2)
+        let thumbSize = thumbConfiguration.size
+        let thumbPositionX = valueRatio * (bounds.width - thumbSize.width) + (value == minimum ? thumbSize.width : thumbSize.width / 2)
         let fillFrame: CGRect
         switch direction {
             case .leftToRight:
                 fillFrame = CGRect(x: .zero,
-                                      y: .zero,
-                                      width: thumbPositionX,
-                                      height: bounds.height)
+                                   y: .zero,
+                                   width: thumbPositionX,
+                                   height: bounds.height)
             case .rightToLeft:
                 fillFrame = CGRect(x: bounds.width - thumbPositionX,
-                                      y: .zero,
-                                      width: thumbPositionX,
-                                      height: bounds.height)
+                                   y: .zero,
+                                   width: thumbPositionX,
+                                   height: bounds.height)
                 
         }
         CATransaction.begin()
@@ -396,6 +332,7 @@ open class Slider: UIControl {
     }
     
     private func positionForValue(value: CGFloat) -> CGPoint {
+        let thumbWidth = thumbConfiguration.size.width
         let yPosition = bounds.height / 2
         if minimum == maximum {
             return CGPoint(x: thumbWidth / 2, y: yPosition)
@@ -412,10 +349,10 @@ open class Slider: UIControl {
     }
     
     private func trackRectForBounds() -> CGRect {
-        CGRect(x: trackInset,
-               y: (bounds.height - trackHeight) / 2,
-               width: bounds.width - 2 * trackInset,
-               height: trackHeight)
+        CGRect(x: trackConfiguration.inset,
+               y: (bounds.height - trackConfiguration.height) / 2,
+               width: bounds.width - 2 * trackConfiguration.inset,
+               height: trackConfiguration.height)
     }
     
     private func textForValue(_ value: CGFloat) -> String {

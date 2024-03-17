@@ -44,7 +44,7 @@ final class CodeViewController: UIViewController {
     // MARK: Private methods
     
     private func configureController() {
-        //        slider.delegate = self
+                slider.delegate = self
         slider.maximum = 1500
         slider.minimum = .zero
         slider.value = .zero

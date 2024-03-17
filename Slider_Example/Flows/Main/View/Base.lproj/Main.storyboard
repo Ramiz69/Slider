@@ -144,8 +144,6 @@
                             <segments>
                                 <segment title="Left to Right"/>
                                 <segment title="Right to Left"/>
-                                <segment title="Bottom to Top"/>
-                                <segment title="Top to Bottom"/>
                             </segments>
                             <connections>
                                 <action selector="didChangeSegment:" destination="Jwd-0R-N5F" eventType="valueChanged" id="NbQ-7o-MQL"/>

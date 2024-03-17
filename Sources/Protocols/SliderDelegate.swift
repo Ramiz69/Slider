@@ -1,5 +1,5 @@
 //
-//  Protocols.swift
+//  SliderDelegate.swift
 //
 //  Copyright (c) 2020 Ramiz Kichibekov (https://github.com/ramiz69)
 //
@@ -21,8 +21,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
-import UIKit
+import Foundation
 
+@MainActor
 public protocol SliderDelegate: AnyObject {
     func slider(_ slider: Slider, displayTextForValue value: CGFloat) -> String
     func didBeginTracking(_ slider: Slider)

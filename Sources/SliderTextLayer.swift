@@ -23,44 +23,46 @@
 //
 
 import UIKit
+import QuartzCore
+import CoreGraphics
 
-public class SliderTextLayer: CATextLayer {
+class SliderTextLayer: CATextLayer {
     
-    // MARK: - Properties
+    // MARK: Properties
     
-    public var trackMaxColor: UIColor!
-    public var trackMinColor: UIColor!
+    var trackMaxColor: UIColor!
+    var trackMinColor: UIColor!
     
-    // MARK: - Initial methods
+    // MARK: Initial methods
     
-    public init(trackMaxColor: UIColor, trackMinColor: UIColor) {
+    init(trackMaxColor: UIColor, trackMinColor: UIColor) {
         self.trackMaxColor = trackMaxColor
         self.trackMinColor = trackMinColor
         super.init()
     }
     
-    public override init(layer: Any) {
+    override init(layer: Any) {
         super.init(layer: layer)
     }
     
-    public override init() {
+    override init() {
         super.init()
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Life cycle
+    // MARK: Life cycle
     
-    public override func setNeedsDisplay() {
+    override func setNeedsDisplay() {
         super.setNeedsDisplay()
         
         configureBorder()
     }
     
-    override public func draw(in ctx: CGContext) {
+    override func draw(in ctx: CGContext) {
         let height = bounds.size.height
         let yDiff = (height - fontSize) / 2 - fontSize / 10
         
@@ -81,17 +83,17 @@ public class SliderTextLayer: CATextLayer {
     
 }
 
-public final class SliderMinimumTextLayer: SliderTextLayer {
+final class SliderMinimumTextLayer: SliderTextLayer {
     
-    public override func configureBorder() {
+    override func configureBorder() {
         
     }
     
 }
 
-public final class SliderMaximumTextLayer: SliderTextLayer {
+final class SliderMaximumTextLayer: SliderTextLayer {
     
-    public override func configureBorder() {
+    override func configureBorder() {
         
     }
     

@@ -31,24 +31,31 @@ final class CodeViewController: UIViewController {
         configureController()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+//        let offset: CGFloat = 16
+//        slider.frame = CGRect(x: offset,
+//                              y: view.safeAreaInsets.top,
+//                              width: view.bounds.width - 2 * offset,
+//                              height: slider.trackHeight)
+    }
+    
     // MARK: Private methods
     
     private func configureController() {
         //        slider.delegate = self
-        slider.direction = .leftToRight
         slider.maximum = 1500
         slider.minimum = .zero
         slider.value = .zero
+        slider.animationStyle = .default
         view.addSubview(slider)
         slider.translatesAutoresizingMaskIntoConstraints = false
         let layoutMarginsGuide = view.layoutMarginsGuide
         let offset: CGFloat = 16
-        let constraints = [
-            slider.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: offset),
-            slider.leftAnchor.constraint(equalTo: view.leftAnchor, constant: offset),
-            view.rightAnchor.constraint(equalTo: slider.rightAnchor, constant: offset),
-//            configView.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: offset)
-        ]
+        let constraints = [slider.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: offset),
+                           slider.leftAnchor.constraint(equalTo: view.leftAnchor, constant: offset),
+                           view.rightAnchor.constraint(equalTo: slider.rightAnchor, constant: offset)]
         NSLayoutConstraint.activate(constraints)
     }
     
@@ -66,10 +73,6 @@ final class CodeViewController: UIViewController {
         switch sender.selectedSegmentIndex {
             case 1:
                 slider.direction = .rightToLeft
-            case 2:
-                slider.direction = .bottomToTop
-            case 3:
-                slider.direction = .topToBottom
             default:
                 slider.direction = .leftToRight
         }

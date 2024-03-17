@@ -22,88 +22,73 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+import Foundation
+import QuartzCore
+import CoreGraphics
 
-public final class SliderTrackLayer: CALayer {
+final class SliderTrackLayer: CALayer {
     
-    // MARK: - Properties
+    // MARK: Properties
     
-    public var value: CGFloat = .zero
-    public var minimumValue: CGFloat = .zero
-    public var maximumValue: CGFloat = 1
-    public var thumbWidth: CGFloat = .zero
-    public var trackMaxColor: UIColor!
-    public var trackMinColor: UIColor!
-    
-    // MARK: - Initial methods
-    
-    public init(value: CGFloat = .zero,
-                minimumValue: CGFloat = .zero,
-                maximumValue: CGFloat = 1,
-                thumbWidth: CGFloat = .zero,
-                trackMaxColor: UIColor,
-                trackMinColor: UIColor) {
-        self.value = value
-        self.minimumValue = minimumValue
-        self.maximumValue = maximumValue
-        self.thumbWidth = thumbWidth
-        self.trackMaxColor = trackMaxColor
-        self.trackMinColor = trackMinColor
-        super.init()
+    var trackBackgroundColor: CGColor = CGColor(gray: .zero, alpha: 1) {
+        didSet {
+            backgroundLayer.backgroundColor = trackBackgroundColor
+        }
     }
+    var fillColor: CGColor! {
+        didSet {
+            fillLayer.backgroundColor = fillColor
+        }
+    }
+    var fillFrame: CGRect = .zero {
+        didSet {
+            fillLayer.frame = fillFrame
+        }
+    }
+    private let backgroundLayer = CALayer()
+    private let fillLayer = CALayer()
     
-    public override init(layer: Any) {
+    // MARK: Initial methods
+    
+    override init(layer: Any) {
         super.init(layer: layer)
+        
+        configureLayer()
     }
     
-    public override init() {
+    override init() {
         super.init()
+        
+        configureLayer()
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Life cycle
+    // MARK: Life cycle
     
-    override public func draw(in ctx: CGContext) {
-        assert(trackMaxColor != nil, "trackMaxColor should not be nil. Check the color initialization.")
-        assert(trackMinColor != nil, "trackMinColor should not be nil. Check the color initialization.")
-        ctx.setFillColor(trackMaxColor.cgColor)
-        ctx.addPath(UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath)
-        ctx.fillPath()
+    override func layoutSublayers() {
+        super.layoutSublayers()
         
-        let trackWidth = bounds.width - cornerRadius
-        let range = maximumValue - minimumValue
-        var thresholdX: CGFloat = ((value - minimumValue) / range * trackWidth)
-        let averangeValue = value - minimumValue
-        if averangeValue > .zero {
-            if averangeValue >= maximumValue / 2 {
-                thresholdX += thumbWidth / 6
-            } else {
-                thresholdX += thumbWidth / 3
-            }
-        }
-        if value == maximumValue {
-            thresholdX += -thumbWidth / 3
-        }
-        let width = thresholdX.rounded(.down)
-        let trackMinSize = CGSize(width: width, height: bounds.height)
-        let trackMinRect = CGRect(origin: .zero, size: trackMinSize)
-        let trackMinPath = UIBezierPath(roundedRect: trackMinRect, cornerRadius: cornerRadius)
-        ctx.setFillColor(trackMinColor.cgColor)
-        ctx.addPath(trackMinPath.cgPath)
-        ctx.fillPath()
-        
-        let widthDifference = value >= minimumValue ? .zero : bounds.width - thresholdX
-        let trackMaxRect = CGRect(x: thresholdX - cornerRadius, y: .zero,
-                                  width: widthDifference,
-                                  height: bounds.height)
-        let trackMaxPath = UIBezierPath(roundedRect: trackMaxRect,
-                                        cornerRadius: cornerRadius)
-        ctx.setFillColor(trackMinColor.cgColor)
-        ctx.addPath(trackMaxPath.cgPath)
-        ctx.fillPath()
+        backgroundLayer.frame = bounds
+        backgroundLayer.cornerRadius = cornerRadius
+        fillLayer.cornerRadius = cornerRadius
+    }
+    
+    // MARK: Public methods
+    
+    func updateFillLayerForAnimation(_ frame: CGRect) {
+        fillFrame = frame
+    }
+    
+    // MARK: Private methods
+    
+    private func configureLayer() {
+        backgroundLayer.masksToBounds = true
+        backgroundLayer.backgroundColor = trackBackgroundColor
+        addSublayer(backgroundLayer)
+        backgroundLayer.addSublayer(fillLayer)
     }
 }

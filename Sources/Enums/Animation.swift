@@ -1,5 +1,5 @@
 //
-//  Direction.swift
+//  Animation.swift
 //
 //  Copyright (c) 2024 Ramiz Kichibekov (https://github.com/ramiz69)
 //
@@ -23,7 +23,16 @@
 //
 
 import Foundation
+import QuartzCore
 
-public enum Direction {
-    case leftToRight, rightToLeft
+public enum AnimationStyle {
+    case none
+    case `default`
+    
+    var animationDuration: TimeInterval {
+        switch self {
+            case .none: .zero
+            case .default: CATransaction.animationDuration()
+        }
+    }
 }

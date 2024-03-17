@@ -16,11 +16,12 @@
 		4B2EB6F123C1E5AA00FB91AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2EB6EF23C1E5AA00FB91AD /* LaunchScreen.storyboard */; };
 		4B889B692433375D002FCE02 /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B682433375D002FCE02 /* CodeViewController.swift */; };
 		4B889B7624333E7C002FCE02 /* CodeViewController+SliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */; };
+		4B8DAE962BA6925A005CFA82 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DAE952BA6925A005CFA82 /* Animation.swift */; };
 		4BF628A12BA2B38D0093637E /* HapticConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628922BA2B38D0093637E /* HapticConfiguration.swift */; };
 		4BF628A22BA2B38D0093637E /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628942BA2B38D0093637E /* Direction.swift */; };
 		4BF628A32BA2B38D0093637E /* Slider+UITouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628962BA2B38D0093637E /* Slider+UITouch.swift */; };
 		4BF628A42BA2B38D0093637E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628972BA2B38D0093637E /* String.swift */; };
-		4BF628A52BA2B38D0093637E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628992BA2B38D0093637E /* Protocols.swift */; };
+		4BF628A52BA2B38D0093637E /* SliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628992BA2B38D0093637E /* SliderDelegate.swift */; };
 		4BF628A72BA2B38D0093637E /* Slider.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BF6289C2BA2B38D0093637E /* Slider.h */; };
 		4BF628A82BA2B38D0093637E /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6289D2BA2B38D0093637E /* Slider.swift */; };
 		4BF628A92BA2B38D0093637E /* SliderTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6289E2BA2B38D0093637E /* SliderTextLayer.swift */; };
@@ -62,11 +63,12 @@
 		4B2EB6F223C1E5AA00FB91AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B889B682433375D002FCE02 /* CodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewController.swift; sourceTree = "<group>"; };
 		4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeViewController+SliderDelegate.swift"; sourceTree = "<group>"; };
+		4B8DAE952BA6925A005CFA82 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		4BF628922BA2B38D0093637E /* HapticConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HapticConfiguration.swift; sourceTree = "<group>"; };
 		4BF628942BA2B38D0093637E /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		4BF628962BA2B38D0093637E /* Slider+UITouch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Slider+UITouch.swift"; sourceTree = "<group>"; };
 		4BF628972BA2B38D0093637E /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		4BF628992BA2B38D0093637E /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		4BF628992BA2B38D0093637E /* SliderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderDelegate.swift; sourceTree = "<group>"; };
 		4BF6289B2BA2B38D0093637E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BF6289C2BA2B38D0093637E /* Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slider.h; sourceTree = "<group>"; };
 		4BF6289D2BA2B38D0093637E /* Slider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				4BF628942BA2B38D0093637E /* Direction.swift */,
+				4B8DAE952BA6925A005CFA82 /* Animation.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -218,7 +221,7 @@
 		4BF6289A2BA2B38D0093637E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				4BF628992BA2B38D0093637E /* Protocols.swift */,
+				4BF628992BA2B38D0093637E /* SliderDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -358,10 +361,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BF628A52BA2B38D0093637E /* Protocols.swift in Sources */,
+				4BF628A52BA2B38D0093637E /* SliderDelegate.swift in Sources */,
 				4BF628A32BA2B38D0093637E /* Slider+UITouch.swift in Sources */,
 				4BF628A22BA2B38D0093637E /* Direction.swift in Sources */,
 				4BF628A42BA2B38D0093637E /* String.swift in Sources */,
+				4B8DAE962BA6925A005CFA82 /* Animation.swift in Sources */,
 				4BF628A92BA2B38D0093637E /* SliderTextLayer.swift in Sources */,
 				4BF628A82BA2B38D0093637E /* Slider.swift in Sources */,
 				4BF628AA2BA2B38D0093637E /* SliderTrackLayer.swift in Sources */,

@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = 'RKSlider'
-  spec.version      = '0.1.1'
+  spec.version      = '0.1.0'
   spec.summary      = 'A CocoaPods library written in Swift'
 
   spec.description  = <<-DESC

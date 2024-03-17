@@ -5,6 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/RKSlider.svg?style=flat)](https://cocoapods.org/pods/RKSlider)
 [![Platform](https://img.shields.io/cocoapods/p/RKSlider.svg?style=flat)](https://cocoapods.org/pods/RKSlider)
 ![GitHub Release](https://img.shields.io/github/v/release/ramiz69/Slider)
+[![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat-square)](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat-square)
 
 - [Installation](#installation)
 - [Author](#author)

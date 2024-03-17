@@ -17,7 +17,14 @@
 - Swift 5+
 
 ## Preview
-<img src="https://github.com/Ramiz69/Slider/blob/master/example.gif" width="200" height="400">
+<details>
+  <summary>Preview</summary>
+
+  <img src="Screenshots/leftToRightDefault.png" width="400"/>
+  <img src="Screenshots/rightToLeftDefault.png" width="400"/>
+  <img src="Screenshots/leftToRightCustom.png" width="400"/>
+  <img src="Screenshots/preference.png" width="400"/>
+</details>
 
 ## Installation
 
@@ -29,7 +36,7 @@ Once you have your Swift package set up, adding Slider as a dependency is as eas
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/Ramiz69/Slider.git", .upToNextMajor(from: "0.0.9"))
+    .package(url: "https://github.com/Ramiz69/Slider.git", .upToNextMajor(from: "0.1.0"))
 ]
 ```
 

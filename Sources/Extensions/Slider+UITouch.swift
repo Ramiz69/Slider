@@ -29,6 +29,7 @@ extension Slider {
     public override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         previousTouchPoint = touch.location(in: self)
         if thumbLayer.frame.contains(previousTouchPoint) {
+            didBeginTracking()
             delegate?.didBeginTracking(self)
             
             return true
@@ -39,10 +40,16 @@ extension Slider {
     
     public override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let touchPoint = touch.location(in: self)
-        let delta = (touchPoint.x - previousTouchPoint.x).rounded(.toNearestOrEven)
-        let ratio = delta / usableTrackingLength
-        let valueDelta = ((maximum - minimum) * ratio).rounded(.toNearestOrEven)
-        let tempValue = value + valueDelta
+        let deltaLocation = (touchPoint.x - previousTouchPoint.x).rounded(.toNearestOrEven)
+        let ratio = deltaLocation / usableTrackingLength
+        let deltaValue = ((maximum - minimum) * ratio).rounded(.toNearestOrEven)
+        let tempValue: CGFloat
+        switch direction {
+            case .leftToRight:
+                tempValue = value + deltaValue
+            case .rightToLeft:
+                tempValue = value - deltaValue
+        }
         let noOfStep = (tempValue / step).rounded(.toNearestOrEven)
         var currentValue = noOfStep * step
         if (currentValue == maximum || currentValue == minimum) && currentValue != value {
@@ -56,13 +63,11 @@ extension Slider {
         if currentValue == value {
             return true
         }
+        
         value = currentValue
         hapticConfiguration.valueGenerate()
         previousTouchPoint = touchPoint
-        delegate?.didContinueTracking(self)
-        if continuous {
-            sendActions(for: .valueChanged)
-        }
+        sendActions(for: .valueChanged)
         
         return true
     }
@@ -70,6 +75,7 @@ extension Slider {
     public override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         super.endTracking(touch, with: event)
         
+        endTracking()
         if step > .zero {
             let noOfStep = (value / step).rounded(.toNearestOrEven)
             value = noOfStep * step

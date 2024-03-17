@@ -23,6 +23,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 open class Slider: UIControl {
     
@@ -31,23 +32,21 @@ open class Slider: UIControl {
             if let maxText: String = delegate?.slider(self, displayTextForValue: maximum),
                !maxText.isEmpty
             {
-                let newWidth = maxText.size(withConstrainedWidth: thumbHeight,
-                                            font: UIFont.boldSystemFont(ofSize: fontSize)).width
-                thumbWidth = CGFloat(max(newWidth, thumbWidth))
-                thumbLayer.bounds = CGRect(origin: .zero,
-                                           size: CGSize(width: thumbWidth,
-                                                        height: thumbHeight))
-                thumbLayer.position = CGPoint(x: positionForValue(value: minimum),
-                                              y: bounds.height / 2)
-                thumbLayer.cornerRadius = thumbHeight / 2
+                let thumbSize = thumbConfiguration.size
+                let newWidth = maxText.size(withConstrainedWidth: thumbSize.height,
+                                            font: UIFont.boldSystemFont(ofSize: thumbConfiguration.fontSize)).width
+                thumbConfiguration.size.width = CGFloat(max(newWidth, thumbSize.width))
+                thumbLayer.bounds = CGRect(origin: .zero, size: thumbSize)
+                thumbLayer.position = positionForValue(value: minimum)
+                thumbLayer.cornerRadius = thumbSize.height / 2
                 thumbLayer.shadowPath = UIBezierPath(roundedRect: thumbLayer.bounds,
-                                                     cornerRadius: thumbHeight / 2).cgPath
+                                                     cornerRadius: thumbLayer.cornerRadius).cgPath
             }
             updateThumbLayersText()
         }
     }
     
-    // MARK: - Customization properties
+    // MARK: Customization properties
     
     final public var value: CGFloat = 10 {
         didSet {
@@ -58,7 +57,7 @@ open class Slider: UIControl {
                 value = minimum
             }
             reinitComponentValues()
-            redrawLayers()
+            setNeedsLayersDisplay()
         }
     }
     
@@ -68,7 +67,7 @@ open class Slider: UIControl {
                 maximum = minimum
             }
             reinitComponentValues()
-            redrawLayers()
+            setNeedsLayersDisplay()
         }
     }
     
@@ -81,7 +80,7 @@ open class Slider: UIControl {
                 value = maximum
             }
             reinitComponentValues()
-            redrawLayers()
+            setNeedsLayersDisplay()
         }
     }
     
@@ -99,109 +98,33 @@ open class Slider: UIControl {
     final public var cornerRadius: CGFloat = 16 {
         didSet {
             reinitComponentValues()
-            redrawLayers()
+            setNeedsLayersDisplay()
         }
     }
     
-    final public var thumbBackgroundColor: UIColor = UIColor.white {
+    public var thumbConfiguration = ThumbConfiguration() {
         didSet {
-            thumbLayer.backgroundColor = thumbBackgroundColor.cgColor
-            redrawLayers()
+            updateThumbLayersText()
+            setNeedsLayersDisplay()
         }
     }
     
-    final public var thumbTextColor: UIColor = UIColor(red: .zero,
-                                                       green: 74 / 255,
-                                                       blue: 150 / 255,
-                                                       alpha: 1) {
-        didSet {
-            thumbLayer.foregroundColor = thumbTextColor.cgColor
-            redrawLayers()
-        }
-    }
-    
-    final public var continuous: Bool = true
-    
-    final public var fontSize: CGFloat = 14 {
-        didSet {
-            thumbLayer.setNeedsDisplay()
-        }
-    }
-    
-    final public var trackHeight: CGFloat = 36 {
-        didSet {
-            layoutSubviews()
-        }
-    }
-    
-    final public var trackInset: CGFloat = .zero {
-        didSet {
-            layoutSubviews()
-        }
-    }
-    
-    final public var thumbHeight: CGFloat = 36 {
-        didSet {
-            initThumbLayer()
-            layoutSubviews()
-            redrawLayers()
-        }
-    }
-    
-    final public var thumbWidth: CGFloat = 60 {
-        didSet {
-            initThumbLayer()
-            layoutSubviews()
-            redrawLayers()
-        }
-    }
-    
-    open var trackMaxColor: UIColor = UIColor(red: 191 / 255,
-                                              green: 194 / 255,
-                                              blue: 209 / 255,
-                                              alpha: 1) {
+    public var trackConfiguration = TrackConfiguration() {
         didSet {
             reinitComponentValues()
-            redrawLayers()
+            setNeedsLayersDisplay()
         }
     }
     
-    open var trackMinColor: UIColor = UIColor(red: .zero,
-                                              green: 122 / 255,
-                                              blue: 1,
-                                              alpha: 1) {
+    public var maximumEndpointConfiguration = RangeEndpointsConfiguration() {
         didSet {
-            reinitComponentValues()
-            redrawLayers()
+            initEndpointLayer(.maximum)
         }
     }
     
-    open var reverseTrackMinColor: UIColor = UIColor(red: 247 / 255,
-                                                     green: 73 / 255,
-                                                     blue: 2 / 255,
-                                                     alpha: 1) {
+    public var minimumEndpointConfiguration = RangeEndpointsConfiguration() {
         didSet {
-            reinitComponentValues()
-            redrawLayers()
-        }
-    }
-    
-    // MARK: - Properties
-    
-    final public var direction: DirectionEnum = .leftToRight {
-        didSet {
-            hapticConfiguration.directionGenerate()
-            CATransaction.begin()
-            CATransaction.setDisableActions(true)
-            CATransaction.setAnimationDuration(.zero)
-            let affineTransform = CATransform3DMakeAffineTransform(direction == .leftToRight ? .identity : CGAffineTransform.identity.rotated(by: .pi))
-            transform = direction == .leftToRight ? .identity : CGAffineTransform.identity.rotated(by: .pi)
-            thumbLayer.transform = affineTransform
-            minimumLayer.transform = affineTransform
-            maximumLayer.transform = affineTransform
-            CATransaction.commit()
-            reinitComponentValues()
-            redrawLayers()
+            initEndpointLayer(.minimum)
         }
     }
     
@@ -210,61 +133,82 @@ open class Slider: UIControl {
                                                                 changeDirectionHapticEnabled: true,
                                                                 reachImpactGeneratorStyle: .medium,
                                                                 changeValueImpactGeneratorStyle: .light)
-    public let trackLayer = SliderTrackLayer()
-    public let thumbLayer = SliderTextLayer()
-    public let minimumLayer = SliderMinimumTextLayer()
-    public let maximumLayer = SliderMaximumTextLayer()
-    final public var previousTouchPoint: CGPoint = .zero
-    final public var usableTrackingLength: CGFloat = .zero
+    
+    // MARK: Properties
     
     open override var intrinsicContentSize: CGSize {
-        CGSize(width: UIView.noIntrinsicMetric, height: trackHeight)
+        CGSize(width: UIView.noIntrinsicMetric, height: trackConfiguration.height)
     }
     
-    private let trackMaskLayer = CALayer()
+    final public var direction: Direction = .leftToRight {
+        didSet {
+            hapticConfiguration.directionGenerate()
+            redrawLayers()
+            reinitComponentValues()
+            setNeedsLayersDisplay()
+        }
+    }
+    final public var previousTouchPoint: CGPoint = .zero
+    final public var usableTrackingLength: CGFloat = .zero
+    final public var animationStyle: AnimationStyle = .none
+    final public var continuous: Bool = true
     
-    // MARK: - Initial methods
+    let thumbLayer = ThumbLayer()
+    private let trackLayer = SliderTrackLayer()
+    private let minimumLayer = TextLayer()
+    private let maximumLayer = TextLayer()
     
-    required public override init(frame: CGRect) {
+    private var displayLink: CADisplayLink?
+    private var isDirectionChangeAnimationInProgress = false
+    
+    private enum Endpoint: CaseIterable {
+        case minimum, maximum
+    }
+    
+    // MARK: Initial methods
+    
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         initialControl()
         initLayers()
-        commonInit()
     }
     
     @available(*, unavailable)
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Life cycle
+    // MARK: Life cycle
     
     public override func layoutSubviews() {
         super.layoutSubviews()
         
-        trackLayer.frame = trackRectForBound(bounds)
-        trackMaskLayer.masksToBounds = true
-        trackMaskLayer.frame = trackRectForBound(bounds)
-        trackMaskLayer.cornerRadius = cornerRadius
-        invalidateIntrinsicContentSize()
-        commonInit()
-        updateThumbLayersPosition()
-        redrawLayers()
+        if !isDirectionChangeAnimationInProgress {
+            usableTrackingLength = bounds.width - thumbConfiguration.size.width
+            trackLayer.frame = trackRectForBounds()
+            minimumLayer.position = positionForValue(value: minimum)
+            maximumLayer.position = positionForValue(value: maximum)
+            updateSlider()
+        }
     }
     
-    public override func prepareForInterfaceBuilder() {
-        trackLayer.frame = trackRectForBound(bounds)
-        commonInit()
-        updateThumbLayersPosition()
-        redrawLayers()
+    // MARK: Public methods
+    
+    func didBeginTracking() {
+        displayLink = CADisplayLink(target: self, selector: #selector(updateSlider))
+        displayLink?.add(to: .current, forMode: .common)
     }
     
-    // MARK: - Private methods
+    func endTracking() {
+        displayLink?.invalidate()
+        displayLink = nil
+    }
+    
+    // MARK: Private methods
     
     private func initialControl() {
         backgroundColor = .clear
-        translatesAutoresizingMaskIntoConstraints = false
         layer.addSublayer(trackLayer)
         layer.addSublayer(minimumLayer)
         layer.addSublayer(maximumLayer)
@@ -272,137 +216,165 @@ open class Slider: UIControl {
     }
     
     private func initLayers() {
-        trackLayer.contentsScale = UIScreen.main.scale
-        trackLayer.frame = trackRectForBound(bounds)
-        trackLayer.setNeedsDisplay()
-        trackMaskLayer.masksToBounds = true
-        trackMaskLayer.frame = trackRectForBound(bounds)
-        trackMaskLayer.cornerRadius = cornerRadius
-        layer.insertSublayer(trackMaskLayer, at: .zero)
+        trackLayer.contentsScale = getScallingFactor()
+        trackLayer.frame = trackRectForBounds()
         reinitComponentValues()
         initThumbLayer()
-        initMinimumLayer()
-        initMaximumLayer()
+        let endpoints = Endpoint.allCases
+        endpoints.forEach { initEndpointLayer($0) }
         updateThumbLayersText()
     }
     
     private func initThumbLayer() {
         thumbLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        thumbLayer.bounds = CGRect(x: .zero, y: .zero, width: thumbWidth, height: thumbHeight)
-        let xPosition = positionForValue(value: minimum)
-        thumbLayer.position = CGPoint(x: xPosition, y: bounds.height / 2)
-        thumbLayer.foregroundColor = trackMinColor.cgColor
-        thumbLayer.cornerRadius = thumbHeight / 2
-        thumbLayer.font = UIFont.systemFont(ofSize: fontSize, weight: .black)
-        thumbLayer.fontSize = fontSize
-        thumbLayer.backgroundColor = thumbBackgroundColor.cgColor
+        thumbLayer.bounds = CGRect(origin: .zero, size: thumbConfiguration.size)
+        thumbLayer.position = positionForValue(value: minimum)
+        thumbLayer.foregroundColor = trackConfiguration.minColor.cgColor
+        thumbLayer.cornerRadius = thumbConfiguration.size.height / 2
+        thumbLayer.font = UIFont.systemFont(ofSize: thumbConfiguration.fontSize, weight: .black)
+        thumbLayer.fontSize = thumbConfiguration.fontSize
         thumbLayer.alignmentMode = .center
-        thumbLayer.contentsScale = UIScreen.main.scale
+        thumbLayer.contentsScale = getScallingFactor()
         
         thumbLayer.masksToBounds = false
-        thumbLayer.shadowOffset = CGSize(width: 0, height: 0.5)
+        thumbLayer.shadowOffset = CGSize(width: .zero, height: 0.5)
         thumbLayer.shadowColor = UIColor.black.cgColor
         thumbLayer.shadowRadius = 2
         thumbLayer.shadowOpacity = 0.125
         thumbLayer.shadowPath = UIBezierPath(roundedRect: thumbLayer.bounds,
-                                             cornerRadius: thumbHeight / 2).cgPath
+                                             cornerRadius: thumbLayer.cornerRadius).cgPath
     }
     
-    private func initMinimumLayer() {
-        minimumLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        minimumLayer.bounds = CGRect(x: .zero, y: .zero, width: thumbWidth, height: thumbHeight)
-        let xPosition = positionForValue(value: minimum)
-        minimumLayer.position = CGPoint(x: xPosition, y: bounds.height / 2)
-        minimumLayer.foregroundColor = UIColor.white.cgColor
-        minimumLayer.fontSize = 12
-        minimumLayer.alignmentMode = .center
-        minimumLayer.contentsScale = UIScreen.main.scale
+    private func initEndpointLayer(_ endpoint: Endpoint) {
+        let layerFrame = CGRect(origin: .zero, size: thumbConfiguration.size)
+        let scale = getScallingFactor()
+        switch endpoint {
+            case .minimum:
+                minimumLayer.anchorPoint = minimumEndpointConfiguration.anchorPoint
+                minimumLayer.bounds = layerFrame
+                minimumLayer.position = positionForValue(value: minimum)
+                minimumLayer.foregroundColor = minimumEndpointConfiguration.foregroundColor
+                minimumLayer.fontSize = minimumEndpointConfiguration.fontSize
+                minimumLayer.alignmentMode = minimumEndpointConfiguration.aligmentMode
+                minimumLayer.contentsScale = scale
+            case .maximum:
+                maximumLayer.anchorPoint = maximumEndpointConfiguration.anchorPoint
+                maximumLayer.bounds = layerFrame
+                maximumLayer.position = positionForValue(value: maximum)
+                maximumLayer.foregroundColor = maximumEndpointConfiguration.foregroundColor
+                maximumLayer.fontSize = maximumEndpointConfiguration.fontSize
+                maximumLayer.alignmentMode = maximumEndpointConfiguration.aligmentMode
+                maximumLayer.contentsScale = scale
+        }
     }
     
-    private func initMaximumLayer() {
-        maximumLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        maximumLayer.bounds = CGRect(x: .zero, y: .zero, width: thumbWidth, height: thumbHeight)
-        let xPosition = positionForValue(value: maximum)
-        maximumLayer.position = CGPoint(x: xPosition, y: bounds.height / 2)
-        maximumLayer.foregroundColor = UIColor.white.cgColor
-        maximumLayer.fontSize = 12
-        maximumLayer.alignmentMode = .center
-        maximumLayer.contentsScale = UIScreen.main.scale
-    }
-    
-    private func commonInit() {
-        usableTrackingLength = bounds.width - thumbWidth
-        translatesAutoresizingMaskIntoConstraints = false
+    private func getScallingFactor() -> CGFloat {
+        window?.screen.scale ?? UIScreen.main.scale
     }
     
     // MARK: Update methods
     
     private func reinitComponentValues() {
-        trackLayer.minimumValue = minimum
-        trackLayer.maximumValue = maximum
-        trackLayer.trackMaxColor = trackMaxColor
-        trackLayer.trackMinColor = direction == .leftToRight ? trackMinColor : reverseTrackMinColor
-        trackLayer.thumbWidth = thumbWidth
-        trackLayer.value = value
+        trackLayer.trackBackgroundColor = trackConfiguration.maxColor.cgColor
+        trackLayer.fillColor = direction == .leftToRight ? trackConfiguration.minColor.cgColor : trackConfiguration.reverseMinColor.cgColor
         trackLayer.cornerRadius = cornerRadius
-        
         updateThumbLayersText()
-        updateThumbLayersPosition()
     }
     
     private func redrawLayers() {
+        isDirectionChangeAnimationInProgress = true
+        animateThumbLayer {
+            self.isDirectionChangeAnimationInProgress = false
+        }
+        trackLayer.displayIfNeeded()
+        
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(.zero)
+        minimumLayer.position = positionForValue(value: minimum)
+        maximumLayer.position = positionForValue(value: maximum)
+        CATransaction.commit()
+    }
+    
+    private func animateThumbLayer(_ completionBlock: (() -> Void)? = nil) {
+        let thumbSize = thumbConfiguration.size
+        CATransaction.begin()
+        CATransaction.setCompletionBlock(completionBlock)
+        CATransaction.setAnimationDuration(animationStyle.animationDuration)
+        CATransaction.setAnimationTimingFunction(CATransaction.animationTimingFunction())
+        thumbLayer.position = positionForValue(value: value)
+        trackLayer.updateFillLayerForAnimation(CGRect(origin: CGPoint(x: thumbLayer.position.x, y: .zero),
+                                                      size: CGSize(width: thumbSize.width / 2, height: thumbSize.height)))
+        updateSlider()
+        CATransaction.commit()
+    }
+    
+    private func setNeedsLayersDisplay() {
         trackLayer.setNeedsDisplay()
         thumbLayer.setNeedsDisplay()
-        trackMaskLayer.setNeedsDisplay()
     }
     
     private func updateThumbLayersText() {
-        thumbLayer.trackMinColor = direction == .leftToRight ? trackMinColor : reverseTrackMinColor
-        thumbLayer.trackMaxColor = trackMaxColor
+        thumbLayer.foregroundColor = direction == .leftToRight ? trackConfiguration.minColor.cgColor : trackConfiguration.reverseMinColor.cgColor
+        thumbLayer.backgroundColor = thumbConfiguration.backgroundColor.cgColor
         thumbLayer.string = textForValue(value)
         minimumLayer.string = textForValue(minimum)
         maximumLayer.string = textForValue(maximum)
     }
     
-    private func updateThumbLayersPosition() {
+    @objc
+    private func updateSlider() {
+        let valueRatio = (value - minimum) / (maximum - minimum)
+        let thumbSize = thumbConfiguration.size
+        let thumbPositionX = valueRatio * (bounds.width - thumbSize.width) + (value == minimum ? thumbSize.width : thumbSize.width / 2)
+        let fillFrame: CGRect
+        switch direction {
+            case .leftToRight:
+                fillFrame = CGRect(x: .zero,
+                                   y: .zero,
+                                   width: thumbPositionX,
+                                   height: bounds.height)
+            case .rightToLeft:
+                fillFrame = CGRect(x: bounds.width - thumbPositionX,
+                                   y: .zero,
+                                   width: thumbPositionX,
+                                   height: bounds.height)
+                
+        }
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         CATransaction.setAnimationDuration(.zero)
-        
-        let thumbCenterX = positionForValue(value: value)
-        thumbLayer.position = CGPoint(x: thumbCenterX,
-                                      y: bounds.height / 2)
-        let maximumXPosition = positionForValue(value: maximum)
-        maximumLayer.position = CGPoint(x: maximumXPosition,
-                                        y: bounds.height / 2)
-        let minimumXPosition = positionForValue(value: minimum)
-        minimumLayer.position = CGPoint(x: minimumXPosition,
-                                        y: bounds.height / 2)
+        thumbLayer.position = positionForValue(value: value)
+        trackLayer.fillFrame = fillFrame
         CATransaction.commit()
+        setNeedsLayersDisplay()
     }
     
-    private func updateLayersValue() {
-        updateThumbLayersText()
-        trackLayer.value = value
-    }
-    
-    private func positionForValue(value: CGFloat) -> CGFloat {
+    private func positionForValue(value: CGFloat) -> CGPoint {
+        let thumbWidth = thumbConfiguration.size.width
+        let yPosition = bounds.height / 2
         if minimum == maximum {
-            return thumbWidth / 2
+            return CGPoint(x: thumbWidth / 2, y: yPosition)
+        }
+        let xPosition: CGFloat
+        switch direction {
+            case .leftToRight:
+                xPosition = usableTrackingLength * (value - minimum) / (maximum - minimum) + thumbWidth / 2
+            case .rightToLeft:
+                xPosition = bounds.width - (usableTrackingLength * (value - minimum) / (maximum - minimum) + thumbWidth / 2)
         }
         
-        return usableTrackingLength * (value - minimum) / (maximum - minimum) + thumbWidth / 2
+        return CGPoint(x: xPosition, y: yPosition)
     }
     
-    private func trackRectForBound(_ bound: CGRect) -> CGRect {
-        return CGRect(x: trackInset,
-                      y: (bound.height - trackHeight) / 2,
-                      width: bound.width - 2 * trackInset,
-                      height: trackHeight)
+    private func trackRectForBounds() -> CGRect {
+        CGRect(x: trackConfiguration.inset,
+               y: (bounds.height - trackConfiguration.height) / 2,
+               width: bounds.width - 2 * trackConfiguration.inset,
+               height: trackConfiguration.height)
     }
     
     private func textForValue(_ value: CGFloat) -> String {
-        guard let delegate = delegate else {
+        guard let delegate else {
             return String(format: "%.0f", value)
         }
         

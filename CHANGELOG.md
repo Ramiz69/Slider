@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## [0.1.1] - 2024-03-17
+
+### Changed
+- Updated changelog
+
+## [0.1.0] - 2024-03-17
+
+### Added
+- Added new configurations for direction-specific animations
+- Refined animation transitions when changing directions for a more fluid user experience
+- SliderDelegate now supports Swift Concurrency for asynchronous event handling
+
+### Changed
+- Rendering of changes is now synchronized with the GPU using CADisplayLink for smoother visual updates.
+- Removed support for Interface Builder to streamline codebase and improve programmability.
+
 ## [0.0.9] - 2024-03-14
 
 ### Fixed

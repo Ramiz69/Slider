@@ -16,14 +16,21 @@
 		4B2EB6F123C1E5AA00FB91AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2EB6EF23C1E5AA00FB91AD /* LaunchScreen.storyboard */; };
 		4B889B692433375D002FCE02 /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B682433375D002FCE02 /* CodeViewController.swift */; };
 		4B889B7624333E7C002FCE02 /* CodeViewController+SliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */; };
+		4B8DAE962BA6925A005CFA82 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DAE952BA6925A005CFA82 /* Animation.swift */; };
+		4B8DAE982BA6956B005CFA82 /* TrackConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DAE972BA6956B005CFA82 /* TrackConfiguration.swift */; };
+		4B8DAE9A2BA696A8005CFA82 /* ThumbConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DAE992BA696A8005CFA82 /* ThumbConfiguration.swift */; };
+		4B8DAE9C2BA69A69005CFA82 /* RangeEndpointsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DAE9B2BA69A69005CFA82 /* RangeEndpointsConfiguration.swift */; };
+		4B8DAE9F2BA6A056005CFA82 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DAE9E2BA6A056005CFA82 /* PreferenceManager.swift */; };
+		4B8DAEA12BA6A5E9005CFA82 /* CodeViewController+UIColorPickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DAEA02BA6A5E9005CFA82 /* CodeViewController+UIColorPickerViewControllerDelegate.swift */; };
+		4B8DAEA42BA6AE54005CFA82 /* ThumbLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DAEA22BA6ACFF005CFA82 /* ThumbLayer.swift */; };
+		4B8DAEA62BA6B445005CFA82 /* TextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DAEA52BA6B445005CFA82 /* TextLayer.swift */; };
 		4BF628A12BA2B38D0093637E /* HapticConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628922BA2B38D0093637E /* HapticConfiguration.swift */; };
-		4BF628A22BA2B38D0093637E /* DirectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628942BA2B38D0093637E /* DirectionEnum.swift */; };
+		4BF628A22BA2B38D0093637E /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628942BA2B38D0093637E /* Direction.swift */; };
 		4BF628A32BA2B38D0093637E /* Slider+UITouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628962BA2B38D0093637E /* Slider+UITouch.swift */; };
 		4BF628A42BA2B38D0093637E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628972BA2B38D0093637E /* String.swift */; };
-		4BF628A52BA2B38D0093637E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628992BA2B38D0093637E /* Protocols.swift */; };
+		4BF628A52BA2B38D0093637E /* SliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628992BA2B38D0093637E /* SliderDelegate.swift */; };
 		4BF628A72BA2B38D0093637E /* Slider.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BF6289C2BA2B38D0093637E /* Slider.h */; };
 		4BF628A82BA2B38D0093637E /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6289D2BA2B38D0093637E /* Slider.swift */; };
-		4BF628A92BA2B38D0093637E /* SliderTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6289E2BA2B38D0093637E /* SliderTextLayer.swift */; };
 		4BF628AA2BA2B38D0093637E /* SliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6289F2BA2B38D0093637E /* SliderTrackLayer.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,15 +69,22 @@
 		4B2EB6F223C1E5AA00FB91AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B889B682433375D002FCE02 /* CodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewController.swift; sourceTree = "<group>"; };
 		4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeViewController+SliderDelegate.swift"; sourceTree = "<group>"; };
+		4B8DAE952BA6925A005CFA82 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		4B8DAE972BA6956B005CFA82 /* TrackConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackConfiguration.swift; sourceTree = "<group>"; };
+		4B8DAE992BA696A8005CFA82 /* ThumbConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbConfiguration.swift; sourceTree = "<group>"; };
+		4B8DAE9B2BA69A69005CFA82 /* RangeEndpointsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeEndpointsConfiguration.swift; sourceTree = "<group>"; };
+		4B8DAE9E2BA6A056005CFA82 /* PreferenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
+		4B8DAEA02BA6A5E9005CFA82 /* CodeViewController+UIColorPickerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeViewController+UIColorPickerViewControllerDelegate.swift"; sourceTree = "<group>"; };
+		4B8DAEA22BA6ACFF005CFA82 /* ThumbLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbLayer.swift; sourceTree = "<group>"; };
+		4B8DAEA52BA6B445005CFA82 /* TextLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLayer.swift; sourceTree = "<group>"; };
 		4BF628922BA2B38D0093637E /* HapticConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HapticConfiguration.swift; sourceTree = "<group>"; };
-		4BF628942BA2B38D0093637E /* DirectionEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionEnum.swift; sourceTree = "<group>"; };
+		4BF628942BA2B38D0093637E /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		4BF628962BA2B38D0093637E /* Slider+UITouch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Slider+UITouch.swift"; sourceTree = "<group>"; };
 		4BF628972BA2B38D0093637E /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		4BF628992BA2B38D0093637E /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		4BF628992BA2B38D0093637E /* SliderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderDelegate.swift; sourceTree = "<group>"; };
 		4BF6289B2BA2B38D0093637E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BF6289C2BA2B38D0093637E /* Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slider.h; sourceTree = "<group>"; };
 		4BF6289D2BA2B38D0093637E /* Slider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
-		4BF6289E2BA2B38D0093637E /* SliderTextLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderTextLayer.swift; sourceTree = "<group>"; };
 		4BF6289F2BA2B38D0093637E /* SliderTrackLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderTrackLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +129,7 @@
 		4B2EB6E323C1E5AA00FB91AD /* Slider_Example */ = {
 			isa = PBXGroup;
 			children = (
+				4B8DAE9D2BA6A04B005CFA82 /* Manager */,
 				4B889B6A24333B9F002FCE02 /* Application */,
 				4B889B6B24333BAB002FCE02 /* Flows */,
 				4B889B6F24333BC8002FCE02 /* Supporting Files */,
@@ -186,14 +201,26 @@
 			isa = PBXGroup;
 			children = (
 				4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */,
+				4B8DAEA02BA6A5E9005CFA82 /* CodeViewController+UIColorPickerViewControllerDelegate.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4B8DAE9D2BA6A04B005CFA82 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				4B8DAE9E2BA6A056005CFA82 /* PreferenceManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		4BF628932BA2B38D0093637E /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
 				4BF628922BA2B38D0093637E /* HapticConfiguration.swift */,
+				4B8DAE972BA6956B005CFA82 /* TrackConfiguration.swift */,
+				4B8DAE992BA696A8005CFA82 /* ThumbConfiguration.swift */,
+				4B8DAE9B2BA69A69005CFA82 /* RangeEndpointsConfiguration.swift */,
 			);
 			path = Configurations;
 			sourceTree = "<group>";
@@ -201,7 +228,8 @@
 		4BF628952BA2B38D0093637E /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				4BF628942BA2B38D0093637E /* DirectionEnum.swift */,
+				4BF628942BA2B38D0093637E /* Direction.swift */,
+				4B8DAE952BA6925A005CFA82 /* Animation.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -218,7 +246,7 @@
 		4BF6289A2BA2B38D0093637E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				4BF628992BA2B38D0093637E /* Protocols.swift */,
+				4BF628992BA2B38D0093637E /* SliderDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -233,8 +261,9 @@
 				4BF6289B2BA2B38D0093637E /* Info.plist */,
 				4BF6289C2BA2B38D0093637E /* Slider.h */,
 				4BF6289D2BA2B38D0093637E /* Slider.swift */,
-				4BF6289E2BA2B38D0093637E /* SliderTextLayer.swift */,
 				4BF6289F2BA2B38D0093637E /* SliderTrackLayer.swift */,
+				4B8DAEA22BA6ACFF005CFA82 /* ThumbLayer.swift */,
+				4B8DAEA52BA6B445005CFA82 /* TextLayer.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -358,13 +387,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BF628A52BA2B38D0093637E /* Protocols.swift in Sources */,
+				4BF628A52BA2B38D0093637E /* SliderDelegate.swift in Sources */,
 				4BF628A32BA2B38D0093637E /* Slider+UITouch.swift in Sources */,
-				4BF628A22BA2B38D0093637E /* DirectionEnum.swift in Sources */,
+				4BF628A22BA2B38D0093637E /* Direction.swift in Sources */,
+				4B8DAE9C2BA69A69005CFA82 /* RangeEndpointsConfiguration.swift in Sources */,
 				4BF628A42BA2B38D0093637E /* String.swift in Sources */,
-				4BF628A92BA2B38D0093637E /* SliderTextLayer.swift in Sources */,
+				4B8DAE962BA6925A005CFA82 /* Animation.swift in Sources */,
+				4B8DAE9A2BA696A8005CFA82 /* ThumbConfiguration.swift in Sources */,
 				4BF628A82BA2B38D0093637E /* Slider.swift in Sources */,
+				4B8DAEA62BA6B445005CFA82 /* TextLayer.swift in Sources */,
 				4BF628AA2BA2B38D0093637E /* SliderTrackLayer.swift in Sources */,
+				4B8DAE982BA6956B005CFA82 /* TrackConfiguration.swift in Sources */,
+				4B8DAEA42BA6AE54005CFA82 /* ThumbLayer.swift in Sources */,
 				4BF628A12BA2B38D0093637E /* HapticConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,6 +407,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B8DAE9F2BA6A056005CFA82 /* PreferenceManager.swift in Sources */,
+				4B8DAEA12BA6A5E9005CFA82 /* CodeViewController+UIColorPickerViewControllerDelegate.swift in Sources */,
 				4B889B692433375D002FCE02 /* CodeViewController.swift in Sources */,
 				4B2EB6E523C1E5AA00FB91AD /* AppDelegate.swift in Sources */,
 				4B889B7624333E7C002FCE02 /* CodeViewController+SliderDelegate.swift in Sources */,

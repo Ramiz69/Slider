@@ -1,7 +1,7 @@
 //
-//  SliderTextLayer.swift
+//  ThumbLayer.swift
 //
-//  Copyright (c) 2020 Ramiz Kichibekov (https://github.com/ramiz69)
+//  Copyright (c) 2024 Ramiz Kichibekov (https://github.com/ramiz69)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,37 +22,11 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+import Foundation
 import QuartzCore
 import CoreGraphics
 
-class SliderTextLayer: CATextLayer {
-    
-    // MARK: Properties
-    
-    var trackMaxColor: UIColor!
-    var trackMinColor: UIColor!
-    
-    // MARK: Initial methods
-    
-    init(trackMaxColor: UIColor, trackMinColor: UIColor) {
-        self.trackMaxColor = trackMaxColor
-        self.trackMinColor = trackMinColor
-        super.init()
-    }
-    
-    override init(layer: Any) {
-        super.init(layer: layer)
-    }
-    
-    override init() {
-        super.init()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+final class ThumbLayer: CATextLayer {
     
     // MARK: Life cycle
     
@@ -73,28 +47,9 @@ class SliderTextLayer: CATextLayer {
         ctx.restoreGState()
     }
     
-    open func configureBorder() {
-        assert(trackMaxColor != nil, "trackMaxColor should not be nil. Check the color initialization.")
-        assert(trackMinColor != nil, "trackMinColor should not be nil. Check the color initialization.")
-        foregroundColor = trackMinColor.cgColor
+    private func configureBorder() {
         borderWidth = 4
-        borderColor = trackMinColor.cgColor
-    }
-    
-}
-
-final class SliderMinimumTextLayer: SliderTextLayer {
-    
-    override func configureBorder() {
-        
-    }
-    
-}
-
-final class SliderMaximumTextLayer: SliderTextLayer {
-    
-    override func configureBorder() {
-        
+        borderColor = foregroundColor
     }
     
 }

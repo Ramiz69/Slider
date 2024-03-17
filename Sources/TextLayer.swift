@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  TextLayer.swift
 //
 //  Copyright (c) 2024 Ramiz Kichibekov (https://github.com/ramiz69)
 //
@@ -22,26 +22,20 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+import QuartzCore
+import CoreGraphics
 
-@UIApplicationMain
-final class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        return true
-    }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication,
-                     configurationForConnecting connectingSceneSession: UISceneSession,
-                     options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(_ application: UIApplication,
-                     didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+final class TextLayer: CATextLayer {
+    
+    override func draw(in ctx: CGContext) {
+        let height = bounds.size.height
+        let yDiff = (height - fontSize) / 2 - fontSize / 10
+        
+        ctx.saveGState()
+        ctx.translateBy(x: .zero, y: yDiff)
+        super.draw(in: ctx)
+        
+        ctx.restoreGState()
     }
     
 }

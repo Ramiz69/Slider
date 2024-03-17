@@ -104,7 +104,7 @@ open class Slider: UIControl {
     
     public var thumbConfiguration = ThumbConfiguration() {
         didSet {
-            initThumbLayer()
+            updateThumbLayersText()
             setNeedsLayersDisplay()
         }
     }
@@ -113,6 +113,18 @@ open class Slider: UIControl {
         didSet {
             reinitComponentValues()
             setNeedsLayersDisplay()
+        }
+    }
+    
+    public var maximumEndpointConfiguration = RangeEndpointsConfiguration() {
+        didSet {
+            initEndpointLayer(.maximum)
+        }
+    }
+    
+    public var minimumEndpointConfiguration = RangeEndpointsConfiguration() {
+        didSet {
+            initEndpointLayer(.minimum)
         }
     }
     
@@ -141,13 +153,17 @@ open class Slider: UIControl {
     final public var animationStyle: AnimationStyle = .none
     final public var continuous: Bool = true
     
-    let thumbLayer = SliderTextLayer()
+    let thumbLayer = ThumbLayer()
     private let trackLayer = SliderTrackLayer()
-    private let minimumLayer = SliderMinimumTextLayer()
-    private let maximumLayer = SliderMaximumTextLayer()
+    private let minimumLayer = TextLayer()
+    private let maximumLayer = TextLayer()
     
     private var displayLink: CADisplayLink?
     private var isDirectionChangeAnimationInProgress = false
+    
+    private enum Endpoint: CaseIterable {
+        case minimum, maximum
+    }
     
     // MARK: Initial methods
     
@@ -204,8 +220,8 @@ open class Slider: UIControl {
         trackLayer.frame = trackRectForBounds()
         reinitComponentValues()
         initThumbLayer()
-        initMinimumLayer()
-        initMaximumLayer()
+        let endpoints = Endpoint.allCases
+        endpoints.forEach { initEndpointLayer($0) }
         updateThumbLayersText()
     }
     
@@ -217,7 +233,6 @@ open class Slider: UIControl {
         thumbLayer.cornerRadius = thumbConfiguration.size.height / 2
         thumbLayer.font = UIFont.systemFont(ofSize: thumbConfiguration.fontSize, weight: .black)
         thumbLayer.fontSize = thumbConfiguration.fontSize
-        thumbLayer.backgroundColor = thumbConfiguration.backgroundColor.cgColor
         thumbLayer.alignmentMode = .center
         thumbLayer.contentsScale = getScallingFactor()
         
@@ -230,24 +245,27 @@ open class Slider: UIControl {
                                              cornerRadius: thumbLayer.cornerRadius).cgPath
     }
     
-    private func initMinimumLayer() {
-        minimumLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        minimumLayer.bounds = CGRect(origin: .zero, size: thumbConfiguration.size)
-        minimumLayer.position = positionForValue(value: minimum)
-        minimumLayer.foregroundColor = UIColor.white.cgColor
-        minimumLayer.fontSize = 12
-        minimumLayer.alignmentMode = .center
-        minimumLayer.contentsScale = getScallingFactor()
-    }
-    
-    private func initMaximumLayer() {
-        maximumLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        maximumLayer.bounds = CGRect(origin: .zero, size: thumbConfiguration.size)
-        maximumLayer.position = positionForValue(value: maximum)
-        maximumLayer.foregroundColor = UIColor.white.cgColor
-        maximumLayer.fontSize = 12
-        maximumLayer.alignmentMode = .center
-        maximumLayer.contentsScale = getScallingFactor()
+    private func initEndpointLayer(_ endpoint: Endpoint) {
+        let layerFrame = CGRect(origin: .zero, size: thumbConfiguration.size)
+        let scale = getScallingFactor()
+        switch endpoint {
+            case .minimum:
+                minimumLayer.anchorPoint = minimumEndpointConfiguration.anchorPoint
+                minimumLayer.bounds = layerFrame
+                minimumLayer.position = positionForValue(value: minimum)
+                minimumLayer.foregroundColor = minimumEndpointConfiguration.foregroundColor
+                minimumLayer.fontSize = minimumEndpointConfiguration.fontSize
+                minimumLayer.alignmentMode = minimumEndpointConfiguration.aligmentMode
+                minimumLayer.contentsScale = scale
+            case .maximum:
+                maximumLayer.anchorPoint = maximumEndpointConfiguration.anchorPoint
+                maximumLayer.bounds = layerFrame
+                maximumLayer.position = positionForValue(value: maximum)
+                maximumLayer.foregroundColor = maximumEndpointConfiguration.foregroundColor
+                maximumLayer.fontSize = maximumEndpointConfiguration.fontSize
+                maximumLayer.alignmentMode = maximumEndpointConfiguration.aligmentMode
+                maximumLayer.contentsScale = scale
+        }
     }
     
     private func getScallingFactor() -> CGFloat {
@@ -296,8 +314,8 @@ open class Slider: UIControl {
     }
     
     private func updateThumbLayersText() {
-        thumbLayer.trackMinColor = direction == .leftToRight ? trackConfiguration.minColor : trackConfiguration.reverseMinColor
-        thumbLayer.trackMaxColor = trackConfiguration.maxColor
+        thumbLayer.foregroundColor = direction == .leftToRight ? trackConfiguration.minColor.cgColor : trackConfiguration.reverseMinColor.cgColor
+        thumbLayer.backgroundColor = thumbConfiguration.backgroundColor.cgColor
         thumbLayer.string = textForValue(value)
         minimumLayer.string = textForValue(minimum)
         maximumLayer.string = textForValue(maximum)

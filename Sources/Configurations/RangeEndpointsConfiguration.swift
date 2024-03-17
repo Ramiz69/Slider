@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  ThumbConfiguration.swift
 //
 //  Copyright (c) 2024 Ramiz Kichibekov (https://github.com/ramiz69)
 //
@@ -22,26 +22,23 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+import Foundation
+import QuartzCore
 
-@UIApplicationMain
-final class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        return true
-    }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication,
-                     configurationForConnecting connectingSceneSession: UISceneSession,
-                     options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(_ application: UIApplication,
-                     didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-    }
+public struct RangeEndpointsConfiguration {
     
+    let anchorPoint: CGPoint
+    let foregroundColor: CGColor
+    let fontSize: CGFloat
+    let aligmentMode: CATextLayerAlignmentMode
+    
+    public init(anchorPoint: CGPoint = CGPoint(x: 0.5, y: 0.5),
+                foregroundColor: CGColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1),
+                fontSize: CGFloat = 12,
+                aligmentMode: CATextLayerAlignmentMode = .center) {
+        self.anchorPoint = anchorPoint
+        self.foregroundColor = foregroundColor
+        self.fontSize = fontSize
+        self.aligmentMode = aligmentMode
+    }
 }

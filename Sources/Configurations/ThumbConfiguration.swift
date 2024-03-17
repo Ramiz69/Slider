@@ -27,19 +27,13 @@ import UIKit
 public struct ThumbConfiguration {
     
     public var backgroundColor: UIColor
-    public var textColor: UIColor
     public var fontSize: CGFloat
     public var size: CGSize
     
     public init(backgroundColor: UIColor = .white,
-                textColor: UIColor = UIColor(red: .zero,
-                                             green: 74 / 255,
-                                             blue: 150 / 255,
-                                             alpha: 1),
                 fontSize: CGFloat = 14,
                 size: CGSize = CGSize(width: 60, height: 36)) {
         self.backgroundColor = backgroundColor
-        self.textColor = textColor
         self.fontSize = fontSize
         self.size = size
     }

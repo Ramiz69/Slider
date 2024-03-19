@@ -18,10 +18,10 @@
 - Swift 5+
 
 ## Preview
-<img src="Screenshots/leftToRightDefault.png" width="400"/>
-<img src="Screenshots/rightToLeftDefault.png" width="400"/>
-<img src="Screenshots/leftToRightCustom.png" width="400"/>
-<img src="Screenshots/preference.png" width="400"/>>
+<img src="Screenshots/leftToRightDefault.png" width="300"/>
+<img src="Screenshots/rightToLeftDefault.png" width="300"/>
+<img src="Screenshots/leftToRightCustom.png" width="300"/>
+<img src="Screenshots/preference.png" width="300"/>
 
 ## Installation
 

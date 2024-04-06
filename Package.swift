@@ -4,13 +4,17 @@ import PackageDescription
 
 let package = Package(
     name: "Slider",
-    platforms: [.iOS(.v14)],
+    platforms: [
+        .iOS(.v14)
+    ],
     products: [
         .library(
             name: "Slider",
             targets: ["Slider"]),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0")
+    ],
     targets: [
         .target(
             name: "Slider",

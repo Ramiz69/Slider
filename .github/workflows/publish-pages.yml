@@ -12,8 +12,8 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: true
-  jobs:
-  deploy:
+jobs:
+ deploy:
   runs-on: macOS-latest
   environment:
       name: github-pages
@@ -21,6 +21,7 @@ concurrency:
   steps:
     - name: Checkout 🛎️
       uses: actions/checkout@v3
+    - name: Build DocC
       run: |
           xcodebuild docbuild -scheme Slider \
             -derivedDataPath /tmp/docbuild \
@@ -32,9 +33,9 @@ concurrency:
           echo "<script>window.location.href += \"/documentation/slider\"</script>" > docs/index.html;
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
-       with:
-           path: 'docs'
+      with:
+        path: 'docs'
     - name: Deploy to GitHub Pages
-        id: deployment
+      id: deployment
       uses: actions/deploy-pages@v4
           

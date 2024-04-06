@@ -37,4 +37,6 @@ jobs:
 #          echo "<script>window.location.href += \"/documentation/slider\"</script>" > docs/index.html;
     - name: Configure Guthib Pages
       uses: actions/configure-pages@v5.0.0
+    - name: Deploy GitHub Pages site
+      uses: actions/deploy-pages@v4.0.5
           

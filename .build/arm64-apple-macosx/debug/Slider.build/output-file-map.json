@@ -1,0 +1,71 @@
+{
+  "": {
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/master.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/Sources/Configurations/HapticConfiguration.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/HapticConfiguration.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/HapticConfiguration.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/HapticConfiguration~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/HapticConfiguration.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/Sources/Configurations/RangeEndpointsConfiguration.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/RangeEndpointsConfiguration.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/RangeEndpointsConfiguration.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/RangeEndpointsConfiguration~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/RangeEndpointsConfiguration.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/Sources/Configurations/ThumbConfiguration.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/ThumbConfiguration.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/ThumbConfiguration.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/ThumbConfiguration~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/ThumbConfiguration.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/Sources/Configurations/TrackConfiguration.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/TrackConfiguration.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/TrackConfiguration.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/TrackConfiguration~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/TrackConfiguration.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/Sources/Extensions/Slider+UITouch.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/Slider+UITouch.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/Slider+UITouch.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/Slider+UITouch~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/Slider+UITouch.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/Sources/Extensions/String.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/String.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/String.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/String~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/String.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/Sources/Protocols/SliderDelegate.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/SliderDelegate.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/SliderDelegate.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/SliderDelegate~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/SliderDelegate.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/Sources/Slider.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/Slider.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/Slider.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/Slider~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/Slider.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/Sources/SliderTrackLayer.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/SliderTrackLayer.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/SliderTrackLayer.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/SliderTrackLayer~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/SliderTrackLayer.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/Sources/TextLayer.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/TextLayer.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/TextLayer.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/TextLayer~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/TextLayer.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/Sources/ThumbLayer.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/ThumbLayer.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/ThumbLayer.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/ThumbLayer~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/ThumbLayer.swiftdeps"
+  }
+}

@@ -1,0 +1,4 @@
+module Slider {
+    header "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Slider.build/Slider-Swift.h"
+    requires objc
+}

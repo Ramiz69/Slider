@@ -1,0 +1,4 @@
+module Snippets {
+    header "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Snippets.build/Snippets-Swift.h"
+    requires objc
+}

@@ -61,8 +61,8 @@ open class Slider: UIControl {
         /// Determines the animation duration based on the animation style.
         var animationDuration: TimeInterval {
             switch self {
-                case .none: .zero
-                case .default: CATransaction.animationDuration()
+                case .none: return .zero
+                case .default: return CATransaction.animationDuration()
             }
         }
     }
@@ -197,9 +197,9 @@ open class Slider: UIControl {
     open override var intrinsicContentSize: CGSize {
         switch direction.axis {
             case .x:
-                CGSize(width: UIView.noIntrinsicMetric, height: trackConfiguration.height)
+                return CGSize(width: UIView.noIntrinsicMetric, height: trackConfiguration.height)
             case .y:
-                CGSize(width: trackConfiguration.height, height: UIView.noIntrinsicMetric)
+                return CGSize(width: trackConfiguration.height, height: UIView.noIntrinsicMetric)
         }
     }
     
@@ -394,14 +394,14 @@ open class Slider: UIControl {
     }
     
     private func getScreenScale() -> CGFloat {
-        window?.screen.scale ?? UIScreen.main.scale
+        return window?.screen.scale ?? UIScreen.main.scale
     }
     
     /// Determines the correct fill color for the slider's direction.
     ///
     /// - Returns: The CGColor representing the fill color.
     private func fillColorForDirection() -> CGColor {
-        (direction == .leftToRight || direction == .bottomToTop) ? trackConfiguration.minColor.cgColor : trackConfiguration.reverseMinColor.cgColor
+        return (direction == .leftToRight || direction == .bottomToTop) ? trackConfiguration.minColor.cgColor : trackConfiguration.reverseMinColor.cgColor
     }
     
     /// Calculates the bounds for the thumb layer based on the slider's direction.
@@ -410,10 +410,10 @@ open class Slider: UIControl {
     private func boundsForDirection() -> CGRect {
         switch direction.axis {
             case .x:
-                CGRect(origin: .zero, size: thumbConfiguration.size)
+                return CGRect(origin: .zero, size: thumbConfiguration.size)
             case .y:
-                CGRect(origin: .zero, size: CGSize(width: thumbConfiguration.size.height,
-                                                   height: thumbConfiguration.size.width))
+                return CGRect(origin: .zero, size: CGSize(width: thumbConfiguration.size.height,
+                                                          height: thumbConfiguration.size.width))
         }
     }
     
@@ -421,7 +421,7 @@ open class Slider: UIControl {
     ///
     /// - Returns: The CGSize representing the shadow offset.
     private func shadowOffsetForDirection() -> CGSize {
-        direction.axis == .x ? CGSize(width: .zero, height: 0.5) : CGSize(width: 0.5, height: .zero)
+        return direction.axis == .x ? CGSize(width: .zero, height: 0.5) : CGSize(width: 0.5, height: .zero)
     }
     
     // MARK: Update methods
@@ -562,15 +562,15 @@ open class Slider: UIControl {
     private func trackRectForBounds() -> CGRect {
         switch direction.axis {
             case .x:
-                CGRect(x: trackConfiguration.inset,
-                       y: (bounds.height - trackConfiguration.height) / 2,
-                       width: bounds.width - 2 * trackConfiguration.inset,
-                       height: trackConfiguration.height)
+                return CGRect(x: trackConfiguration.inset,
+                              y: (bounds.height - trackConfiguration.height) / 2,
+                              width: bounds.width - 2 * trackConfiguration.inset,
+                              height: trackConfiguration.height)
             case .y:
-                CGRect(x: (bounds.width - trackConfiguration.height) / 2,
-                       y: trackConfiguration.inset,
-                       width: trackConfiguration.height,
-                       height: bounds.height - 2 * trackConfiguration.inset)
+                return CGRect(x: (bounds.width - trackConfiguration.height) / 2,
+                              y: trackConfiguration.inset,
+                              width: trackConfiguration.height,
+                              height: bounds.height - 2 * trackConfiguration.inset)
         }
     }
     

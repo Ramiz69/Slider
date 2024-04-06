@@ -1,0 +1,17 @@
+{
+  "": {
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Snippets.build/master.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-plugin/Sources/Snippets/Model/Snippet.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Snippets.build/Snippet.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Snippets.build/Snippet.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Snippets.build/Snippet~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Snippets.build/Snippet.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-plugin/Sources/Snippets/Parsing/SnippetParser.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Snippets.build/SnippetParser.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Snippets.build/SnippetParser.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Snippets.build/SnippetParser~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/Snippets.build/SnippetParser.swiftdeps"
+  }
+}

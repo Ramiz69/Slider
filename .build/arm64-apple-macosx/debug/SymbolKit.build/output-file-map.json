@@ -1,0 +1,275 @@
+{
+  "": {
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/master.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/Mixin/Mixin+Equals.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Mixin+Equals.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Mixin+Equals.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Mixin+Equals~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Mixin+Equals.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/Mixin/Mixin+Hash.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Mixin+Hash.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Mixin+Hash.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Mixin+Hash~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Mixin+Hash.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/Mixin/Mixin.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Mixin.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Mixin.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Mixin~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Mixin.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/LineList/LineList.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/LineList.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/LineList.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/LineList~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/LineList.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/LineList/SourceRange/Position.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Position.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Position.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Position~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Position.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/LineList/SourceRange/SourceRange.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SourceRange.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SourceRange.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SourceRange~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SourceRange.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Metadata.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Metadata.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Metadata.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Metadata~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Metadata.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Module.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Module.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Module.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Module~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Module.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/OperatingSystem.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/OperatingSystem.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/OperatingSystem.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/OperatingSystem~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/OperatingSystem.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Platform.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Platform.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Platform.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Platform~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Platform.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Relationship/Relationship.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Relationship.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Relationship.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Relationship~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Relationship.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Relationship/RelationshipKind.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/RelationshipKind.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/RelationshipKind.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/RelationshipKind~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/RelationshipKind.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Relationship/SourceOrigin.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SourceOrigin.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SourceOrigin.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SourceOrigin~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SourceOrigin.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Relationship/Swift/GenericConstraints.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/GenericConstraints.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/GenericConstraints.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/GenericConstraints~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/GenericConstraints.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Relationship/Swift/Swift.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Swift.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Swift.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Swift~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Swift.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/SemanticVersion.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SemanticVersion.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SemanticVersion.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SemanticVersion~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SemanticVersion.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/AccessControl.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/AccessControl.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/AccessControl.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/AccessControl~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/AccessControl.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Availability/Availability.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Availability.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Availability.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Availability~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Availability.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Availability/AvailabilityItem.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/AvailabilityItem.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/AvailabilityItem.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/AvailabilityItem~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/AvailabilityItem.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Availability/Domain.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Domain.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Domain.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Domain~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Domain.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/DeclarationFragments/DeclarationFragments.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/DeclarationFragments.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/DeclarationFragments.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/DeclarationFragments~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/DeclarationFragments.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/DeclarationFragments/Fragment/Fragment.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Fragment.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Fragment.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Fragment~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Fragment.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/DeclarationFragments/Fragment/FragmentKind.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/FragmentKind.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/FragmentKind.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/FragmentKind~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/FragmentKind.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/FunctionSignature/FunctionParameter.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/FunctionParameter.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/FunctionParameter.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/FunctionParameter~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/FunctionParameter.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/FunctionSignature/FunctionSignature.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/FunctionSignature.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/FunctionSignature.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/FunctionSignature~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/FunctionSignature.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Identifier.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Identifier.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Identifier.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Identifier~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Identifier.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/KindIdentifier.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/KindIdentifier.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/KindIdentifier.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/KindIdentifier~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/KindIdentifier.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Location.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Location.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Location.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Location~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Location.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Mutability.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Mutability.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Mutability.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Mutability~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Mutability.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Names.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Names.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Names.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Names~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Names.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/SPI.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SPI.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SPI.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SPI~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SPI.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Snippet.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Snippet.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Snippet.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Snippet~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Snippet.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Swift/Extension.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Extension.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Extension.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Extension~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Extension.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Swift/GenericConstraint.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/GenericConstraint.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/GenericConstraint.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/GenericConstraint~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/GenericConstraint.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Swift/GenericParameter.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/GenericParameter.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/GenericParameter.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/GenericParameter~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/GenericParameter.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Swift/Generics.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Generics.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Generics.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Generics~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Generics.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Swift/Namespace.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Namespace.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Namespace.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Namespace~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Namespace.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Symbol.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Symbol.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Symbol.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Symbol~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/Symbol.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/SymbolKind.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SymbolKind.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SymbolKind.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SymbolKind~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SymbolKind.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/SymbolGraph.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SymbolGraph.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SymbolGraph.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SymbolGraph~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/SymbolGraph.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/UnifiedSymbolGraph/GraphCollector.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/GraphCollector.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/GraphCollector.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/GraphCollector~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/GraphCollector.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/UnifiedSymbolGraph/UnifiedSymbol+Encodable.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/UnifiedSymbol+Encodable.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/UnifiedSymbol+Encodable.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/UnifiedSymbol+Encodable~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/UnifiedSymbol+Encodable.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/UnifiedSymbolGraph/UnifiedSymbol.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/UnifiedSymbol.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/UnifiedSymbol.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/UnifiedSymbol~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/UnifiedSymbol.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/UnifiedSymbolGraph/UnifiedSymbolGraph+Encodable.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/UnifiedSymbolGraph+Encodable.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/UnifiedSymbolGraph+Encodable.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/UnifiedSymbolGraph+Encodable~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/UnifiedSymbolGraph+Encodable.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/UnifiedSymbolGraph/UnifiedSymbolGraph.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/UnifiedSymbolGraph.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/UnifiedSymbolGraph.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/UnifiedSymbolGraph~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/SymbolKit.build/UnifiedSymbolGraph.swiftdeps"
+  }
+}

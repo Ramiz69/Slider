@@ -1,0 +1,23 @@
+{
+  "": {
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/snippet_extract.build/master.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-plugin/Sources/snippet-extract/SnippetBuildCommand.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/snippet_extract.build/SnippetBuildCommand.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/snippet_extract.build/SnippetBuildCommand.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/snippet_extract.build/SnippetBuildCommand~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/snippet_extract.build/SnippetBuildCommand.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-plugin/Sources/snippet-extract/Utility/SymbolGraph+Snippet.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/snippet_extract.build/SymbolGraph+Snippet.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/snippet_extract.build/SymbolGraph+Snippet.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/snippet_extract.build/SymbolGraph+Snippet~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/snippet_extract.build/SymbolGraph+Snippet.swiftdeps"
+  },
+  "/Users/ramizkichibekov/Work/My Projects/Slider/.build/checkouts/swift-docc-plugin/Sources/snippet-extract/Utility/URL+Status.swift": {
+    "dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/snippet_extract.build/URL+Status.d",
+    "object": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/snippet_extract.build/URL+Status.swift.o",
+    "swiftmodule": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/snippet_extract.build/URL+Status~partial.swiftmodule",
+    "swift-dependencies": "/Users/ramizkichibekov/Work/My Projects/Slider/.build/arm64-apple-macosx/debug/snippet_extract.build/URL+Status.swiftdeps"
+  }
+}

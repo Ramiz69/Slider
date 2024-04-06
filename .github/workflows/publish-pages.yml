@@ -25,17 +25,19 @@ jobs:
         xcode-version: latest
     - name: Checkout 🛎️
       uses: actions/checkout@v3
-#    - name: Build DocC
-#      run: |
-#          xcodebuild docbuild -scheme Slider \
-#            -derivedDataPath /tmp/docbuild \
-#            -destination 'generic/platform=iOS';
-#          $(xcrun --find docc) process-archive \
-#            transform-for-static-hosting /tmp/docbuild/Build/Products/Debug-iphoneos/Slider.doccarchive \
-#            --hosting-base-path master \
-#            --output-path docs;
     - name: Build DocC
-      uses: kiarashvosough1999/build-docC-static-site@v1.0.3
-    - name: Deploy DocC
-      uses: kiarashvosough1999/docC-github-pages-deploy@v1.0.0
-          
+      run: |
+          xcodebuild docbuild -scheme Slider \
+            -derivedDataPath /tmp/docbuild \
+            -destination 'generic/platform=iOS';
+          $(xcrun --find docc) process-archive \
+            transform-for-static-hosting /tmp/docbuild/Build/Products/Debug-iphoneos/Slider.doccarchive \
+            --hosting-base-path master \
+            --output-path docs;
+    - name: Upload artifact 📜
+      uses: actions/upload-pages-artifact@v3.0.1
+      with:
+        path: 'docs'
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4.0.5

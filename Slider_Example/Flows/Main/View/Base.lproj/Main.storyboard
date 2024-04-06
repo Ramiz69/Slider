@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Code View Controller-->
+        <!--https://github.com/Ramiz69-->
         <scene sceneID="6Sv-tb-7dP">
             <objects>
                 <viewController id="Jwd-0R-N5F" customClass="CodeViewController" customModule="Slider_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,23 +18,11 @@
                         <viewLayoutGuide key="safeArea" id="iUw-cM-Ddi"/>
                         <color key="backgroundColor" red="0.80392156862745101" green="0.82352941176470584" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <navigationItem key="navigationItem" prompt="https://github.com/Ramiz69" id="SP6-9T-O1p">
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="p5Y-Zy-m84">
-                            <rect key="frame" x="20" y="39.5" width="329.5" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Left to Right"/>
-                                <segment title="Right to Left"/>
-                            </segments>
-                            <connections>
-                                <action selector="didChangeSegment:" destination="Jwd-0R-N5F" eventType="valueChanged" id="NbQ-7o-MQL"/>
-                            </connections>
-                        </segmentedControl>
+                    <navigationItem key="navigationItem" title="https://github.com/Ramiz69" id="SP6-9T-O1p">
                         <barButtonItem key="rightBarButtonItem" image="gear" catalog="system" largeContentSizeImage="gear" style="done" id="uG9-WS-ve9"/>
                     </navigationItem>
                     <connections>
                         <outlet property="preferenceBarButton" destination="uG9-WS-ve9" id="69w-G7-UjI"/>
-                        <outlet property="segmentControl" destination="p5Y-Zy-m84" id="cIC-WZ-ERd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E2p-Wi-Qam" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

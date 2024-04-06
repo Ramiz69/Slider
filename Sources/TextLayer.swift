@@ -37,5 +37,4 @@ final class TextLayer: CATextLayer {
         
         ctx.restoreGState()
     }
-    
 }

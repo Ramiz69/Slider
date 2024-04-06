@@ -24,18 +24,45 @@
 
 import UIKit
 
+/// `ThumbConfiguration` defines the appearance settings for the thumb of the `Slider` control.
+///
+/// It allows customization of the thumb's background color, font size, size, and border width.
 public struct ThumbConfiguration {
     
+    /// The background color of the thumb.
+    ///
+    /// This color is used as the fill color for the thumb's background. The default value is `.white`.
     public var backgroundColor: UIColor
+    
+    /// The font size of the thumb's label.
+    ///
+    /// This property determines the size of the text inside the thumb. Default value is `14`.
     public var fontSize: CGFloat
+    
+    /// The size of the thumb.
+    ///
+    /// Defines the width and height of the thumb. The default size is `(width: 60, height: 36)`.
     public var size: CGSize
     
+    /// The border width of the thumb.
+    ///
+    /// Specifies the width of the thumb's border. The default value is `4`.
+    public var borderWidth: CGFloat
+    
+    /// Initializes a `ThumbConfiguration` instance with specified background color, font size, size, and border width.
+    /// - Parameters:
+    ///   - backgroundColor: The background color of the thumb. Default is `.white`.
+    ///   - fontSize: The font size for the thumb's label. Default is `14`.
+    ///   - size: The size of the thumb. Default is `(width: 60, height: 36)`.
+    ///   - borderWidth: The border width of the thumb. Default is `4`.
     public init(backgroundColor: UIColor = .white,
                 fontSize: CGFloat = 14,
-                size: CGSize = CGSize(width: 60, height: 36)) {
+                size: CGSize = CGSize(width: 60, height: 36),
+                borderWidth: CGFloat = 4) {
         self.backgroundColor = backgroundColor
         self.fontSize = fontSize
         self.size = size
+        self.borderWidth = borderWidth
     }
-    
 }
+

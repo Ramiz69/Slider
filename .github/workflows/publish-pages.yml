@@ -34,6 +34,10 @@ jobs:
             transform-for-static-hosting /tmp/docbuild/Build/Products/Debug-iphoneos/Slider.doccarchive \
             --hosting-base-path master \
             --output-path docs;
+    - name: Upload artifact 📜
+      uses: actions/upload-pages-artifact@v3.0.1
+      with:
+        path: 'docs'
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4.0.5

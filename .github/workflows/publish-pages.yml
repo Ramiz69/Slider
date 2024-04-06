@@ -19,12 +19,12 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
   steps:
-#    - name: Setup Xcode version
-#      uses: maxim-lobanov/setup-xcode@v1.6.0
-#      with:
-#        xcode-version: latest
-#    - name: Checkout 🛎️
-#      uses: actions/checkout@v3
+    - name: Setup Xcode version
+      uses: maxim-lobanov/setup-xcode@v1.6.0
+      with:
+        xcode-version: latest
+    - name: Checkout 🛎️
+      uses: actions/checkout@v3
 #    - name: Build DocC
 #      run: |
 #          xcodebuild docbuild -scheme Slider \
@@ -32,19 +32,11 @@ jobs:
 #            -destination 'generic/platform=iOS';
 #          $(xcrun --find docc) process-archive \
 #            transform-for-static-hosting /tmp/docbuild/Build/Products/Debug-iphoneos/Slider.doccarchive \
-#            --hosting-base-path Slider \
+#            --hosting-base-path master \
 #            --output-path docs;
 #          echo "<script>window.location.href += \"/documentation/slider\"</script>" > docs/index.html;
-    - name: Fix permissions
-      run: |
-         chmod -v -R +rX "_site/" | while read line; do
-         echo "::warning title=Invalid file permissions automatically fixed::$line"
-         done
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: 'docs'
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+     - name: Fix permissions
+       uses: actions/jekyll-build-pages@v1.0.12
+       with:
+        destination: ./docs
           

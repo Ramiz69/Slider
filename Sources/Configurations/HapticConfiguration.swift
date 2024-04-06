@@ -24,15 +24,38 @@
 
 import UIKit
 
+/// `HapticConfiguration` allows you to configure haptic feedback for various slider interactions.
+///
+/// This configuration supports enabling or disabling haptic feedback when the slider reaches its limit values,
+/// when the value changes, or when the slider's direction changes.
 public struct HapticConfiguration {
     
+    /// A Boolean value that determines whether haptic feedback is enabled when reaching the slider's limit values.
     private let reachLimitValueHapticEnabled: Bool
+    
+    /// A Boolean value that determines whether haptic feedback is enabled when the slider's value changes.
     private let changeValueHapticEnabled: Bool
+    
+    /// A Boolean value that determines whether haptic feedback is enabled when the slider's direction changes.
     private let changeDirectionHapticEnabled: Bool
+    
+    /// The haptic feedback generator for when the slider reaches its limit values.
     private var reachImpactGenerator: UIImpactFeedbackGenerator
+    
+    /// The haptic feedback generator for when the slider's value changes.
     private var changeValueImpactGenerator: UIImpactFeedbackGenerator
+    
+    /// The haptic feedback generator for when the slider's direction changes.
     private var selectionGenerator: UISelectionFeedbackGenerator
     
+    /// Initializes a new `HapticConfiguration` with the specified options.
+    ///
+    /// - Parameters:
+    ///   - reachLimitValueHapticEnabled: Specifies whether to enable haptic feedback when reaching limit values.
+    ///   - changeValueHapticEnabled: Specifies whether to enable haptic feedback when the value changes.
+    ///   - changeDirectionHapticEnabled: Specifies whether to enable haptic feedback when the direction changes.
+    ///   - reachImpactGeneratorStyle: The style of haptic feedback for reaching limit values.
+    ///   - changeValueImpactGeneratorStyle: The style of haptic feedback for value changes.
     public init(reachLimitValueHapticEnabled: Bool,
                 changeValueHapticEnabled: Bool,
                 changeDirectionHapticEnabled: Bool,
@@ -44,27 +67,30 @@ public struct HapticConfiguration {
         reachImpactGenerator = UIImpactFeedbackGenerator(style: reachImpactGeneratorStyle)
         changeValueImpactGenerator = UIImpactFeedbackGenerator(style: changeValueImpactGeneratorStyle)
         selectionGenerator = UISelectionFeedbackGenerator()
-        changeValueImpactGenerator.prepare()
         reachImpactGenerator.prepare()
+        changeValueImpactGenerator.prepare()
         selectionGenerator.prepare()
     }
     
+    /// Triggers haptic feedback when the slider reaches its minimum or maximum value.
     func reachValueGenerate() {
         if reachLimitValueHapticEnabled {
             reachImpactGenerator.impactOccurred()
         }
     }
     
+    /// Triggers haptic feedback when the slider's value changes.
     func valueGenerate() {
         if changeValueHapticEnabled {
             changeValueImpactGenerator.impactOccurred()
         }
     }
     
+    /// Triggers haptic feedback when the slider's direction changes.
     func directionGenerate() {
         if changeDirectionHapticEnabled {
             selectionGenerator.selectionChanged()
         }
     }
-    
 }
+

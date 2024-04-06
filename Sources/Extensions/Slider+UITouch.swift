@@ -26,6 +26,7 @@ import UIKit
 
 extension Slider {
     
+    /// Notifies the control when a touch event enters the control’s bounds.
     public override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         previousTouchPoint = touch.location(in: self)
         if thumbLayer.frame.contains(previousTouchPoint) {
@@ -38,16 +39,23 @@ extension Slider {
         return false
     }
     
+    /// Notifies the control when a touch event for the control updates.
     public override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let touchPoint = touch.location(in: self)
-        let deltaLocation = (touchPoint.x - previousTouchPoint.x).rounded(.toNearestOrEven)
+        let deltaLocation: CGFloat
+        switch direction {
+            case .leftToRight, .rightToLeft:
+                deltaLocation = (touchPoint.x - previousTouchPoint.x).rounded(.toNearestOrEven)
+            case .bottomToTop, .topToBottom:
+                deltaLocation = (touchPoint.y - previousTouchPoint.y).rounded(.toNearestOrEven)
+        }
         let ratio = deltaLocation / usableTrackingLength
         let deltaValue = ((maximum - minimum) * ratio).rounded(.toNearestOrEven)
         let tempValue: CGFloat
         switch direction {
-            case .leftToRight:
+            case .leftToRight, .topToBottom:
                 tempValue = value + deltaValue
-            case .rightToLeft:
+            case .rightToLeft, .bottomToTop:
                 tempValue = value - deltaValue
         }
         let noOfStep = (tempValue / step).rounded(.toNearestOrEven)
@@ -72,6 +80,7 @@ extension Slider {
         return true
     }
     
+    /// Notifies the control when a touch event associated with the control ends.
     public override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         super.endTracking(touch, with: event)
         

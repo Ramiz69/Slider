@@ -5,7 +5,6 @@
 [![License](https://img.shields.io/cocoapods/l/RKSlider.svg?style=flat)](https://cocoapods.org/pods/RKSlider)
 [![Platform](https://img.shields.io/cocoapods/p/RKSlider.svg?style=flat)](https://cocoapods.org/pods/RKSlider)
 ![GitHub Release](https://img.shields.io/github/v/release/ramiz69/Slider)
-[![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat-square)](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat-square)
 
 - [Installation](#installation)
 - [Author](#author)
@@ -18,10 +17,14 @@
 - Swift 5+
 
 ## Preview
-<img src="Screenshots/leftToRightDefault.png" width="300"/>
-<img src="Screenshots/rightToLeftDefault.png" width="300"/>
-<img src="Screenshots/leftToRightCustom.png" width="300"/>
-<img src="Screenshots/preference.png" width="300"/>
+<details>
+  <summary>Preview</summary>
+
+  <img src="Screenshots/leftToRightDefault.png" width="400"/>
+  <img src="Screenshots/rightToLeftDefault.png" width="400"/>
+  <img src="Screenshots/leftToRightCustom.png" width="400"/>
+  <img src="Screenshots/preference.png" width="400"/>
+</details>
 
 ## Installation
 
@@ -33,7 +36,7 @@ Once you have your Swift package set up, adding Slider as a dependency is as eas
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/Ramiz69/Slider.git", .upToNextMajor(from: "0.1.0"))
+    .package(url: "https://github.com/Ramiz69/Slider.git", .upToNextMajor(from: "0.2.0"))
 ]
 ```
 

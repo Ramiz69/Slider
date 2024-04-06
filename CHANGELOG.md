@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## [0.2.0] - 2024-04-06
+
+### Added
+- Added vertical direction support (`bottomToTop`, `topToBottom`) for the slider, complementing the existing horizontal orientation.
+- Implemented new `TrackConfiguration` and `ThumbConfiguration` structures to allow detailed customization of the slider's appearance and behavior.
+- Developed and documented the `SliderDelegate` protocol and associated methods for handling slider events.
+- Implemented a documentation system using DocC, providing detailed guides and usage examples for the `Slider` class.
+- Added Swift-style documentation comments for all new and updated slider components.
+
+### Changed
+- Updated methods to enhance performance and reduce code duplication in the `Slider` class.
+- Modified the animation mechanism for smoother thumb movement on value changes.
+- Improved the system for updating and displaying the slider's visual components when its properties change.
+
+### Fixed
+- Fixed potential compatibility issues when changing the slider's direction.
+- Addressed minor visual display issues in the slider identified during testing.
+
+### Documentation
+- Created and published comprehensive documentation covering all aspects of using, configuring, and integrating the slider into an application.
+
 ## [0.1.1] - 2024-03-17
 
 ### Changed

@@ -29,7 +29,6 @@ final class CodeViewController: UIViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet var segmentControl: UISegmentedControl!
     @IBOutlet var preferenceBarButton: UIBarButtonItem!
     
     // MARK: - Properties
@@ -52,6 +51,7 @@ final class CodeViewController: UIViewController {
     }
     
     private let slider = Slider()
+    //    private let slider = Slider(direction: .bottomToTop)
     private(set) var preference = PreferenceManager()
     private(set) var selectedColorPickerType: ColorPickerType!
     
@@ -67,11 +67,18 @@ final class CodeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        /// Horizontal
         //        let offset: CGFloat = 16
         //        slider.frame = CGRect(x: offset,
         //                              y: view.safeAreaInsets.top,
         //                              width: view.bounds.width - 2 * offset,
         //                              height: slider.trackHeight)
+        /// Vertical
+        //        let offset: CGFloat = 16
+        //        slider.frame = CGRect(x: offset,
+        //                              y: view.safeAreaInsets.top,
+        //                              width: slider.trackHeight,
+        //                              height: view.bounds.height - view.safeAreaInsets.top - 2 * offset)
     }
     
     // MARK: Public methods
@@ -103,7 +110,7 @@ final class CodeViewController: UIViewController {
     // MARK: Private methods
     
     private func configureController() {
-//        slider.delegate = self
+        //        slider.delegate = self
         slider.maximum = 1500
         slider.minimum = .zero
         slider.value = .zero
@@ -112,8 +119,14 @@ final class CodeViewController: UIViewController {
         slider.translatesAutoresizingMaskIntoConstraints = false
         let layoutMarginsGuide = view.layoutMarginsGuide
         let offset: CGFloat = 16
+        /// Vertical
+        //        let constraints = [slider.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: offset),
+        //                           slider.leftAnchor.constraint(equalTo: view.leftAnchor, constant: offset),
+        //                           layoutMarginsGuide.bottomAnchor.constraint(equalTo: slider.bottomAnchor, constant: offset)]
+        /// Horizontal
         let constraints = [slider.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: offset),
                            slider.leftAnchor.constraint(equalTo: view.leftAnchor, constant: offset),
+                           layoutMarginsGuide.bottomAnchor.constraint(equalTo: slider.bottomAnchor, constant: offset),
                            view.rightAnchor.constraint(equalTo: slider.rightAnchor, constant: offset)]
         NSLayoutConstraint.activate(constraints)
     }
@@ -139,13 +152,14 @@ final class CodeViewController: UIViewController {
     }
     
     private func configurePreferenceMenu() {
-        let reset = UIAction(title: "Reset") { [weak self] _ in
-            self?.preference = PreferenceManager.reset()
-            self?.resetSlider()
+        let reset = UIAction(title: "Reset") { [unowned self] _ in
+            self.preference = PreferenceManager.reset()
+            self.resetSlider()
         }
         let menu = UIMenu(title: "Preference",
                           image: UIImage(systemName: "gear"),
-                          children: [configureAnimationMenu(),
+                          children: [configureDirectionMenu(),
+                                     configureAnimationMenu(),
                                      configureTrackMenu(),
                                      configureHapticMenu(),
                                      configureEndpointMenu(),
@@ -155,13 +169,27 @@ final class CodeViewController: UIViewController {
         preferenceBarButton.menu = menu
     }
     
+    private func configureDirectionMenu() -> UIMenu {
+        let directions = Slider.Direction.allCases
+        var actions = [UIAction]()
+        directions.forEach { direction in
+            let action = UIAction(title: "\(direction)", state: direction == slider.direction ? .on : .off) { [unowned self] _ in
+                self.slider.direction = direction
+                self.configurePreferenceMenu()
+            }
+            actions.append(action)
+        }
+        
+        return UIMenu(title: "Slider direction", children: actions)
+    }
+    
     private func configureAnimationMenu() -> UIMenu {
-        let styles: [AnimationStyle] = [.none, .default]
+        let styles: [Slider.AnimationStyle] = [.none, .default]
         var animations = [UIAction]()
         styles.forEach { style in
-            let action = UIAction(title: "\(style)", state: style == slider.animationStyle ? .on : .off) { [weak self] _ in
-                self?.slider.animationStyle = style
-                self?.configurePreferenceMenu()
+            let action = UIAction(title: "\(style)", state: style == slider.animationStyle ? .on : .off) { [unowned self] _ in
+                self.slider.animationStyle = style
+                self.configurePreferenceMenu()
             }
             animations.append(action)
         }
@@ -170,25 +198,25 @@ final class CodeViewController: UIViewController {
     }
     
     private func configureTrackMenu() -> UIMenu {
-        let minColorAction = UIAction(title: "Minimum Color") { [weak self] _ in
-            self?.selectedColorPickerType = .track(.min)
-            self?.presentColorPicker()
+        let minColorAction = UIAction(title: "Minimum Color") { [unowned self] _ in
+            self.selectedColorPickerType = .track(.min)
+            self.presentColorPicker()
         }
-        let maxColorAction = UIAction(title: "Maximum Color") { [weak self] _ in
-            self?.selectedColorPickerType = .track(.max)
-            self?.presentColorPicker()
+        let maxColorAction = UIAction(title: "Maximum Color") { [unowned self] _ in
+            self.selectedColorPickerType = .track(.max)
+            self.presentColorPicker()
         }
-        let reverseMinColorAction = UIAction(title: "Reverse Minimum Color") { [weak self] _ in
-            self?.selectedColorPickerType = .track(.reverseMin)
-            self?.presentColorPicker()
+        let reverseMinColorAction = UIAction(title: "Reverse Minimum Color") { [unowned self] _ in
+            self.selectedColorPickerType = .track(.reverseMin)
+            self.presentColorPicker()
         }
         return UIMenu(title: "Track", children: [minColorAction, maxColorAction, reverseMinColorAction])
     }
     
     private func configureThumbMenu() -> UIMenu {
-        let backgroundColor = UIAction(title: "Background") { [weak self] _ in
-            self?.selectedColorPickerType = .thumb
-            self?.presentColorPicker()
+        let backgroundColor = UIAction(title: "Background") { [unowned self] _ in
+            self.selectedColorPickerType = .thumb
+            self.presentColorPicker()
         }
         
         return UIMenu(title: "Thumb", children: [backgroundColor])
@@ -197,19 +225,19 @@ final class CodeViewController: UIViewController {
     private func configureHapticMenu() -> UIMenu {
         let hapticPreference = preference.hapticPreference
         let reachAction = UIAction(title: "Reach Min/Max values",
-                                   state: hapticPreference.reachMinMaxValues ? .on : .off) { [weak self] _ in
+                                   state: hapticPreference.reachMinMaxValues ? .on : .off) { [unowned self] _ in
             hapticPreference.reachMinMaxValues.toggle()
-            self?.configureHaptic()
+            self.configureHaptic()
         }
         let valueChangeAction = UIAction(title: "Value changes",
-                                         state: hapticPreference.valueChanges ? .on : .off) { [weak self] _ in
+                                         state: hapticPreference.valueChanges ? .on : .off) { [unowned self] _ in
             hapticPreference.valueChanges.toggle()
-            self?.configureHaptic()
+            self.configureHaptic()
         }
         let directionChangeAction = UIAction(title: "Direction changes",
-                                             state: hapticPreference.directionChanges ? .on : .off) { [weak self] _ in
+                                             state: hapticPreference.directionChanges ? .on : .off) { [unowned self] _ in
             hapticPreference.directionChanges.toggle()
-            self?.configureHaptic()
+            self.configureHaptic()
         }
         
         return UIMenu(title: "Haptic",
@@ -219,15 +247,15 @@ final class CodeViewController: UIViewController {
     
     private func configureEndpointMenu() -> UIMenu {
         let maximumEndpointPreference = preference.maximumEndpointPreference
-        let maximumTextColorAction = UIAction(title: "Change color") { [weak self] _ in
-            self?.selectedColorPickerType = .endpoint(.maximum)
-            self?.presentColorPicker()
+        let maximumTextColorAction = UIAction(title: "Change color") { [unowned self] _ in
+            self.selectedColorPickerType = .endpoint(.maximum)
+            self.presentColorPicker()
         }
         
         let minimumEndpointPreference = preference.minimumEndpointPreference
-        let minimumTextColorAction = UIAction(title: "Change color") { [weak self] _ in
-            self?.selectedColorPickerType = .endpoint(.minimum)
-            self?.presentColorPicker()
+        let minimumTextColorAction = UIAction(title: "Change color") { [unowned self] _ in
+            self.selectedColorPickerType = .endpoint(.minimum)
+            self.presentColorPicker()
         }
         
         
@@ -251,9 +279,9 @@ final class CodeViewController: UIViewController {
         let aligments = CATextLayerAlignmentMode.allCases
         aligments.forEach { aligment in
             let action = UIAction(title: aligment.rawValue,
-                                  state: aligment.rawValue == endpoint.aligmentMode.rawValue ? .on : .off) { [weak self] _ in
+                                  state: aligment.rawValue == endpoint.aligmentMode.rawValue ? .on : .off) { [unowned self] _ in
                 endpoint.aligmentMode = aligment
-                self?.configureMinimumEndpoint()
+                self.configureMinimumEndpoint()
             }
             aligmentActions.append(action)
         }
@@ -266,18 +294,6 @@ final class CodeViewController: UIViewController {
         colorPicker.delegate = self
         present(colorPicker, animated: true)
     }
-    
-    // MARK: - Actions
-    
-    @IBAction private func didChangeSegment(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-            case 1:
-                slider.direction = .rightToLeft
-            default:
-                slider.direction = .leftToRight
-        }
-    }
-    
 }
 
 extension CATextLayerAlignmentMode: CaseIterable {

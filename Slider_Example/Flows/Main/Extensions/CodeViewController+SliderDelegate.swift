@@ -32,16 +32,4 @@ extension CodeViewController: SliderDelegate {
         return "\(value)"
     }
     
-    func didBeginTracking(_ slider: Slider) {
-        
-    }
-    
-    func didContinueTracking(_ slider: Slider) {
-        
-    }
-    
-    func didEndTracking(_ slider: Slider) {
-        
-    }
-    
 }

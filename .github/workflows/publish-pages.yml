@@ -35,10 +35,16 @@ jobs:
 #            --hosting-base-path Slider \
 #            --output-path docs;
 #          echo "<script>window.location.href += \"/documentation/slider\"</script>" > docs/index.html;
+    - name: Fix permissions
+      run: |
+         chmod -v -R +rX "_site/" | while read line; do
+         echo "::warning title=Invalid file permissions automatically fixed::$line"
+         done
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: 'docs'
+        name: Slider.doccarchive
+        path: '/'
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4

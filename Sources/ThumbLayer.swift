@@ -48,7 +48,6 @@ final class ThumbLayer: CATextLayer {
     }
     
     private func configureBorder() {
-        borderWidth = 4
         borderColor = foregroundColor
     }
     

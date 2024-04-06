@@ -35,8 +35,6 @@ jobs:
 #            --hosting-base-path master \
 #            --output-path docs;
 #          echo "<script>window.location.href += \"/documentation/slider\"</script>" > docs/index.html;
-    - name: Build Pages
-      uses: actions/jekyll-build-pages@v1.0.12
-      with:
-       destination: ./docs
+    - name: Configure Guthib Pages
+      uses: actions/configure-pages@v5.0.0
           

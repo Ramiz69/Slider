@@ -34,9 +34,8 @@ jobs:
 #            transform-for-static-hosting /tmp/docbuild/Build/Products/Debug-iphoneos/Slider.doccarchive \
 #            --hosting-base-path master \
 #            --output-path docs;
-#          echo "<script>window.location.href += \"/documentation/slider\"</script>" > docs/index.html;
-    - name: Configure Guthib Pages
-      uses: actions/configure-pages@v5.0.0
-    - name: Deploy GitHub Pages site
-      uses: actions/deploy-pages@v4.0.5
+    - name: Build DocC
+      uses: kiarashvosough1999/build-docC-static-site@v1.0.3
+    - name: Deploy DocC
+      uses: kiarashvosough1999/docC-github-pages-deploy@v1.0.0
           

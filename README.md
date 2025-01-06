@@ -13,7 +13,7 @@
 ## Requirements
 
 - iOS 14.0+
-- Xcode 15+
+- Xcode 16+
 - Swift 5+
 
 ## Preview

@@ -19,7 +19,7 @@ This CocoaPods library helps you create application with the best slider.
 
   spec.source       = { :git => 'https://github.com/Ramiz69/Slider.git', :tag => spec.version }
 
-  spec.swift_version = ['5.0', '5.9']
+  spec.swift_version = ['6.0']
   
   spec.source_files  = 'Sources/*.swift', 'Sources/**/*.swift'
 

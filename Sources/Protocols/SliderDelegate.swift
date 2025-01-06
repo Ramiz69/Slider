@@ -30,7 +30,7 @@ import CoreFoundation
 /// This protocol should be implemented by classes that manage or display a `Slider` to customize
 /// the text representation of slider values and to respond to user interactions.
 @MainActor
-public protocol SliderDelegate: AnyObject {
+public protocol SliderDelegate: AnyObject, Sendable {
     /// Asks the delegate for the display text for a specific value of the slider.
     ///
     /// Implement this method to return a string that represents the given value in a way suitable for your app.

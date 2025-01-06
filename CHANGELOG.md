@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [0.2.1] - 2025-01-06
+
+### Added
+- Support Swift 6.0
+
+### Changed
+- Rewrite Haptic Feedback from UIFeedbackGenerator to CoreHaptic 
+
 ## [0.2.0] - 2024-04-06
 
 ### Added

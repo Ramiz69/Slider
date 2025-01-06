@@ -34,7 +34,7 @@ final class SliderTrackLayer: CALayer {
     /// The color used for the background of the track layer.
     ///
     /// Changing this property will update the background color of the `backgroundLayer`.
-    var trackBackgroundColor: CGColor = CGColor(gray: .zero, alpha: 1) {
+    var trackBackgroundColor = CGColor(gray: .zero, alpha: 1) {
         didSet {
             backgroundLayer.backgroundColor = trackBackgroundColor
         }
@@ -89,6 +89,7 @@ final class SliderTrackLayer: CALayer {
     /// Sets the frame for `backgroundLayer` and `fillLayer`, applying the corner radius.
     override func layoutSublayers() {
         super.layoutSublayers()
+        
         backgroundLayer.frame = bounds
         backgroundLayer.cornerRadius = cornerRadius
         fillLayer.cornerRadius = cornerRadius

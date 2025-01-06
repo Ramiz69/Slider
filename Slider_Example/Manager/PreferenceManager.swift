@@ -26,13 +26,13 @@ import UIKit
 import QuartzCore
 
 final class PreferenceManager {
-    
+
     let thumbPreference: ThumbPreference
     let trackPreference: TrackPreference
     let minimumEndpointPreference: EndpointPreference
     let maximumEndpointPreference: EndpointPreference
     let hapticPreference: HapticPreference
-    
+
     init(thumbPreference: ThumbPreference = ThumbPreference(),
          trackPreference: TrackPreference = TrackPreference(),
          minimumEndpointPreference: EndpointPreference = EndpointPreference(),
@@ -44,33 +44,29 @@ final class PreferenceManager {
         self.maximumEndpointPreference = maximumEndpointPreference
         self.hapticPreference = hapticPreference
     }
-    
+
     class func reset() -> PreferenceManager {
         .init()
     }
-    
+
 }
 
 final class HapticPreference {
-    
-    var reachMinMaxValues = true
-    var valueChanges = true
-    var directionChanges = true
-    
-    init(reachMinMaxValues: Bool = true,
-         valueChanges: Bool = true,
-         directionChanges: Bool = true) {
-        self.reachMinMaxValues = reachMinMaxValues
-        self.valueChanges = valueChanges
-        self.directionChanges = directionChanges
+
+    var transient = true
+    var continuous = true
+
+    init(transient: Bool = true, continuous: Bool = true) {
+        self.transient = transient
+        self.continuous = continuous
     }
-    
+
 }
 
 final class EndpointPreference {
     var foregroundColor: CGColor
     var aligmentMode: CATextLayerAlignmentMode
-    
+
     init(foregroundColor: CGColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1),
          aligmentMode: CATextLayerAlignmentMode = .center) {
         self.foregroundColor = foregroundColor
@@ -82,16 +78,16 @@ final class TrackPreference {
     var maxColor: UIColor
     var minColor: UIColor
     var reverseMinColor: UIColor
-    
-    init(maxColor: UIColor = UIColor(red: 191 / 255,
+
+    init(maxColor: UIColor = UIColor(displayP3Red: 191 / 255,
                                      green: 194 / 255,
                                      blue: 209 / 255,
                                      alpha: 1),
-         minColor: UIColor = UIColor(red: .zero,
+         minColor: UIColor = UIColor(displayP3Red: .zero,
                                      green: 122 / 255,
                                      blue: 1,
                                      alpha: 1),
-         reverseMinColor: UIColor = UIColor(red: 247 / 255,
+         reverseMinColor: UIColor = UIColor(displayP3Red: 247 / 255,
                                             green: 73 / 255,
                                             blue: 2 / 255,
                                             alpha: 1)) {
@@ -103,13 +99,13 @@ final class TrackPreference {
 
 final class ThumbPreference {
     var backgroundColor: UIColor = .white
-    var textColor: UIColor = UIColor(red: .zero,
+    var textColor: UIColor = UIColor(displayP3Red: .zero,
                                      green: 74 / 255,
                                      blue: 150 / 255,
                                      alpha: 1)
-    
+
     init(backgroundColor: UIColor = .white,
-         textColor: UIColor = UIColor(red: .zero,
+         textColor: UIColor = UIColor(displayP3Red: .zero,
                                       green: 74 / 255,
                                       blue: 150 / 255,
                                       alpha: 1)) {

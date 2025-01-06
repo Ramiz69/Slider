@@ -36,7 +36,7 @@ Once you have your Swift package set up, adding Slider as a dependency is as eas
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/Ramiz69/Slider.git", .upToNextMajor(from: "0.2.0"))
+    .package(url: "https://github.com/Ramiz69/Slider.git", .upToNextMajor(from: "0.2.1"))
 ]
 ```
 

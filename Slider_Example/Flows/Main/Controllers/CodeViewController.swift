@@ -115,6 +115,7 @@ final class CodeViewController: UIViewController {
         slider.minimum = .zero
         slider.value = .zero
         slider.animationStyle = .default
+        
         view.addSubview(slider)
         slider.translatesAutoresizingMaskIntoConstraints = false
         let layoutMarginsGuide = view.layoutMarginsGuide
@@ -132,23 +133,26 @@ final class CodeViewController: UIViewController {
     }
     
     private func configureHaptic() {
-        slider.hapticConfiguration = .init(reachLimitValueHapticEnabled: preference.hapticPreference.reachMinMaxValues,
-                                           changeValueHapticEnabled: preference.hapticPreference.valueChanges,
-                                           changeDirectionHapticEnabled: preference.hapticPreference.directionChanges,
-                                           reachImpactGeneratorStyle: .medium,
-                                           changeValueImpactGeneratorStyle: .light)
+        var kind: HapticConfiguration.Kind = [.transient, .continuous]
+        if preference.hapticPreference.transient {
+            kind.insert(.transient)
+        } else {
+            kind.remove(.transient)
+        }
+        if preference.hapticPreference.continuous {
+            kind.insert(.continuous)
+        } else {
+            kind.remove(.continuous)
+        }
+        slider.hapticConfiguration = HapticConfiguration(kind: kind)
         configurePreferenceMenu()
     }
     
     private func resetSlider() {
-        slider.hapticConfiguration = .init(reachLimitValueHapticEnabled: preference.hapticPreference.reachMinMaxValues,
-                                           changeValueHapticEnabled: preference.hapticPreference.valueChanges,
-                                           changeDirectionHapticEnabled: preference.hapticPreference.directionChanges,
-                                           reachImpactGeneratorStyle: .medium,
-                                           changeValueImpactGeneratorStyle: .light)
-        slider.thumbConfiguration = .init()
-        slider.maximumEndpointConfiguration = .init()
-        slider.minimumEndpointConfiguration = .init()
+        slider.hapticConfiguration = HapticConfiguration()
+        slider.thumbConfiguration = ThumbConfiguration()
+        slider.maximumEndpointConfiguration = RangeEndpointsConfiguration()
+        slider.minimumEndpointConfiguration = RangeEndpointsConfiguration()
     }
     
     private func configurePreferenceMenu() {
@@ -224,25 +228,20 @@ final class CodeViewController: UIViewController {
     
     private func configureHapticMenu() -> UIMenu {
         let hapticPreference = preference.hapticPreference
-        let reachAction = UIAction(title: "Reach Min/Max values",
-                                   state: hapticPreference.reachMinMaxValues ? .on : .off) { [unowned self] _ in
-            hapticPreference.reachMinMaxValues.toggle()
+        let transientAction = UIAction(title: "Transient",
+                                         state: hapticPreference.transient ? .on : .off) { [unowned self] _ in
+            hapticPreference.transient.toggle()
             self.configureHaptic()
         }
-        let valueChangeAction = UIAction(title: "Value changes",
-                                         state: hapticPreference.valueChanges ? .on : .off) { [unowned self] _ in
-            hapticPreference.valueChanges.toggle()
+        let continuousAction = UIAction(title: "Continuous",
+                                        state: hapticPreference.continuous ? .on : .off) { [unowned self] _ in
+            hapticPreference.continuous.toggle()
             self.configureHaptic()
         }
-        let directionChangeAction = UIAction(title: "Direction changes",
-                                             state: hapticPreference.directionChanges ? .on : .off) { [unowned self] _ in
-            hapticPreference.directionChanges.toggle()
-            self.configureHaptic()
-        }
-        
+
         return UIMenu(title: "Haptic",
                       image: UIImage(systemName: "iphone.gen3.radiowaves.left.and.right"),
-                      children: [reachAction, valueChangeAction, directionChangeAction])
+                      children: [transientAction, continuousAction])
     }
     
     private func configureEndpointMenu() -> UIMenu {
@@ -296,7 +295,7 @@ final class CodeViewController: UIViewController {
     }
 }
 
-extension CATextLayerAlignmentMode: CaseIterable {
+extension CATextLayerAlignmentMode: @retroactive CaseIterable {
     public static var allCases: [CATextLayerAlignmentMode] {
         [.left, .natural, .center, .right, .justified]
     }

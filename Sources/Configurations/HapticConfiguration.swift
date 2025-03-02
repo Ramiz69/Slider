@@ -1,96 +1,73 @@
 //
 //  HapticConfiguration.swift
+//  Slider
 //
-//  Copyright (c) 2022 Ramiz Kichibekov (https://github.com/ramiz69)
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
+//  Created by Рамиз Кичибеков on 06.01.2025.
+//  Copyright © 2025 Ramiz Kichibekov. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-/// `HapticConfiguration` allows you to configure haptic feedback for various slider interactions.
-///
-/// This configuration supports enabling or disabling haptic feedback when the slider reaches its limit values,
-/// when the value changes, or when the slider's direction changes.
+/// A structure describing the configuration for haptic feedback.
 public struct HapticConfiguration {
-    
-    /// A Boolean value that determines whether haptic feedback is enabled when reaching the slider's limit values.
-    private let reachLimitValueHapticEnabled: Bool
-    
-    /// A Boolean value that determines whether haptic feedback is enabled when the slider's value changes.
-    private let changeValueHapticEnabled: Bool
-    
-    /// A Boolean value that determines whether haptic feedback is enabled when the slider's direction changes.
-    private let changeDirectionHapticEnabled: Bool
-    
-    /// The haptic feedback generator for when the slider reaches its limit values.
-    private var reachImpactGenerator: UIImpactFeedbackGenerator
-    
-    /// The haptic feedback generator for when the slider's value changes.
-    private var changeValueImpactGenerator: UIImpactFeedbackGenerator
-    
-    /// The haptic feedback generator for when the slider's direction changes.
-    private var selectionGenerator: UISelectionFeedbackGenerator
-    
-    /// Initializes a new `HapticConfiguration` with the specified options.
+
+    // MARK: Properties
+
+    /// An option set that defines the type(s) of haptic feedback.
     ///
-    /// - Parameters:
-    ///   - reachLimitValueHapticEnabled: Specifies whether to enable haptic feedback when reaching limit values.
-    ///   - changeValueHapticEnabled: Specifies whether to enable haptic feedback when the value changes.
-    ///   - changeDirectionHapticEnabled: Specifies whether to enable haptic feedback when the direction changes.
-    ///   - reachImpactGeneratorStyle: The style of haptic feedback for reaching limit values.
-    ///   - changeValueImpactGeneratorStyle: The style of haptic feedback for value changes.
-    public init(reachLimitValueHapticEnabled: Bool,
-                changeValueHapticEnabled: Bool,
-                changeDirectionHapticEnabled: Bool,
-                reachImpactGeneratorStyle: UIImpactFeedbackGenerator.FeedbackStyle,
-                changeValueImpactGeneratorStyle: UIImpactFeedbackGenerator.FeedbackStyle) {
-        self.reachLimitValueHapticEnabled = reachLimitValueHapticEnabled
-        self.changeValueHapticEnabled = changeValueHapticEnabled
-        self.changeDirectionHapticEnabled = changeDirectionHapticEnabled
-        reachImpactGenerator = UIImpactFeedbackGenerator(style: reachImpactGeneratorStyle)
-        changeValueImpactGenerator = UIImpactFeedbackGenerator(style: changeValueImpactGeneratorStyle)
-        selectionGenerator = UISelectionFeedbackGenerator()
-        reachImpactGenerator.prepare()
-        changeValueImpactGenerator.prepare()
-        selectionGenerator.prepare()
-    }
-    
-    /// Triggers haptic feedback when the slider reaches its minimum or maximum value.
-    func reachValueGenerate() {
-        if reachLimitValueHapticEnabled {
-            reachImpactGenerator.impactOccurred()
+    /// **Available cases:**
+    /// - `transient`: A short, impulse-like haptic.
+    /// - `continuous`: A continuous haptic.
+    public struct Kind: OptionSet, Sendable {
+        public typealias RawValue = UInt8
+
+        public var rawValue: UInt8
+
+        nonisolated public init(rawValue: UInt8) {
+            self.rawValue = rawValue
         }
+
+        public static let transient = Kind(rawValue: 1 << 0)
+        public static let continuous = Kind(rawValue: 1 << 1)
     }
-    
-    /// Triggers haptic feedback when the slider's value changes.
-    func valueGenerate() {
-        if changeValueHapticEnabled {
-            changeValueImpactGenerator.impactOccurred()
-        }
-    }
-    
-    /// Triggers haptic feedback when the slider's direction changes.
-    func directionGenerate() {
-        if changeDirectionHapticEnabled {
-            selectionGenerator.selectionChanged()
-        }
+    /// The type(s) of haptic feedback (see `Kind`).
+    let kind: Kind
+
+    /// The initial intensity of the haptic feedback, in the range [0, 1].
+    let initialIntensity: Float
+
+    /// The initial sharpness of the haptic feedback, in the range [0, 1].
+    let initialSharpness: Float
+
+    /// A relative time (such as a delay) before the haptic feedback begins.
+    let relativeTime: TimeInterval
+
+    /// The total duration of the haptic feedback, relevant for continuous types.
+    let duration: TimeInterval
+
+    // MARK: Initial methods
+
+    /**
+     Creates a new `HapticConfiguration`.
+
+     - Parameters:
+      - kind: The type(s) of haptic feedback. Defaults to `[.transient, .continuous]`.
+      - initialIntensity: The initial intensity of the haptic (0 to 1). Defaults to `1`.
+      - initialSharpness: The initial sharpness of the haptic (0 to 1). Defaults to `0.5`.
+      - relativeTime: The relative time or delay before the haptic feedback starts. Defaults to `.zero`.
+      - duration: The duration of the haptic feedback, mainly for continuous types. Defaults to `100`.
+     */
+    public init(
+        kind: Kind = [.transient, .continuous],
+        initialIntensity: Float = 1,
+        initialSharpness: Float = 0.5,
+        relativeTime: TimeInterval = .zero,
+        duration: TimeInterval = 100
+    ) {
+        self.kind = kind
+        self.initialIntensity = initialIntensity
+        self.initialSharpness = initialSharpness
+        self.relativeTime = relativeTime
+        self.duration = duration
     }
 }
-

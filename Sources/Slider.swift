@@ -30,43 +30,43 @@ import QuartzCore
 /// It supports various configurations to control the appearance and behavior of the slider,
 /// including its value range, direction, thumb and track configurations, and haptic feedback settings.
 open class Slider: UIControl {
-    
+
     /// Enumerates the possible directions of the slider.
     public enum Direction: CaseIterable {
         case leftToRight, rightToLeft
         case bottomToTop, topToBottom
-        
+
         /// Determines the axis of the slider based on its direction.
         var axis: Axis {
             switch self {
-                case .leftToRight, .rightToLeft:
-                    return .x
-                case .bottomToTop, .topToBottom:
-                    return .y
+            case .leftToRight, .rightToLeft:
+                    .x
+            case .bottomToTop, .topToBottom:
+                    .y
             }
         }
-        
+
         /// Enumerates the possible axes of the slider.
         enum Axis {
             case x
             case y
         }
     }
-    
+
     /// Enumerates the possible animation styles for the slider's value change.
     public enum AnimationStyle {
         case none
         case `default`
-        
+
         /// Determines the animation duration based on the animation style.
         var animationDuration: TimeInterval {
             switch self {
-                case .none: .zero
-                case .default: CATransaction.animationDuration()
+            case .none: .zero
+            case .default: CATransaction.animationDuration()
             }
         }
     }
-    
+
     /// The delegate for the slider, conforming to `SliderDelegate`.
     /// It handles user interactions and value changes.
     public var delegate: SliderDelegate? {
@@ -88,9 +88,9 @@ open class Slider: UIControl {
             updateThumbLayersText()
         }
     }
-    
+
     // MARK: Customization properties
-    
+
     /// The current value of the slider.
     final public var value: CGFloat = 10 {
         didSet {
@@ -105,7 +105,7 @@ open class Slider: UIControl {
             setNeedsLayersDisplay()
         }
     }
-    
+
     /// The minimum value of the slider.
     final public var minimum: CGFloat = 10 {
         didSet {
@@ -117,7 +117,7 @@ open class Slider: UIControl {
             setNeedsLayersDisplay()
         }
     }
-    
+
     /// The maximum value of the slider.
     final public var maximum: CGFloat = 800 {
         didSet {
@@ -132,7 +132,7 @@ open class Slider: UIControl {
             setNeedsLayersDisplay()
         }
     }
-    
+
     /// The step value of the slider, determining the increments between values.
     final public var step: CGFloat = 10 {
         didSet {
@@ -144,7 +144,7 @@ open class Slider: UIControl {
             }
         }
     }
-    
+
     /// The corner radius for the slider's track and thumb.
     final public var cornerRadius: CGFloat = 16 {
         didSet {
@@ -153,7 +153,7 @@ open class Slider: UIControl {
             setNeedsLayersDisplay()
         }
     }
-    
+
     /// The configuration for the slider's thumb.
     public var thumbConfiguration = ThumbConfiguration() {
         didSet {
@@ -161,7 +161,7 @@ open class Slider: UIControl {
             setNeedsLayersDisplay()
         }
     }
-    
+
     /// The configuration for the slider's track.
     public var trackConfiguration = TrackConfiguration() {
         didSet {
@@ -169,45 +169,50 @@ open class Slider: UIControl {
             setNeedsLayersDisplay()
         }
     }
-    
+
     /// The configuration for the slider's maximum endpoint label.
     public var maximumEndpointConfiguration = RangeEndpointsConfiguration() {
         didSet {
             configureEndpointLayer(.maximum)
         }
     }
-    
+
     /// The configuration for the slider's minimum endpoint label.
     public var minimumEndpointConfiguration = RangeEndpointsConfiguration() {
         didSet {
             configureEndpointLayer(.minimum)
         }
     }
-    
+
     /// The configuration for haptic feedback during user interactions with the slider.
-    public var hapticConfiguration: HapticConfiguration = .init(reachLimitValueHapticEnabled: true,
-                                                                changeValueHapticEnabled: false,
-                                                                changeDirectionHapticEnabled: true,
-                                                                reachImpactGeneratorStyle: .medium,
-                                                                changeValueImpactGeneratorStyle: .light)
-    
+    public var hapticConfiguration = HapticConfiguration() {
+        didSet {
+            hapticManager = HapticManager(
+                initialIntensity: hapticConfiguration.initialIntensity,
+                initialSharpness: hapticConfiguration.initialSharpness,
+                relativeTime: hapticConfiguration.relativeTime,
+                duration: hapticConfiguration.duration
+            )
+        }
+    }
+
     // MARK: Properties
-    
+
     /// The intrinsic content size of the slider, depending on its direction.
     open override var intrinsicContentSize: CGSize {
         switch direction.axis {
-            case .x:
-                CGSize(width: UIView.noIntrinsicMetric, height: trackConfiguration.height)
-            case .y:
-                CGSize(width: trackConfiguration.height, height: UIView.noIntrinsicMetric)
+        case .x:
+            CGSize(width: UIView.noIntrinsicMetric, height: trackConfiguration.height)
+        case .y:
+            CGSize(width: trackConfiguration.height, height: UIView.noIntrinsicMetric)
         }
     }
-    
+
     /// The direction of the slider, determining its layout and behavior.
     final public var direction: Direction = .leftToRight {
         didSet {
             isDirectionChanged = direction.axis != oldValue.axis
-            hapticConfiguration.directionGenerate()
+            try? hapticManager.playTransientHaptic(intensity: 1, sharpness: 0.33)
             redrawLayers()
             updateVisualComponents()
             setNeedsLayersDisplay()
@@ -215,39 +220,35 @@ open class Slider: UIControl {
     }
     /// Used for tracking the user's touch location during interaction.
     final public var previousTouchPoint: CGPoint = .zero
-    
+
     /// The length of the track that is usable for moving the thumb, excluding the thumb width.
     final public var usableTrackingLength: CGFloat = .zero
-    
+
     /// The animation style for the slider's value change.
     final public var animationStyle: AnimationStyle = .none
-    
-    /// Indicates if the value change events are continuous during user interaction.
-    final public var continuous: Bool = true
-    
+
     let thumbLayer = ThumbLayer()
-    private var isDirectionChanged = false {
-        didSet {
-            assertionFailure("Attempt to improperly change the value of isDirectionChanged.")
-        }
-    }
+    var hapticManager = HapticManager()
     private let trackLayer = SliderTrackLayer()
     private let minimumLayer = TextLayer()
     private let maximumLayer = TextLayer()
-    
+    var transientTimer: DispatchSourceTimer?
     private var displayLink: CADisplayLink?
     private var isDirectionChangeAnimationInProgress = false
-    
+    /// Indicates if the value change events are continuous during user interaction.
+    final public var continuous = true
+    private var isDirectionChanged = false
+
     private enum Endpoint: CaseIterable {
         case minimum, maximum
     }
-    
+
     // MARK: Initial methods
-    
+
     /// Creates a control with the specified frame and direction
     public init(direction: Direction, frame: CGRect = .zero) {
         super.init(frame: frame)
-        
+
         self.direction = direction
         configureControl()
         configureTrackLayer()
@@ -255,35 +256,35 @@ open class Slider: UIControl {
         setupThumbLayer()
         configureThumbLayer()
     }
-    
+
     /// Creates a control with the specified frame
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         configureControl()
         configureTrackLayer()
         setupEndpoints()
         setupThumbLayer()
         configureThumbLayer()
     }
-    
+
     @available(*, unavailable)
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Life cycle
-    
+
     /// Lays out the slider's subviews and updates the layout based on the current state and properties.
     public override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         if !isDirectionChangeAnimationInProgress {
             switch direction.axis {
-                case .x:
-                    usableTrackingLength = bounds.width - thumbConfiguration.size.width
-                case .y:
-                    usableTrackingLength = bounds.height - thumbConfiguration.size.height
+            case .x:
+                usableTrackingLength = bounds.width - thumbConfiguration.size.width
+            case .y:
+                usableTrackingLength = bounds.height - thumbConfiguration.size.height
             }
             trackLayer.frame = trackRectForBounds()
             minimumLayer.position = position(forValue: minimum)
@@ -291,31 +292,41 @@ open class Slider: UIControl {
             updateSlider()
         }
     }
-    
+
     /// Associates a target object and action method with the control.
     open override func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {}
-    
+
     /// Stops the delivery of events to the specified target object.
     open override func removeTarget(_ target: Any?, action: Selector?, for controlEvents: UIControl.Event) {}
-    
+
     open override func addAction(_ action: UIAction, for controlEvents: UIControl.Event) {}
-    
+
     open override func removeAction(_ action: UIAction, for controlEvents: UIControl.Event) {}
-    
+
     // MARK: Internal methods
-    
+
     func didBeginTracking() {
         displayLink = CADisplayLink(target: self, selector: #selector(updateSlider))
         displayLink?.add(to: .current, forMode: .common)
     }
-    
+
     func endTracking() {
         displayLink?.invalidate()
         displayLink = nil
     }
-    
+
+    func sharpnessAndIntensityAt(location: CGPoint) -> (sharpness: Float, intensity: Float) {
+        let clippedLocation = clipLocation(location)
+        let normalizedLocation = normalizeCoordinates(clippedLocation)
+
+        let eventIntensity = 1 - Float(normalizedLocation.y)
+        let eventSharpness = Float(normalizedLocation.x)
+
+        return (eventSharpness, eventIntensity)
+    }
+
     // MARK: Private methods
-    
+
     /// Configures the initial state and sublayers of the slider control.
     private func configureControl() {
         backgroundColor = .clear
@@ -324,23 +335,23 @@ open class Slider: UIControl {
         layer.addSublayer(maximumLayer)
         layer.addSublayer(thumbLayer)
     }
-    
+
     /// Configures the track layer of the slider, setting its initial appearance based on the track configuration.
     private func configureTrackLayer() {
         trackLayer.contentsScale = getScreenScale()
         trackLayer.frame = trackRectForBounds()
-        
+
         trackLayer.trackBackgroundColor = trackConfiguration.maxColor.cgColor
         trackLayer.fillColor = (direction == .leftToRight || direction == .bottomToTop) ? trackConfiguration.minColor.cgColor : trackConfiguration.reverseMinColor.cgColor
         trackLayer.cornerRadius = cornerRadius
     }
-    
+
     /// Sets up endpoint layers for the slider, configuring them based on their respective configurations.
     private func setupEndpoints() {
         let endpoints = Endpoint.allCases
         endpoints.forEach { configureEndpointLayer($0) }
     }
-    
+
     private func configureThumbLayer() {
         thumbLayer.foregroundColor = fillColorForDirection()
         thumbLayer.backgroundColor = thumbConfiguration.backgroundColor.cgColor
@@ -348,7 +359,7 @@ open class Slider: UIControl {
         minimumLayer.string = text(forValue: minimum)
         maximumLayer.string = text(forValue: maximum)
     }
-    
+
     /// Configures the thumb layer of the slider, setting its initial appearance based on the thumb configuration.
     private func setupThumbLayer() {
         thumbLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -369,63 +380,101 @@ open class Slider: UIControl {
         thumbLayer.shadowPath = UIBezierPath(roundedRect: thumbLayer.bounds,
                                              cornerRadius: thumbLayer.cornerRadius).cgPath
     }
-    
+
     private func configureEndpointLayer(_ endpoint: Endpoint) {
         let layerFrame = CGRect(origin: .zero, size: thumbConfiguration.size)
         let scale = getScreenScale()
         switch endpoint {
-            case .minimum:
-                minimumLayer.anchorPoint = minimumEndpointConfiguration.anchorPoint
-                minimumLayer.bounds = layerFrame
-                minimumLayer.position = position(forValue: minimum)
-                minimumLayer.foregroundColor = minimumEndpointConfiguration.foregroundColor
-                minimumLayer.fontSize = minimumEndpointConfiguration.fontSize
-                minimumLayer.alignmentMode = minimumEndpointConfiguration.aligmentMode
-                minimumLayer.contentsScale = scale
-            case .maximum:
-                maximumLayer.anchorPoint = maximumEndpointConfiguration.anchorPoint
-                maximumLayer.bounds = layerFrame
-                maximumLayer.position = position(forValue: maximum)
-                maximumLayer.foregroundColor = maximumEndpointConfiguration.foregroundColor
-                maximumLayer.fontSize = maximumEndpointConfiguration.fontSize
-                maximumLayer.alignmentMode = maximumEndpointConfiguration.aligmentMode
-                maximumLayer.contentsScale = scale
+        case .minimum:
+            minimumLayer.anchorPoint = minimumEndpointConfiguration.anchorPoint
+            minimumLayer.bounds = layerFrame
+            minimumLayer.position = position(forValue: minimum)
+            minimumLayer.foregroundColor = minimumEndpointConfiguration.foregroundColor
+            minimumLayer.fontSize = minimumEndpointConfiguration.fontSize
+            minimumLayer.alignmentMode = minimumEndpointConfiguration.aligmentMode
+            minimumLayer.contentsScale = scale
+        case .maximum:
+            maximumLayer.anchorPoint = maximumEndpointConfiguration.anchorPoint
+            maximumLayer.bounds = layerFrame
+            maximumLayer.position = position(forValue: maximum)
+            maximumLayer.foregroundColor = maximumEndpointConfiguration.foregroundColor
+            maximumLayer.fontSize = maximumEndpointConfiguration.fontSize
+            maximumLayer.alignmentMode = maximumEndpointConfiguration.aligmentMode
+            maximumLayer.contentsScale = scale
         }
     }
-    
+
     private func getScreenScale() -> CGFloat {
         window?.screen.scale ?? UIScreen.main.scale
     }
-    
+
     /// Determines the correct fill color for the slider's direction.
     ///
     /// - Returns: The CGColor representing the fill color.
     private func fillColorForDirection() -> CGColor {
         (direction == .leftToRight || direction == .bottomToTop) ? trackConfiguration.minColor.cgColor : trackConfiguration.reverseMinColor.cgColor
     }
-    
+
     /// Calculates the bounds for the thumb layer based on the slider's direction.
     ///
     /// - Returns: A CGRect representing the bounds for the thumb layer.
     private func boundsForDirection() -> CGRect {
         switch direction.axis {
-            case .x:
-                CGRect(origin: .zero, size: thumbConfiguration.size)
-            case .y:
-                CGRect(origin: .zero, size: CGSize(width: thumbConfiguration.size.height,
-                                                   height: thumbConfiguration.size.width))
+        case .x:
+            CGRect(origin: .zero, size: thumbConfiguration.size)
+        case .y:
+            CGRect(origin: .zero, size: CGSize(width: thumbConfiguration.size.height,
+                                               height: thumbConfiguration.size.width))
         }
     }
-    
+
     /// Determines the appropriate shadow offset for the thumb layer based on the slider's direction.
     ///
     /// - Returns: The CGSize representing the shadow offset.
     private func shadowOffsetForDirection() -> CGSize {
         direction.axis == .x ? CGSize(width: .zero, height: 0.5) : CGSize(width: 0.5, height: .zero)
     }
-    
+
+    /**
+     Clamps the given point so that it does not lie outside the view’s bounds.
+
+     - Parameter point: The original point.
+     - Returns: A point that is guaranteed to be within the boundaries of `clipView`.
+     */
+    private func clipLocation(_ point: CGPoint) -> CGPoint {
+        var clippedLocation = point
+        let clipView = self
+        if point.x < .zero {
+            clippedLocation.x = .zero
+        } else if point.x > clipView.bounds.width {
+            clippedLocation.x = clipView.bounds.width
+        }
+        if point.y < .zero {
+            clippedLocation.y = .zero
+        } else if point.y > clipView.bounds.height {
+            clippedLocation.y = clipView.bounds.height
+        }
+
+        return clippedLocation
+    }
+
+    /**
+     Normalizes the given point’s coordinates according to the view’s dimensions,
+     translating them into the [0, 1] range on each axis.
+
+     - Parameter point: The original point.
+     - Returns: A point whose coordinates lie within the [0, 1] range.
+     */
+    private func normalizeCoordinates(_ point: CGPoint) -> CGPoint {
+        let paletteView = self
+        let width = paletteView.bounds.width
+        let height = paletteView.bounds.height
+
+        return CGPoint(x: point.x / width, y: point.y / height)
+    }
+
     // MARK: Update methods
-    
+
     /// Updates the visual components of the slider when certain properties change.
     private func updateVisualComponents() {
         trackLayer.trackBackgroundColor = trackConfiguration.maxColor.cgColor
@@ -433,13 +482,13 @@ open class Slider: UIControl {
         trackLayer.cornerRadius = cornerRadius
         updateThumbLayersText()
     }
-    
+
     /// Redraws layers when the slider's direction changes, ensuring the visual transition is smooth.
     private func redrawLayers() {
         isDirectionChangeAnimationInProgress = true
         animateThumbLayer { [weak self] in
             guard let self else { return }
-            
+
             self.isDirectionChangeAnimationInProgress = false
             if self.animationStyle == .default {
                 self.layoutSubviews()
@@ -452,7 +501,7 @@ open class Slider: UIControl {
             layoutSubviews()
         }
     }
-    
+
     private func updateEndpointPositions() {
         CATransaction.begin()
         CATransaction.setAnimationDuration(.zero)
@@ -460,7 +509,7 @@ open class Slider: UIControl {
         maximumLayer.position = position(forValue: maximum)
         CATransaction.commit()
     }
-    
+
     /// Animates the thumb layer to reflect the change in value or direction.
     private func animateThumbLayer(_ completionBlock: (() -> Void)? = nil) {
         let thumbSize = thumbConfiguration.size
@@ -469,25 +518,24 @@ open class Slider: UIControl {
         CATransaction.setAnimationDuration(animationStyle.animationDuration)
         CATransaction.setAnimationTimingFunction(CATransaction.animationTimingFunction())
         thumbLayer.position = position(forValue: value)
-        let trackSize: CGSize
-        switch direction {
-            case .leftToRight, .rightToLeft:
-                trackSize = CGSize(width: thumbSize.width / 2, height: thumbSize.height)
-            case .bottomToTop, .topToBottom:
-                trackSize = CGSize(width: thumbSize.height, height: thumbSize.width / 2)
+        let trackSize = switch direction {
+        case .leftToRight, .rightToLeft:
+            CGSize(width: thumbSize.width / 2, height: thumbSize.height)
+        case .bottomToTop, .topToBottom:
+            CGSize(width: thumbSize.height, height: thumbSize.width / 2)
         }
         trackLayer.updateFillLayerForAnimation(CGRect(origin: CGPoint(x: thumbLayer.position.x, y: .zero),
                                                       size: trackSize))
         updateSlider()
         CATransaction.commit()
     }
-    
+
     /// Requests the layers to update their display. This is typically called after a property change that requires visual updates.
     private func setNeedsLayersDisplay() {
         trackLayer.setNeedsDisplay()
         thumbLayer.setNeedsDisplay()
     }
-    
+
     /// Updates the slider's thumb layer text and other properties when the slider's value changes.
     private func updateThumbLayersText() {
         thumbLayer.foregroundColor = fillColorForDirection()
@@ -496,7 +544,7 @@ open class Slider: UIControl {
         minimumLayer.string = text(forValue: minimum)
         maximumLayer.string = text(forValue: maximum)
     }
-    
+
     /// Updates the slider based on the user interaction, adjusting the thumb position and fill layer.
     @objc
     private func updateSlider() {
@@ -504,29 +552,29 @@ open class Slider: UIControl {
         let thumbSize = thumbConfiguration.size
         let fillFrame: CGRect
         switch direction {
-            case .leftToRight:
-                let thumbPositionX = valueRatio * usableTrackingLength + thumbSize.width / 2
-                fillFrame = CGRect(x: .zero,
-                                   y: .zero,
-                                   width: thumbPositionX, height: bounds.height)
-            case .rightToLeft:
-                let thumbPositionX = bounds.width - (valueRatio * usableTrackingLength + thumbSize.width / 2)
-                fillFrame = CGRect(x: thumbPositionX,
-                                   y: .zero,
-                                   width: bounds.width - thumbPositionX,
-                                   height: bounds.height)
-            case .bottomToTop:
-                let thumbPositionY = bounds.height - (valueRatio * usableTrackingLength + thumbSize.height / 2)
-                fillFrame = CGRect(x: .zero,
-                                   y: thumbPositionY,
-                                   width: bounds.width,
-                                   height: bounds.height - thumbPositionY)
-            case .topToBottom:
-                let thumbPositionY = valueRatio * usableTrackingLength + thumbSize.height / 2
-                fillFrame = CGRect(x: .zero,
-                                   y: .zero,
-                                   width: bounds.width,
-                                   height: thumbPositionY)
+        case .leftToRight:
+            let thumbPositionX = valueRatio * usableTrackingLength + thumbSize.width / 2
+            fillFrame = CGRect(x: .zero,
+                               y: .zero,
+                               width: thumbPositionX, height: bounds.height)
+        case .rightToLeft:
+            let thumbPositionX = bounds.width - (valueRatio * usableTrackingLength + thumbSize.width / 2)
+            fillFrame = CGRect(x: thumbPositionX,
+                               y: .zero,
+                               width: bounds.width - thumbPositionX,
+                               height: bounds.height)
+        case .bottomToTop:
+            let thumbPositionY = bounds.height - (valueRatio * usableTrackingLength + thumbSize.height / 2)
+            fillFrame = CGRect(x: .zero,
+                               y: thumbPositionY,
+                               width: bounds.width,
+                               height: bounds.height - thumbPositionY)
+        case .topToBottom:
+            let thumbPositionY = valueRatio * usableTrackingLength + thumbSize.height / 2
+            fillFrame = CGRect(x: .zero,
+                               y: .zero,
+                               width: bounds.width,
+                               height: thumbPositionY)
         }
         CATransaction.begin()
         CATransaction.setDisableActions(true)
@@ -541,44 +589,43 @@ open class Slider: UIControl {
     /// - Returns: The point representing the position of the thumb.
     private func position(forValue value: CGFloat) -> CGPoint {
         let thumbSize = thumbConfiguration.size
-        let position: CGPoint
-        switch direction {
-            case .leftToRight:
-                position = CGPoint(x: (usableTrackingLength * (value - minimum) / (maximum - minimum)) + thumbSize.width / 2,
-                                   y: bounds.height / 2)
-            case .rightToLeft:
-                position = CGPoint(x: bounds.width - (usableTrackingLength * (value - minimum) / (maximum - minimum)) - thumbSize.width / 2,
-                                   y: bounds.height / 2)
-            case .bottomToTop:
-                position = CGPoint(x: bounds.width / 2,
-                                   y: bounds.height - (usableTrackingLength * (value - minimum) / (maximum - minimum)) - thumbSize.height / 2)
-            case .topToBottom:
-                position = CGPoint(x: bounds.width / 2, y: (usableTrackingLength * (value - minimum) / (maximum - minimum)) + thumbSize.height / 2)
+        let position = switch direction {
+        case .leftToRight:
+            CGPoint(x: (usableTrackingLength * (value - minimum) / (maximum - minimum)) + thumbSize.width / 2,
+                    y: bounds.height / 2)
+        case .rightToLeft:
+            CGPoint(x: bounds.width - (usableTrackingLength * (value - minimum) / (maximum - minimum)) - thumbSize.width / 2,
+                    y: bounds.height / 2)
+        case .bottomToTop:
+            CGPoint(x: bounds.width / 2,
+                    y: bounds.height - (usableTrackingLength * (value - minimum) / (maximum - minimum)) - thumbSize.height / 2)
+        case .topToBottom:
+            CGPoint(x: bounds.width / 2, y: (usableTrackingLength * (value - minimum) / (maximum - minimum)) + thumbSize.height / 2)
         }
-        
+
         return position
     }
-    
+
     private func trackRectForBounds() -> CGRect {
         switch direction.axis {
-            case .x:
-                CGRect(x: trackConfiguration.inset,
-                       y: (bounds.height - trackConfiguration.height) / 2,
-                       width: bounds.width - 2 * trackConfiguration.inset,
-                       height: trackConfiguration.height)
-            case .y:
-                CGRect(x: (bounds.width - trackConfiguration.height) / 2,
-                       y: trackConfiguration.inset,
-                       width: trackConfiguration.height,
-                       height: bounds.height - 2 * trackConfiguration.inset)
+        case .x:
+            CGRect(x: trackConfiguration.inset,
+                   y: (bounds.height - trackConfiguration.height) / 2,
+                   width: bounds.width - 2 * trackConfiguration.inset,
+                   height: trackConfiguration.height)
+        case .y:
+            CGRect(x: (bounds.width - trackConfiguration.height) / 2,
+                   y: trackConfiguration.inset,
+                   width: trackConfiguration.height,
+                   height: bounds.height - 2 * trackConfiguration.inset)
         }
     }
-    
+
     private func text(forValue value: CGFloat) -> String {
         guard let delegate else {
             return String(format: "%.0f", value)
         }
-        
+
         return delegate.slider(self, displayTextForValue: value)
     }
 }

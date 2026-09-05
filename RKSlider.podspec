@@ -1,11 +1,12 @@
 Pod::Spec.new do |spec|
 
   spec.name         = 'RKSlider'
-  spec.version      = '0.2.1'
+  spec.version      = '0.3.0'
   spec.summary      = 'A CocoaPods library written in Swift'
 
   spec.description  = <<-DESC
-This CocoaPods library helps you create application with the best slider.
+A customizable UIControl slider written in Swift 6, with haptics, four directions,
+VoiceOver support and an optional iOS 26 Liquid Glass appearance.
                    DESC
 
   spec.homepage     = 'https://github.com/Ramiz69/Slider'

@@ -25,96 +25,108 @@
 import UIKit
 
 extension Slider {
-    
-    /// Notifies the control when a touch event enters the control’s bounds.
-    public override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        previousTouchPoint = touch.location(in: self)
-        if thumbLayer.frame.contains(previousTouchPoint) {
-            didBeginTracking()
-            delegate?.didBeginTracking(self)
-            let (sharpness, intensity) = sharpnessAndIntensityAt(location: previousTouchPoint)
-            try? hapticManager.playTransientHaptic(intensity: intensity, sharpness: sharpness)
-            if hapticConfiguration.kind.contains(.continuous) {
-                transientTimer?.cancel()
-                transientTimer = DispatchSource.makeTimerSource(queue: .main)
-                if let timer = transientTimer {
-                    timer.schedule(deadline: .now() + .milliseconds(750), repeating: .milliseconds(600))
-                    timer.setEventHandler() { [unowned self] in
-                        let (sharpness, intensity) = self.sharpnessAndIntensityAt(location: self.previousTouchPoint)
-                        try? hapticManager.playTransientHaptic(intensity: intensity, sharpness: sharpness)
-                    }
-                    timer.resume()
-                }
-            }
 
-            return true
+    /// Notifies the control when a touch event enters the control's bounds.
+    public override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let location = touch.location(in: self)
+        let startsOnThumb = thumbContains(location)
+        guard startsOnThumb || allowsTapToSeek else { return false }
+
+        trackTouchPoint(location)
+        didBeginTracking()
+        let (sharpness, intensity) = sharpnessAndIntensityAt(location: location)
+        try? hapticManager.playTransientHaptic(intensity: intensity, sharpness: sharpness)
+        if !startsOnThumb {
+            // Tap-to-seek jumps straight to the tapped position before the drag continues.
+            applyTrackedValue(steppedValue(value(at: location)))
         }
-        
-        return false
+        startTransientTimerIfNeeded()
+
+        return true
     }
-    
+
     /// Notifies the control when a touch event for the control updates.
     public override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let touchPoint = touch.location(in: self)
-        let deltaLocation: CGFloat
-        switch direction {
-            case .leftToRight, .rightToLeft:
-                deltaLocation = (touchPoint.x - previousTouchPoint.x).rounded(.toNearestOrEven)
-            case .bottomToTop, .topToBottom:
-                deltaLocation = (touchPoint.y - previousTouchPoint.y).rounded(.toNearestOrEven)
+        let deltaLocation = switch direction.axis {
+        case .x: touchPoint.x - previousTouchPoint.x
+        case .y: touchPoint.y - previousTouchPoint.y
         }
-        let ratio = deltaLocation / usableTrackingLength
-        let deltaValue = ((maximum - minimum) * ratio).rounded(.toNearestOrEven)
-        let tempValue: CGFloat
-        switch direction {
-            case .leftToRight, .topToBottom:
-                tempValue = value + deltaValue
-            case .rightToLeft, .bottomToTop:
-                tempValue = value - deltaValue
-        }
-        let noOfStep = (tempValue / step).rounded(.toNearestOrEven)
-        var currentValue = noOfStep * step
-        if (currentValue == maximum || currentValue == minimum) && currentValue != value {
-            if currentValue == minimum {
-                try? hapticManager.playTransientHaptic(intensity: hapticConfiguration.initialIntensity,
-                                                       sharpness: hapticConfiguration.initialSharpness)
-            } else if currentValue == maximum {
-                try? hapticManager.playTransientHaptic(intensity: 1, sharpness: 1)
-            }
-        }
-        if currentValue > maximum {
-            currentValue = maximum
-        } else if currentValue < minimum {
-            currentValue = minimum
-        }
-        if currentValue == value {
+        guard usableTrackingLength > .zero else {
+            trackTouchPoint(touchPoint)
+
             return true
         }
-        
-        value = currentValue
-        previousTouchPoint = touchPoint
-        sendActions(for: .valueChanged)
-        
+
+        let ratio = deltaLocation / usableTrackingLength
+        let deltaValue = (maximum - minimum) * ratio
+        let rawValue = direction.isReversed ? value - deltaValue : value + deltaValue
+        let currentValue = steppedValue(rawValue).clamped(to: minimum...max(minimum, maximum))
+        playEndpointHapticIfNeeded(for: currentValue)
+        guard currentValue != value else {
+            // The touch is kept as the reference point only once the value actually moves,
+            // otherwise sub-step movements would be discarded instead of accumulating.
+            return true
+        }
+
+        trackTouchPoint(touchPoint)
+        applyTrackedValue(currentValue)
+
         return true
     }
-    
+
     /// Notifies the control when a touch event associated with the control ends.
     public override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         super.endTracking(touch, with: event)
-        
+
+        finishTracking()
+    }
+
+    /// Notifies the control when a tracking touch is cancelled by the system.
+    public override func cancelTracking(with event: UIEvent?) {
+        super.cancelTracking(with: event)
+
+        finishTracking()
+    }
+
+    // MARK: Private methods
+
+    private func finishTracking() {
         endTracking()
-        if step > .zero {
-            let noOfStep = (value / step).rounded(.toNearestOrEven)
-            value = noOfStep * step
-            delegate?.didEndTracking(self)
-            if hapticConfiguration.kind.contains(.continuous) {
-                transientTimer?.cancel()
-                transientTimer = nil
-            }
-        }
+        value = steppedValue(value)
+        delegate?.didEndTracking(self)
         if !continuous {
             sendActions(for: .valueChanged)
         }
     }
-    
+
+    private func startTransientTimerIfNeeded() {
+        guard hapticConfiguration.kind.contains(.continuous) else { return }
+
+        cancelTransientTimer()
+        let timer = DispatchSource.makeTimerSource(queue: .main)
+        timer.schedule(deadline: .now() + .milliseconds(750), repeating: .milliseconds(600))
+        // A weak capture is required: an unowned one crashes if the slider is released mid-drag.
+        timer.setEventHandler { [weak self] in
+            MainActor.assumeIsolated {
+                guard let self else { return }
+
+                let (sharpness, intensity) = self.sharpnessAndIntensityAt(location: self.previousTouchPoint)
+                try? self.hapticManager.playTransientHaptic(intensity: intensity, sharpness: sharpness)
+            }
+        }
+        transientTimer = timer
+        timer.resume()
+    }
+
+    private func playEndpointHapticIfNeeded(for candidate: CGFloat) {
+        guard candidate != value else { return }
+
+        if candidate == minimum {
+            try? hapticManager.playTransientHaptic(intensity: hapticConfiguration.initialIntensity,
+                                                   sharpness: hapticConfiguration.initialSharpness)
+        } else if candidate == maximum {
+            try? hapticManager.playTransientHaptic(intensity: 1, sharpness: 1)
+        }
+    }
 }

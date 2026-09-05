@@ -8,7 +8,7 @@ Use `ThumbConfiguration` to define the appearance of the slider's thumb. This st
 
 ### Initialization
 
-- ``init(backgroundColor:fontSize:size:borderWidth:)``
+- ``init(backgroundColor:fontSize:size:borderWidth:textColor:)``
 
 ### Customization Options
 
@@ -20,6 +20,9 @@ Use `ThumbConfiguration` to define the appearance of the slider's thumb. This st
   The size of the thumb, specified as a `CGSize`. Defaults to `(width: 60, height: 36)`.
 - ``borderWidth``
   The width of the thumb's border. Defaults to `4`.
+- ``textColor``
+  The label color. When `nil` the slider picks one itself: the track fill color for the flat
+  appearance, and a color with enough contrast against the material for Liquid Glass.
 
 ## Example Usage
 

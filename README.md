@@ -7,14 +7,18 @@
 ![GitHub Release](https://img.shields.io/github/v/release/ramiz69/Slider)
 
 - [Installation](#installation)
+- [Usage](#usage)
+- [Liquid Glass](#liquid-glass)
+- [Async API](#async-api)
+- [Accessibility](#accessibility)
 - [Author](#author)
 - [License](#license)
 
 ## Requirements
 
-- iOS 14.0+
-- Xcode 16+
-- Swift 5+
+- iOS 14.0+ (Liquid Glass on iOS 26.0+)
+- Xcode 26+
+- Swift 6.0+
 
 ## Preview
 <details>
@@ -36,7 +40,7 @@ Once you have your Swift package set up, adding Slider as a dependency is as eas
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/Ramiz69/Slider.git", .upToNextMajor(from: "0.2.1"))
+    .package(url: "https://github.com/Ramiz69/Slider.git", .upToNextMajor(from: "0.3.0"))
 ]
 ```
 
@@ -57,11 +61,74 @@ pod 'RKSlider'
 ### Manually
 copy `Slider.swift` to your project
 
-### Usage
+## Usage
 
-#### code
-- init Slider with frame or use Auto Layout
-- add a view to your superview
+```swift
+let slider = Slider(direction: .leftToRight)
+slider.minimum = 0
+slider.maximum = 1500
+slider.value = 500
+slider.step = 10
+slider.translatesAutoresizingMaskIntoConstraints = false
+view.addSubview(slider)
+
+slider.addTarget(self, action: #selector(valueChanged), for: .valueChanged)
+```
+
+Set `delegate` to control the text shown inside the thumb and at both ends of the track, and to
+observe tracking:
+
+```swift
+extension ViewController: SliderDelegate {
+    func slider(_ slider: Slider, displayTextForValue value: CGFloat) -> String {
+        "\(Int(value)) ₽"
+    }
+}
+```
+
+Tapping the track moves the thumb only when you opt in:
+
+```swift
+slider.allowsTapToSeek = true
+```
+
+## Liquid Glass
+
+On iOS 26 and later the thumb is rendered with `UIGlassEffect` inside a
+`UIGlassContainerEffect`, so it refracts the track and merges with it near the ends. Older
+systems keep the flat appearance, and the same code runs on both:
+
+```swift
+slider.glassConfiguration = GlassConfiguration(
+    style: .regular,          // or .clear
+    isInteractive: true,      // the material reacts while dragging
+    appliesToTrack: false     // opt the track background into the material too
+)
+```
+
+Opt out entirely with `GlassConfiguration(mode: .disabled)`. The thumb label color is picked for
+contrast against the material; override it with `ThumbConfiguration(textColor:)`.
+
+## Async API
+
+```swift
+// Resumes once the animation has finished.
+await slider.setValue(750, animated: true)
+
+// Observe every change as an asynchronous sequence.
+for await value in slider.valueStream {
+    print(value)
+}
+
+// Warm up the haptic engine so the first touch is not delayed.
+await slider.prepareHaptics()
+```
+
+## Accessibility
+
+The slider is an adjustable accessibility element: VoiceOver reads its value through the
+delegate's display text, and swiping up or down moves it by one `step` (or by 1% of the range
+when `step` is zero).
 
 ## Author
 

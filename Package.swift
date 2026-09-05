@@ -16,7 +16,8 @@ let package = Package(
     targets: [
         .target(
             name: "Slider",
-            dependencies: []),
+            dependencies: [],
+            exclude: ["Info.plist", "Slider.h"]),
         .testTarget(
             name: "SliderTests",
             dependencies: ["Slider"]),

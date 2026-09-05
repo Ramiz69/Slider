@@ -1,6 +1,6 @@
 name: "Slider CI"
 
-on: 
+on:
   push:
     branches:
       - master
@@ -9,16 +9,55 @@ on:
     branches:
       - master
       - development
+
 jobs:
-  iOS:
-    name: Test iOS 
-    runs-on: macOS-latest
-    env: 
-      DEVELOPER_DIR: /Applications/Xcode_13.4.1.app/Contents/Developer
+  test:
+    name: Build & Test
+    runs-on: macos-15
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.app/Contents/Developer
     strategy:
+      fail-fast: false
       matrix:
-        destination: ["OS=14.5,name=iPhone 11 Pro"] #, "OS=12.4,name=iPhone XS", "OS=11.4,name=iPhone X", "OS=10.3.1,name=iPhone SE"]
+        destination:
+          - "platform=iOS Simulator,name=iPhone 16 Pro,OS=latest"
     steps:
-      - uses: actions/checkout@v1            
-      - name: iOS - ${{ matrix.destination }}
-        run: xcodebuild -project "Slider.xcodeproj" -destination "${{ matrix.destination }}"
+      - uses: actions/checkout@v4
+
+      - name: Build framework
+        run: |
+          xcodebuild build \
+            -project Slider.xcodeproj \
+            -scheme Slider \
+            -destination "${{ matrix.destination }}" \
+            SWIFT_STRICT_CONCURRENCY=complete \
+            | xcpretty || exit ${PIPESTATUS[0]}
+
+      - name: Run tests
+        run: |
+          xcodebuild test \
+            -project Slider.xcodeproj \
+            -scheme SliderTests \
+            -destination "${{ matrix.destination }}" \
+            | xcpretty || exit ${PIPESTATUS[0]}
+
+      - name: Build example app
+        run: |
+          xcodebuild build \
+            -project Slider.xcodeproj \
+            -scheme Slider_Example \
+            -destination "${{ matrix.destination }}" \
+            | xcpretty || exit ${PIPESTATUS[0]}
+
+  spm:
+    name: Swift Package Manager manifest
+    runs-on: macos-15
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.app/Contents/Developer
+    steps:
+      - uses: actions/checkout@v4
+
+      # The library is iOS-only, so the package cannot be built on the runner itself;
+      # this keeps Package.swift honest for consumers that depend on it via SwiftPM.
+      - name: Validate manifest
+        run: swift package dump-package > /dev/null

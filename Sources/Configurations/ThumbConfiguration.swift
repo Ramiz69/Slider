@@ -27,7 +27,7 @@ import UIKit
 /// `ThumbConfiguration` defines the appearance settings for the thumb of the `Slider` control.
 ///
 /// It allows customization of the thumb's background color, font size, size, and border width.
-public struct ThumbConfiguration {
+public struct ThumbConfiguration: Sendable, Equatable {
     
     /// The background color of the thumb.
     ///
@@ -48,6 +48,12 @@ public struct ThumbConfiguration {
     ///
     /// Specifies the width of the thumb's border. The default value is `4`.
     public var borderWidth: CGFloat
+
+    /// The color of the thumb's label.
+    ///
+    /// When `nil` the slider picks the color itself: the track fill color for the flat
+    /// appearance, and a color with enough contrast against the material for Liquid Glass.
+    public var textColor: UIColor?
     
     /// Initializes a `ThumbConfiguration` instance with specified background color, font size, size, and border width.
     /// - Parameters:
@@ -55,14 +61,17 @@ public struct ThumbConfiguration {
     ///   - fontSize: The font size for the thumb's label. Default is `14`.
     ///   - size: The size of the thumb. Default is `(width: 60, height: 36)`.
     ///   - borderWidth: The border width of the thumb. Default is `4`.
+    ///   - textColor: The label color, or `nil` to let the slider choose. Default is `nil`.
     public init(backgroundColor: UIColor = .white,
                 fontSize: CGFloat = 14,
                 size: CGSize = CGSize(width: 60, height: 36),
-                borderWidth: CGFloat = 4) {
+                borderWidth: CGFloat = 4,
+                textColor: UIColor? = nil) {
         self.backgroundColor = backgroundColor
         self.fontSize = fontSize
         self.size = size
         self.borderWidth = borderWidth
+        self.textColor = textColor
     }
 }
 

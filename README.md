@@ -2,7 +2,7 @@
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ramiz69/Slider/swift.yml)
 [![Swift Package Manager](https://img.shields.io/badge/SPM-supported-brightgreen.svg?style=flat)](https://swift.org/package-manager/)
-![Platform](https://img.shields.io/badge/platform-iOS%2014.0%2B-lightgrey.svg?style=flat)
+![Platform](https://img.shields.io/badge/platform-iOS%2018.0%2B-lightgrey.svg?style=flat)
 [![License](https://img.shields.io/github/license/ramiz69/Slider.svg?style=flat)](https://github.com/Ramiz69/Slider/blob/master/LICENSE)
 ![GitHub Release](https://img.shields.io/github/v/release/ramiz69/Slider)
 
@@ -11,23 +11,29 @@
 - [Liquid Glass](#liquid-glass)
 - [Async API](#async-api)
 - [Accessibility](#accessibility)
+- [Right to left](#right-to-left)
 - [Author](#author)
 - [License](#license)
 
 ## Requirements
 
-- iOS 14.0+ (Liquid Glass on iOS 26.0+)
+- iOS 18.0+ (Liquid Glass on iOS 26.0+)
 - Xcode 26+
 - Swift 6.0+
+
+Swift only — the framework no longer ships an Objective-C umbrella header.
 
 ## Preview
 <details>
   <summary>Preview</summary>
 
-  <img src="Screenshots/leftToRightDefault.png" width="400"/>
-  <img src="Screenshots/rightToLeftDefault.png" width="400"/>
-  <img src="Screenshots/leftToRightCustom.png" width="400"/>
-  <img src="Screenshots/preference.png" width="400"/>
+  | Left to right | Right to left |
+  | --- | --- |
+  | <img src="Screenshots/leftToRightDefault.png" width="260"/> | <img src="Screenshots/rightToLeftDefault.png" width="260"/> |
+
+  | Clear glass | Dark mode | Preferences |
+  | --- | --- | --- |
+  | <img src="Screenshots/liquidGlassClear.png" width="200"/> | <img src="Screenshots/darkMode.png" width="200"/> | <img src="Screenshots/preference.png" width="200"/> |
 </details>
 
 ## Installation
@@ -117,6 +123,17 @@ await slider.prepareHaptics()
 The slider is an adjustable accessibility element: VoiceOver reads its value through the
 delegate's display text, and swiping up or down moves it by one `step` (or by 1% of the range
 when `step` is zero).
+
+## Right to left
+
+Horizontal directions follow the interface layout direction: in a right-to-left locale
+`leftToRight` is rendered right to left, the way `UISlider` behaves. Vertical directions are
+never mirrored. Read `resolvedDirection` for the direction actually used, and opt out to pin the
+slider to the direction you assigned:
+
+```swift
+slider.respectsLayoutDirection = false
+```
 
 ## Author
 

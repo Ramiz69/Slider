@@ -274,6 +274,30 @@ open class Slider: UIControl {
     /// so the historical "drag the thumb only" behaviour is preserved.
     final public var allowsTapToSeek = false
 
+    /// Whether the horizontal directions follow the interface layout direction.
+    ///
+    /// In a right-to-left interface ``Direction/leftToRight`` is rendered right-to-left and vice
+    /// versa, the way `UISlider` behaves. Vertical directions are never mirrored. Set this to
+    /// `false` to pin the slider to the direction you assigned, whatever the locale.
+    final public var respectsLayoutDirection = true {
+        didSet {
+            guard respectsLayoutDirection != oldValue else { return }
+
+            setNeedsLayout()
+            updateSlider()
+        }
+    }
+
+    /// The direction the slider is actually laid out in, after mirroring for a right-to-left
+    /// interface. All geometry is derived from this rather than from ``direction``.
+    final public var resolvedDirection: Direction {
+        guard respectsLayoutDirection,
+              direction.axis == .x,
+              effectiveUserInterfaceLayoutDirection == .rightToLeft else { return direction }
+
+        return direction == .leftToRight ? .rightToLeft : .leftToRight
+    }
+
     let thumbLayer = ThumbLayer()
     var hapticManager = HapticManager()
     var transientTimer: DispatchSourceTimer?
@@ -367,17 +391,6 @@ open class Slider: UIControl {
         thumbLayer.contentsScale = scale
         minimumLayer.contentsScale = scale
         maximumLayer.contentsScale = scale
-    }
-
-    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-
-        guard #unavailable(iOS 17.0) else { return }
-
-        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-            updateVisualComponents()
-            setNeedsLayersDisplay()
-        }
     }
 
     // MARK: Public methods
@@ -477,6 +490,21 @@ open class Slider: UIControl {
         thumbFrame.insetBy(dx: -thumbHitSlop, dy: -thumbHitSlop).contains(point)
     }
 
+    /// Whether the given point lies on the track.
+    ///
+    /// A slider stretched beyond its track — a common Auto Layout setup — would otherwise let a
+    /// tap anywhere in that area seek, far away from anything the user can see.
+    func trackContains(_ point: CGPoint) -> Bool {
+        let thumbSize = thumbSizeForDirection()
+        let track = trackRectForBounds()
+        let inset = switch direction.axis {
+        case .x: CGSize(width: .zero, height: max(thumbSize.height - track.height, .zero) / 2)
+        case .y: CGSize(width: max(thumbSize.width - track.width, .zero) / 2, height: .zero)
+        }
+
+        return track.insetBy(dx: -inset.width, dy: -inset.height).contains(point)
+    }
+
     /// The value represented by a point in the slider's coordinate space.
     func value(at point: CGPoint) -> CGFloat {
         guard usableTrackingLength > .zero else { return storedValue }
@@ -487,7 +515,7 @@ open class Slider: UIControl {
         case .y: point.y - thumbSize.height / 2
         }
         var ratio = (offset / usableTrackingLength).clamped(to: 0...1)
-        if direction.isReversed {
+        if resolvedDirection.isReversed {
             ratio = 1 - ratio
         }
 
@@ -662,6 +690,9 @@ open class Slider: UIControl {
                       width: size.width,
                       height: size.height)
     }
+
+    /// The thumb's centre in the slider's coordinate space, used by the test suite.
+    var thumbCenterForTesting: CGPoint { position(forValue: storedValue) }
 
     /// Extra touch area around the thumb so small thumbs stay reachable.
     private var thumbHitSlop: CGFloat {
@@ -893,7 +924,7 @@ open class Slider: UIControl {
         let thumbSize = thumbSizeForDirection()
         let ratio = valueRatio
         let fillFrame: CGRect
-        switch direction {
+        switch resolvedDirection {
         case .leftToRight:
             let edge = ratio * usableTrackingLength + thumbSize.width / 2
             fillFrame = CGRect(x: .zero, y: .zero, width: edge, height: trackLayer.bounds.height)
@@ -937,7 +968,7 @@ open class Slider: UIControl {
         let ratio = range > .zero ? ((value - storedMinimum) / range).clamped(to: 0...1) : .zero
         let offset = usableTrackingLength * ratio
 
-        return switch direction {
+        return switch resolvedDirection {
         case .leftToRight:
             CGPoint(x: offset + thumbSize.width / 2, y: bounds.height / 2)
         case .rightToLeft:
@@ -997,11 +1028,15 @@ open class Slider: UIControl {
     // MARK: Appearance
 
     private func registerForAppearanceChanges() {
-        guard #available(iOS 17.0, *) else { return }
-
         registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (slider: Slider, _) in
             slider.updateVisualComponents()
             slider.setNeedsLayersDisplay()
+        }
+        // A right-to-left interface mirrors the horizontal directions, so the geometry has to
+        // be recomputed when the layout direction changes underneath the slider.
+        registerForTraitChanges([UITraitLayoutDirection.self]) { (slider: Slider, _) in
+            slider.setNeedsLayout()
+            slider.updateSlider()
         }
     }
 

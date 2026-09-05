@@ -3,10 +3,10 @@
 @Metadata {
     @DisplayName("Slider")
     @SupportedLanguage(swift)
-    @Available(iOS, introduced: "14.0")
-    @Available(iPadOS, introduced: "14.0")
-    @Available(MacCatalyst, introduced: "14.0")
-    @Available("Slider", introduced: "0.2.0")
+    @Available(iOS, introduced: "18.0")
+    @Available(iPadOS, introduced: "18.0")
+    @Available(MacCatalyst, introduced: "18.0")
+    @Available("Slider", introduced: "0.3.0")
     @PageColor(green)
 }
 

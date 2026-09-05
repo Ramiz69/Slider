@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "Slider",
     platforms: [
-        .iOS(.v14)
+        .iOS(.v18)
     ],
     products: [
         .library(
@@ -16,8 +16,7 @@ let package = Package(
     targets: [
         .target(
             name: "Slider",
-            dependencies: [],
-            exclude: ["Info.plist", "Slider.h"]),
+            dependencies: []),
         .testTarget(
             name: "SliderTests",
             dependencies: ["Slider"]),

@@ -67,6 +67,10 @@ An open class that extends `UIControl` to create a customizable slider component
   The last touch location observed during tracking.
 - ``usableTrackingLength``
   The length of the track along which the thumb can move.
+- ``respectsLayoutDirection``
+  Whether horizontal directions are mirrored in a right-to-left interface.
+- ``resolvedDirection``
+  The direction the slider is actually laid out in, after mirroring.
 
 ### Asynchronous API
 

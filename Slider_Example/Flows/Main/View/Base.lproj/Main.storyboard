@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="iUw-cM-Ddi"/>
-                        <color key="backgroundColor" red="0.80392156862745101" green="0.82352941176470584" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="https://github.com/Ramiz69" id="SP6-9T-O1p">
                         <barButtonItem key="rightBarButtonItem" image="gear" catalog="system" largeContentSizeImage="gear" style="done" id="uG9-WS-ve9"/>
@@ -49,6 +49,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <image name="gear" catalog="system" width="128" height="122"/>
     </resources>
 </document>

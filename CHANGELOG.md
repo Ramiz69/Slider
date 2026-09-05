@@ -11,7 +11,12 @@
 - VoiceOver support: the slider is an adjustable accessibility element and reports its value.
 - `allowsTapToSeek` moves the thumb to a tapped position on the track (off by default).
 - `ThumbConfiguration.textColor` to override the automatically chosen label color.
-- A test suite covering value clamping, geometry, memory and the glass configuration.
+- Right-to-left support. Horizontal directions follow the interface layout direction the way
+  `UISlider` does; `resolvedDirection` reports the direction actually used, and
+  `respectsLayoutDirection` opts out. Vertical directions are never mirrored.
+- A test suite covering value clamping, geometry, memory, control events, right-to-left layout
+  and the glass configuration, running inside the example app so control events are dispatched
+  for real.
 
 ### Fixed
 - `addTarget(_:action:for:)`, `removeTarget(_:action:for:)`, `addAction(_:for:)` and
@@ -38,13 +43,21 @@
 - The filled part of the track picked up an implicit Core Animation action and visibly trailed
   behind the thumb during fast drags.
 - `UIScreen.main` is no longer used to resolve the content scale.
+- Tap-to-seek only reacts to touches on the track, instead of anywhere in a slider that Auto
+  Layout stretched beyond it.
 
 ### Removed
 - CocoaPods support. The library is distributed through the Swift Package Manager only, so
   `RKSlider.podspec` and the vendored spec repository are gone. Consumers still on the
   `RKSlider` pod should stay on `0.2.1` or move to SPM.
+- Objective-C support. The `Slider.h` umbrella header and the hand-written `Info.plist` are
+  gone; the framework is Swift only.
+- The pre-built DocC archives that were committed to the repository. The `Deploy DocC` workflow
+  builds and publishes the documentation on every push to `master`.
 
 ### Changed
+- The minimum deployment target is now iOS 18.0, which removes the compatibility branches the
+  library carried for iOS 14 through 16.
 - Assigning a value outside `minimum...maximum` now clamps it instead of stretching the range.
 - The thumb has a minimum 44pt touch target.
 - `previousTouchPoint` and `usableTrackingLength` are read-only from outside the module.

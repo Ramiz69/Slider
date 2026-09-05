@@ -30,7 +30,7 @@ extension Slider {
     public override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let location = touch.location(in: self)
         let startsOnThumb = thumbContains(location)
-        guard startsOnThumb || allowsTapToSeek else { return false }
+        guard startsOnThumb || (allowsTapToSeek && trackContains(location)) else { return false }
 
         trackTouchPoint(location)
         didBeginTracking()
@@ -60,7 +60,7 @@ extension Slider {
 
         let ratio = deltaLocation / usableTrackingLength
         let deltaValue = (maximum - minimum) * ratio
-        let rawValue = direction.isReversed ? value - deltaValue : value + deltaValue
+        let rawValue = resolvedDirection.isReversed ? value - deltaValue : value + deltaValue
         let currentValue = steppedValue(rawValue).clamped(to: minimum...max(minimum, maximum))
         playEndpointHapticIfNeeded(for: currentValue)
         guard currentValue != value else {

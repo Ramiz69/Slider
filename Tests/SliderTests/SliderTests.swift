@@ -202,39 +202,53 @@ struct SliderControlEventTests {
         return slider
     }
 
-    /// The previous implementation overrode `addTarget` with an empty body, so registrations
-    /// were silently dropped. `UIApplication` does not dispatch actions in a host-less test
-    /// bundle, so the registration itself is what this asserts.
-    @Test("addTarget registers the target instead of dropping it")
-    func addTargetRegistersTarget() {
+    /// The previous implementation overrode `addTarget` with an empty body, so registrations were
+    /// silently dropped and the action never fired.
+    @Test("addTarget delivers .valueChanged to its target")
+    func addTargetDeliversValueChanged() {
         let slider = makeSlider()
         let spy = TargetSpy()
 
         slider.addTarget(spy, action: #selector(TargetSpy.handleValueChanged), for: .valueChanged)
-
         #expect(slider.allTargets.contains(spy))
-        #expect(slider.actions(forTarget: spy, forControlEvent: .valueChanged) == ["handleValueChanged"])
+
+        slider.applyTrackedValue(30)
+        #expect(spy.callCount == 1)
 
         slider.removeTarget(spy, action: #selector(TargetSpy.handleValueChanged), for: .valueChanged)
         #expect(slider.allTargets.isEmpty)
+
+        slider.applyTrackedValue(40)
+        #expect(spy.callCount == 1)
     }
 
-    @Test("addAction registers the action instead of dropping it")
-    func addActionRegistersAction() {
+    @Test("A non-continuous slider defers .valueChanged until tracking ends")
+    func nonContinuousSliderDefersDelivery() {
         let slider = makeSlider()
-        let action = UIAction { _ in }
+        slider.continuous = false
+        let spy = TargetSpy()
+        slider.addTarget(spy, action: #selector(TargetSpy.handleValueChanged), for: .valueChanged)
+
+        slider.applyTrackedValue(30)
+
+        #expect(spy.callCount == 0)
+    }
+
+    @Test("addAction delivers .valueChanged to its handler")
+    func addActionDeliversValueChanged() {
+        let slider = makeSlider()
+        var handled = 0
+        let action = UIAction { _ in handled += 1 }
 
         slider.addAction(action, for: .valueChanged)
+        slider.applyTrackedValue(30)
 
-        var registered: [UIAction] = []
-        slider.enumerateEventHandlers { handledAction, _, event, _ in
-            if let handledAction, event.contains(.valueChanged) {
-                registered.append(handledAction)
-            }
-        }
+        #expect(handled == 1)
 
-        #expect(registered.count == 1)
-        #expect(registered.first?.identifier == action.identifier)
+        slider.removeAction(action, for: .valueChanged)
+        slider.applyTrackedValue(40)
+
+        #expect(handled == 1)
     }
 
     @Test("The delegate is told about every tracked change")
@@ -364,6 +378,87 @@ struct SliderAsyncTests {
         let values = await task.value
 
         #expect(values == [10, 20, 30])
+    }
+}
+
+@MainActor
+struct SliderLayoutDirectionTests {
+
+    private func makeSlider(direction: Slider.Direction,
+                            layoutDirection: UISemanticContentAttribute) -> Slider {
+        let slider = Slider(direction: direction,
+                            frame: CGRect(x: 0, y: 0, width: 320, height: 320))
+        slider.semanticContentAttribute = layoutDirection
+        slider.minimum = 0
+        slider.maximum = 100
+        slider.layoutIfNeeded()
+
+        return slider
+    }
+
+    @Test("Horizontal directions mirror in a right-to-left interface")
+    func horizontalDirectionsMirror() {
+        let slider = makeSlider(direction: .leftToRight, layoutDirection: .forceRightToLeft)
+
+        #expect(slider.resolvedDirection == .rightToLeft)
+
+        let mirrored = makeSlider(direction: .rightToLeft, layoutDirection: .forceRightToLeft)
+
+        #expect(mirrored.resolvedDirection == .leftToRight)
+    }
+
+    @Test("A left-to-right interface leaves the direction alone")
+    func leftToRightIsUnchanged() {
+        let slider = makeSlider(direction: .leftToRight, layoutDirection: .forceLeftToRight)
+
+        #expect(slider.resolvedDirection == .leftToRight)
+    }
+
+    @Test("Vertical directions are never mirrored", arguments: [
+        Slider.Direction.bottomToTop,
+        .topToBottom,
+    ])
+    func verticalDirectionsAreNotMirrored(direction: Slider.Direction) {
+        let slider = makeSlider(direction: direction, layoutDirection: .forceRightToLeft)
+
+        #expect(slider.resolvedDirection == direction)
+    }
+
+    @Test("Opting out pins the slider to the assigned direction")
+    func optingOutPinsDirection() {
+        let slider = makeSlider(direction: .leftToRight, layoutDirection: .forceRightToLeft)
+        slider.respectsLayoutDirection = false
+
+        #expect(slider.resolvedDirection == .leftToRight)
+    }
+
+    @Test("The thumb sits on the opposite side in a right-to-left interface")
+    func thumbPositionIsMirrored() {
+        let ltr = makeSlider(direction: .leftToRight, layoutDirection: .forceLeftToRight)
+        let rtl = makeSlider(direction: .leftToRight, layoutDirection: .forceRightToLeft)
+        ltr.value = 25
+        rtl.value = 25
+        ltr.layoutIfNeeded()
+        rtl.layoutIfNeeded()
+
+        let ltrX = ltr.thumbCenterForTesting.x
+        let rtlX = rtl.thumbCenterForTesting.x
+
+        #expect(ltrX < ltr.bounds.midX)
+        #expect(rtlX > rtl.bounds.midX)
+        // The two are reflections of each other around the centre of the track.
+        #expect(abs((ltrX + rtlX) - ltr.bounds.width) < 0.5)
+    }
+
+    @Test("A tapped point maps to the mirrored value in a right-to-left interface")
+    func tapToSeekIsMirrored() {
+        let slider = makeSlider(direction: .leftToRight, layoutDirection: .forceRightToLeft)
+
+        let nearLeftEdge = CGPoint(x: slider.thumbCenterForTesting.x * 0 + 40, y: slider.bounds.midY)
+        let value = slider.value(at: nearLeftEdge)
+
+        // The left edge is the maximum once the slider is mirrored.
+        #expect(value > 50)
     }
 }
 

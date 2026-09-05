@@ -52,8 +52,10 @@ final class CodeViewController: UIViewController {
     
     private let slider = Slider()
     //    private let slider = Slider(direction: .bottomToTop)
+    private let valueLabel = UILabel()
     private(set) var preference = PreferenceManager()
     private(set) var selectedColorPickerType: ColorPickerType!
+    private var valueObservation: Task<Void, Never>?
     
     // MARK: - Life cycle
     
@@ -62,6 +64,11 @@ final class CodeViewController: UIViewController {
         
         configureController()
         configurePreferenceMenu()
+        observeValue()
+    }
+    
+    deinit {
+        valueObservation?.cancel()
     }
     
     override func viewDidLayoutSubviews() {
@@ -115,6 +122,14 @@ final class CodeViewController: UIViewController {
         slider.minimum = .zero
         slider.value = .zero
         slider.animationStyle = .default
+        Task { await slider.prepareHaptics() }
+        
+        valueLabel.font = .monospacedDigitSystemFont(ofSize: 34, weight: .semibold)
+        valueLabel.textAlignment = .center
+        valueLabel.textColor = .label
+        valueLabel.adjustsFontSizeToFitWidth = true
+        view.addSubview(valueLabel)
+        valueLabel.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(slider)
         slider.translatesAutoresizingMaskIntoConstraints = false
@@ -128,8 +143,21 @@ final class CodeViewController: UIViewController {
         let constraints = [slider.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: offset),
                            slider.leftAnchor.constraint(equalTo: view.leftAnchor, constant: offset),
                            layoutMarginsGuide.bottomAnchor.constraint(equalTo: slider.bottomAnchor, constant: offset),
-                           view.rightAnchor.constraint(equalTo: slider.rightAnchor, constant: offset)]
+                           view.rightAnchor.constraint(equalTo: slider.rightAnchor, constant: offset),
+                           valueLabel.leftAnchor.constraint(equalTo: slider.leftAnchor),
+                           valueLabel.rightAnchor.constraint(equalTo: slider.rightAnchor),
+                           valueLabel.bottomAnchor.constraint(equalTo: slider.centerYAnchor,
+                                                              constant: -offset * 3)]
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    /// Mirrors the slider's value into the label through the async sequence the library exposes.
+    private func observeValue() {
+        valueObservation = Task { [slider, valueLabel] in
+            for await value in slider.valueStream {
+                valueLabel.text = String(format: "%.0f", value)
+            }
+        }
     }
     
     private func configureHaptic() {
@@ -153,6 +181,10 @@ final class CodeViewController: UIViewController {
         slider.thumbConfiguration = ThumbConfiguration()
         slider.maximumEndpointConfiguration = RangeEndpointsConfiguration()
         slider.minimumEndpointConfiguration = RangeEndpointsConfiguration()
+        slider.glassConfiguration = GlassConfiguration()
+        slider.allowsTapToSeek = false
+        slider.respectsLayoutDirection = true
+        slider.continuous = true
     }
     
     private func configurePreferenceMenu() {
@@ -160,14 +192,24 @@ final class CodeViewController: UIViewController {
             self.preference = PreferenceManager.reset()
             self.resetSlider()
         }
+        let animateToRandom = UIAction(title: "Animate to random value",
+                                       image: UIImage(systemName: "wand.and.stars")) { [unowned self] _ in
+            Task {
+                let target = CGFloat.random(in: self.slider.minimum...self.slider.maximum)
+                await self.slider.setValue(target, animated: true)
+            }
+        }
         let menu = UIMenu(title: "Preference",
                           image: UIImage(systemName: "gear"),
                           children: [configureDirectionMenu(),
                                      configureAnimationMenu(),
+                                     configureGlassMenu(),
+                                     configureBehaviourMenu(),
                                      configureTrackMenu(),
                                      configureHapticMenu(),
                                      configureEndpointMenu(),
                                      configureThumbMenu(),
+                                     animateToRandom,
                                      reset])
         
         preferenceBarButton.menu = menu
@@ -199,6 +241,77 @@ final class CodeViewController: UIViewController {
         }
         
         return UIMenu(title: "Animation Direction Change", children: animations)
+    }
+    
+    private func configureGlassMenu() -> UIMenu {
+        let configuration = slider.glassConfiguration
+        let modes: [(String, GlassConfiguration.Mode)] = [("Automatic", .automatic),
+                                                          ("Disabled", .disabled)]
+        let modeActions = modes.map { title, mode in
+            UIAction(title: title, state: configuration.mode == mode ? .on : .off) { [unowned self] _ in
+                self.slider.glassConfiguration.mode = mode
+                self.configurePreferenceMenu()
+            }
+        }
+        let styles: [(String, GlassConfiguration.Style)] = [("Regular", .regular), ("Clear", .clear)]
+        let styleActions = styles.map { title, style in
+            UIAction(title: title, state: configuration.style == style ? .on : .off) { [unowned self] _ in
+                self.slider.glassConfiguration.style = style
+                self.configurePreferenceMenu()
+            }
+        }
+        let interactive = UIAction(title: "Interactive",
+                                   state: configuration.isInteractive ? .on : .off) { [unowned self] _ in
+            self.slider.glassConfiguration.isInteractive.toggle()
+            self.configurePreferenceMenu()
+        }
+        let appliesToTrack = UIAction(title: "Apply to track",
+                                      state: configuration.appliesToTrack ? .on : .off) { [unowned self] _ in
+            self.slider.glassConfiguration.appliesToTrack.toggle()
+            self.configurePreferenceMenu()
+        }
+        let tintsWithTrack = UIAction(title: "Tint with track color",
+                                      state: configuration.tintsThumbWithTrackColor ? .on : .off) { [unowned self] _ in
+            self.slider.glassConfiguration.tintsThumbWithTrackColor.toggle()
+            self.configurePreferenceMenu()
+        }
+        let availability = GlassConfiguration.isSupportedByPlatform ? "Liquid Glass"
+                                                                    : "Liquid Glass (unavailable)"
+        
+        return UIMenu(title: availability,
+                      children: [UIMenu(title: "Mode", options: .displayInline, children: modeActions),
+                                 UIMenu(title: "Style", options: .displayInline, children: styleActions),
+                                 UIMenu(title: "Options",
+                                        options: .displayInline,
+                                        children: [interactive, tintsWithTrack, appliesToTrack])])
+    }
+    
+    private func configureBehaviourMenu() -> UIMenu {
+        let tapToSeek = UIAction(title: "Tap to seek",
+                                 state: slider.allowsTapToSeek ? .on : .off) { [unowned self] _ in
+            self.slider.allowsTapToSeek.toggle()
+            self.configurePreferenceMenu()
+        }
+        let continuous = UIAction(title: "Continuous events",
+                                  state: slider.continuous ? .on : .off) { [unowned self] _ in
+            self.slider.continuous.toggle()
+            self.configurePreferenceMenu()
+        }
+        let mirrors = UIAction(title: "Mirror in right-to-left",
+                               state: slider.respectsLayoutDirection ? .on : .off) { [unowned self] _ in
+            self.slider.respectsLayoutDirection.toggle()
+            self.configurePreferenceMenu()
+        }
+        let forceRTL = UIAction(title: "Force right-to-left layout",
+                                state: slider.semanticContentAttribute == .forceRightToLeft ? .on : .off) { [unowned self] _ in
+            self.slider.semanticContentAttribute = self.slider.semanticContentAttribute == .forceRightToLeft
+                ? .unspecified
+                : .forceRightToLeft
+            self.slider.setNeedsLayout()
+            self.configurePreferenceMenu()
+        }
+        
+        return UIMenu(title: "Behaviour", children: [tapToSeek, continuous, mirrors, forceRTL])
     }
     
     private func configureTrackMenu() -> UIMenu {

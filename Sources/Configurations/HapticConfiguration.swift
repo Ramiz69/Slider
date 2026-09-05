@@ -9,7 +9,7 @@
 import Foundation
 
 /// A structure describing the configuration for haptic feedback.
-public struct HapticConfiguration {
+public struct HapticConfiguration: Sendable, Equatable {
 
     // MARK: Properties
 
@@ -18,7 +18,7 @@ public struct HapticConfiguration {
     /// **Available cases:**
     /// - `transient`: A short, impulse-like haptic.
     /// - `continuous`: A continuous haptic.
-    public struct Kind: OptionSet, Sendable {
+    public struct Kind: OptionSet, Sendable, Equatable {
         public typealias RawValue = UInt8
 
         public var rawValue: UInt8
@@ -31,19 +31,19 @@ public struct HapticConfiguration {
         public static let continuous = Kind(rawValue: 1 << 1)
     }
     /// The type(s) of haptic feedback (see `Kind`).
-    let kind: Kind
+    public let kind: Kind
 
     /// The initial intensity of the haptic feedback, in the range [0, 1].
-    let initialIntensity: Float
+    public let initialIntensity: Float
 
     /// The initial sharpness of the haptic feedback, in the range [0, 1].
-    let initialSharpness: Float
+    public let initialSharpness: Float
 
     /// A relative time (such as a delay) before the haptic feedback begins.
-    let relativeTime: TimeInterval
+    public let relativeTime: TimeInterval
 
     /// The total duration of the haptic feedback, relevant for continuous types.
-    let duration: TimeInterval
+    public let duration: TimeInterval
 
     // MARK: Initial methods
 
@@ -69,5 +69,18 @@ public struct HapticConfiguration {
         self.initialSharpness = initialSharpness
         self.relativeTime = relativeTime
         self.duration = duration
+    }
+
+    // MARK: Internal methods
+
+    /// Whether replacing `other` with this configuration requires a brand new `CHHapticEngine`.
+    ///
+    /// Rebuilding the engine is expensive, so a change that only affects which haptics are
+    /// played — rather than how the engine is created — reuses the running engine.
+    func requiresNewEngine(comparedTo other: HapticConfiguration) -> Bool {
+        initialIntensity != other.initialIntensity
+            || initialSharpness != other.initialSharpness
+            || relativeTime != other.relativeTime
+            || duration != other.duration
     }
 }

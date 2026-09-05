@@ -42,37 +42,44 @@ An open class that extends `UIControl` to create a customizable slider component
   An enumeration that defines the slider's orientation and direction.
 - ``AnimationStyle``
   An enumeration that defines the animation style when the slider value changes.
+- ``animationStyle``
+  The animation style used when the direction or the value changes.
+
+### Appearance
+
+- ``glassConfiguration``
+  Controls the iOS 26 Liquid Glass appearance. Glass is used automatically where the platform
+  provides it, and the flat appearance is kept everywhere else.
 
 ### Delegate
 
 - ``delegate``
-  The delegate for the slider, conforming to `SliderDelegate`, to handle value changes and user interactions.
+  The delegate for the slider, conforming to `SliderDelegate`, to handle value changes and user
+  interactions. The reference is weak.
 
 ### User Interaction
 
-- ``didBeginTracking()``
-  Called when the user starts interacting with the slider.
-- ``endTracking()``
-  Called when the user finishes interacting with the slider.
+- ``continuous``
+  Whether `.valueChanged` is sent while dragging, or only once tracking ends.
+- ``allowsTapToSeek``
+  Whether tapping the track moves the thumb to that position.
+- ``previousTouchPoint``
+  The last touch location observed during tracking.
+- ``usableTrackingLength``
+  The length of the track along which the thumb can move.
+- ``respectsLayoutDirection``
+  Whether horizontal directions are mirrored in a right-to-left interface.
+- ``resolvedDirection``
+  The direction the slider is actually laid out in, after mirroring.
 
-### Visual Updates
+### Asynchronous API
 
-- ``updateVisualComponents()``
-  Updates the visual components of the slider, like the track and thumb, when certain properties change.
-- ``setNeedsLayersDisplay()``
-  Requests the layers to update their display based on the current slider properties.
-
-### Layout and Positioning
-
-- ``layoutSubviews()``
-  Lays out subviews and updates the layout of the slider's components based on its current state and properties.
-- ``position(forValue:)``
-  Determines the position of the thumb based on the current slider value.
-
-### Handling User Interactions
-
-- ``updateSlider()``
-  Updates the slider's value and visual appearance in response to user interactions.
+- ``setValue(_:animated:)``
+  Assigns a new value and resumes once the animation has finished.
+- ``valueStream``
+  An `AsyncStream` of the slider's values.
+- ``prepareHaptics()``
+  Warms up the haptic engine so the first interaction is not delayed.
 
 ## Example Usage
 
@@ -83,4 +90,9 @@ slider.maximum = 1000
 slider.value = .zero
 slider.step = 10
 slider.delegate = self
+
+// Liquid Glass on iOS 26, the flat appearance elsewhere — no availability check needed.
+slider.glassConfiguration = GlassConfiguration(style: .regular)
+
+await slider.setValue(500, animated: true)
 ```

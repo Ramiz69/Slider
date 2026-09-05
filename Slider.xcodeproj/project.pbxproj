@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B22ED1B2AEECB7700208DD7 /* Slider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2EB6C223C1E11F00FB91AD /* Slider.framework */; };
+		4BA200000000000000000C00 /* Slider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2EB6C223C1E11F00FB91AD /* Slider.framework */; };
 		4B22ED1C2AEECB7700208DD7 /* Slider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2EB6C223C1E11F00FB91AD /* Slider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4B2EB6E523C1E5AA00FB91AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB6E423C1E5AA00FB91AD /* AppDelegate.swift */; };
 		4B2EB6E723C1E5AA00FB91AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB6E623C1E5AA00FB91AD /* SceneDelegate.swift */; };
@@ -18,6 +19,8 @@
 		4B889B7624333E7C002FCE02 /* CodeViewController+SliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */; };
 		4B8DAE982BA6956B005CFA82 /* TrackConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DAE972BA6956B005CFA82 /* TrackConfiguration.swift */; };
 		4B8DAE9A2BA696A8005CFA82 /* ThumbConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DAE992BA696A8005CFA82 /* ThumbConfiguration.swift */; };
+		4BA100000000000000000200 /* GlassConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA100000000000000000100 /* GlassConfiguration.swift */; };
+		4BA100000000000000000400 /* SliderGlassSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA100000000000000000300 /* SliderGlassSurface.swift */; };
 		4B8DAE9C2BA69A69005CFA82 /* RangeEndpointsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DAE9B2BA69A69005CFA82 /* RangeEndpointsConfiguration.swift */; };
 		4B8DAE9F2BA6A056005CFA82 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DAE9E2BA6A056005CFA82 /* PreferenceManager.swift */; };
 		4B8DAEA12BA6A5E9005CFA82 /* CodeViewController+UIColorPickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DAEA02BA6A5E9005CFA82 /* CodeViewController+UIColorPickerViewControllerDelegate.swift */; };
@@ -29,8 +32,8 @@
 		4BC808B92BC1A005001F31C8 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 4BC808B82BC1A005001F31C8 /* Documentation.docc */; };
 		4BF628A32BA2B38D0093637E /* Slider+UITouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628962BA2B38D0093637E /* Slider+UITouch.swift */; };
 		4BF628A42BA2B38D0093637E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628972BA2B38D0093637E /* String.swift */; };
+		4BA300000000000000000200 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA300000000000000000100 /* UIColor.swift */; };
 		4BF628A52BA2B38D0093637E /* SliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF628992BA2B38D0093637E /* SliderDelegate.swift */; };
-		4BF628A72BA2B38D0093637E /* Slider.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BF6289C2BA2B38D0093637E /* Slider.h */; };
 		4BF628A82BA2B38D0093637E /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6289D2BA2B38D0093637E /* Slider.swift */; };
 		4BF628AA2BA2B38D0093637E /* SliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6289F2BA2B38D0093637E /* SliderTrackLayer.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +45,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4B2EB6C123C1E11E00FB91AD;
 			remoteInfo = Slider;
+		};
+		4BA200000000000000000800 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B2EB6B923C1E11E00FB91AD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4B2EB6C123C1E11E00FB91AD;
+			remoteInfo = Slider;
+		};
+		4BA400000000000000000100 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B2EB6B923C1E11E00FB91AD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4B2EB6E123C1E5AA00FB91AD;
+			remoteInfo = Slider_Example;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -62,6 +79,7 @@
 /* Begin PBXFileReference section */
 		4B2EB6C223C1E11F00FB91AD /* Slider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Slider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2EB6E223C1E5AA00FB91AD /* Slider_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slider_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BA200000000000000000200 /* SliderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SliderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2EB6E423C1E5AA00FB91AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B2EB6E623C1E5AA00FB91AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4B2EB6EB23C1E5AA00FB91AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -72,6 +90,8 @@
 		4B889B7524333E7C002FCE02 /* CodeViewController+SliderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeViewController+SliderDelegate.swift"; sourceTree = "<group>"; };
 		4B8DAE972BA6956B005CFA82 /* TrackConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackConfiguration.swift; sourceTree = "<group>"; };
 		4B8DAE992BA696A8005CFA82 /* ThumbConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbConfiguration.swift; sourceTree = "<group>"; };
+		4BA100000000000000000100 /* GlassConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassConfiguration.swift; sourceTree = "<group>"; };
+		4BA100000000000000000300 /* SliderGlassSurface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderGlassSurface.swift; sourceTree = "<group>"; };
 		4B8DAE9B2BA69A69005CFA82 /* RangeEndpointsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeEndpointsConfiguration.swift; sourceTree = "<group>"; };
 		4B8DAE9E2BA6A056005CFA82 /* PreferenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
 		4B8DAEA02BA6A5E9005CFA82 /* CodeViewController+UIColorPickerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeViewController+UIColorPickerViewControllerDelegate.swift"; sourceTree = "<group>"; };
@@ -83,12 +103,20 @@
 		4BC808B82BC1A005001F31C8 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		4BF628962BA2B38D0093637E /* Slider+UITouch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Slider+UITouch.swift"; sourceTree = "<group>"; };
 		4BF628972BA2B38D0093637E /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		4BA300000000000000000100 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		4BF628992BA2B38D0093637E /* SliderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderDelegate.swift; sourceTree = "<group>"; };
 		4BF6289B2BA2B38D0093637E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4BF6289C2BA2B38D0093637E /* Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slider.h; sourceTree = "<group>"; };
 		4BF6289D2BA2B38D0093637E /* Slider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
 		4BF6289F2BA2B38D0093637E /* SliderTrackLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderTrackLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		4BA200000000000000000300 /* SliderTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Tests/SliderTests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4B2EB6BF23C1E11E00FB91AD /* Frameworks */ = {
@@ -103,6 +131,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B22ED1B2AEECB7700208DD7 /* Slider.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BA200000000000000000500 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BA200000000000000000C00 /* Slider.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +160,7 @@
 			children = (
 				4B2EB6C223C1E11F00FB91AD /* Slider.framework */,
 				4B2EB6E223C1E5AA00FB91AD /* Slider_Example.app */,
+				4BA200000000000000000200 /* SliderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -232,6 +269,7 @@
 				4B8DAE972BA6956B005CFA82 /* TrackConfiguration.swift */,
 				4B8DAE992BA696A8005CFA82 /* ThumbConfiguration.swift */,
 				4B8DAE9B2BA69A69005CFA82 /* RangeEndpointsConfiguration.swift */,
+				4BA100000000000000000100 /* GlassConfiguration.swift */,
 			);
 			path = Configurations;
 			sourceTree = "<group>";
@@ -241,6 +279,7 @@
 			children = (
 				4BF628962BA2B38D0093637E /* Slider+UITouch.swift */,
 				4BF628972BA2B38D0093637E /* String.swift */,
+				4BA300000000000000000100 /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -253,6 +292,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		4BA100000000000000000500 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4BA100000000000000000300 /* SliderGlassSurface.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		4BF628A02BA2B38D0093637E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,8 +307,7 @@
 				4BF628932BA2B38D0093637E /* Configurations */,
 				4BF628982BA2B38D0093637E /* Extensions */,
 				4BF6289A2BA2B38D0093637E /* Protocols */,
-				4BF6289B2BA2B38D0093637E /* Info.plist */,
-				4BF6289C2BA2B38D0093637E /* Slider.h */,
+				4BA100000000000000000500 /* Views */,
 				4BF6289D2BA2B38D0093637E /* Slider.swift */,
 				4BC808B82BC1A005001F31C8 /* Documentation.docc */,
 				4BF6289F2BA2B38D0093637E /* SliderTrackLayer.swift */,
@@ -273,23 +319,11 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		4B2EB6BD23C1E11E00FB91AD /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4BF628A72BA2B38D0093637E /* Slider.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		4B2EB6C123C1E11E00FB91AD /* Slider */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B2EB6CA23C1E11F00FB91AD /* Build configuration list for PBXNativeTarget "Slider" */;
 			buildPhases = (
-				4B2EB6BD23C1E11E00FB91AD /* Headers */,
 				4B2EB6BE23C1E11E00FB91AD /* Sources */,
 				4B2EB6BF23C1E11E00FB91AD /* Frameworks */,
 				4B2EB6C023C1E11E00FB91AD /* Resources */,
@@ -324,6 +358,28 @@
 			productReference = 4B2EB6E223C1E5AA00FB91AD /* Slider_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4BA200000000000000000100 /* SliderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BA200000000000000000900 /* Build configuration list for PBXNativeTarget "SliderTests" */;
+			buildPhases = (
+				4BA200000000000000000400 /* Sources */,
+				4BA200000000000000000500 /* Frameworks */,
+				4BA200000000000000000600 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4BA200000000000000000700 /* PBXTargetDependency */,
+				4BA400000000000000000200 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				4BA200000000000000000300 /* SliderTests */,
+			);
+			name = SliderTests;
+			productName = SliderTests;
+			productReference = 4BA200000000000000000200 /* SliderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -341,6 +397,9 @@
 					};
 					4B2EB6E123C1E5AA00FB91AD = {
 						CreatedOnToolsVersion = 11.3;
+					};
+					4BA200000000000000000100 = {
+						TestTargetID = 4B2EB6E123C1E5AA00FB91AD;
 					};
 				};
 			};
@@ -362,6 +421,7 @@
 			targets = (
 				4B2EB6C123C1E11E00FB91AD /* Slider */,
 				4B2EB6E123C1E5AA00FB91AD /* Slider_Example */,
+				4BA200000000000000000100 /* SliderTests */,
 			);
 		};
 /* End PBXProject section */
@@ -384,6 +444,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4BA200000000000000000600 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -397,7 +464,10 @@
 				4BB580D72D2BDD2B009BFA02 /* LoggerManager.swift in Sources */,
 				4B8DAE9C2BA69A69005CFA82 /* RangeEndpointsConfiguration.swift in Sources */,
 				4BF628A42BA2B38D0093637E /* String.swift in Sources */,
+				4BA300000000000000000200 /* UIColor.swift in Sources */,
 				4B8DAE9A2BA696A8005CFA82 /* ThumbConfiguration.swift in Sources */,
+				4BA100000000000000000200 /* GlassConfiguration.swift in Sources */,
+				4BA100000000000000000400 /* SliderGlassSurface.swift in Sources */,
 				4BB580D92D2BDFDF009BFA02 /* HapticConfiguration.swift in Sources */,
 				4BF628A82BA2B38D0093637E /* Slider.swift in Sources */,
 				4B8DAEA62BA6B445005CFA82 /* TextLayer.swift in Sources */,
@@ -421,6 +491,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4BA200000000000000000400 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -428,6 +505,16 @@
 			isa = PBXTargetDependency;
 			target = 4B2EB6C123C1E11E00FB91AD /* Slider */;
 			targetProxy = 4B22ED1D2AEECB7700208DD7 /* PBXContainerItemProxy */;
+		};
+		4BA200000000000000000700 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4B2EB6C123C1E11E00FB91AD /* Slider */;
+			targetProxy = 4BA200000000000000000800 /* PBXContainerItemProxy */;
+		};
+		4BA400000000000000000200 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4B2EB6E123C1E5AA00FB91AD /* Slider_Example */;
+			targetProxy = 4BA400000000000000000100 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -505,7 +592,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -566,7 +653,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -591,9 +678,9 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
-				INFOPLIST_FILE = Sources/Info.plist;
+				GENERATE_INFOPLIST_FILE = YES;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -621,9 +708,9 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
-				INFOPLIST_FILE = Sources/Info.plist;
+				GENERATE_INFOPLIST_FILE = YES;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -645,7 +732,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8AD8N54BY6;
 				INFOPLIST_FILE = "Slider_Example/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -664,7 +751,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8AD8N54BY6;
 				INFOPLIST_FILE = "Slider_Example/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -673,6 +760,54 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4BA200000000000000000A00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ramiz.SliderTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Slider_Example.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Slider_Example";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+			};
+			name = Debug;
+		};
+		4BA200000000000000000B00 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ramiz.SliderTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Slider_Example.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Slider_Example";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 			};
 			name = Release;
 		};
@@ -702,6 +837,15 @@
 			buildConfigurations = (
 				4B2EB6F423C1E5AA00FB91AD /* Debug */,
 				4B2EB6F523C1E5AA00FB91AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4BA200000000000000000900 /* Build configuration list for PBXNativeTarget "SliderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BA200000000000000000A00 /* Debug */,
+				4BA200000000000000000B00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

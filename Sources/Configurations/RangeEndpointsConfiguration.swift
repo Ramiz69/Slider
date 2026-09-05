@@ -29,27 +29,27 @@ import QuartzCore
 ///
 /// This configuration allows you to customize the anchor point, text color, font size, and alignment mode
 /// for the text displayed at the minimum and maximum endpoints of the slider.
-public struct RangeEndpointsConfiguration {
+public struct RangeEndpointsConfiguration: Sendable, Equatable {
     
     /// The anchor point of the endpoint label's layer.
     ///
     /// It determines the position of the label relative to its frame. The default is `(0.5, 0.5)`, which centers the label.
-    let anchorPoint: CGPoint
+    public let anchorPoint: CGPoint
     
     /// The color of the endpoint label's text.
     ///
     /// The default color is white.
-    let foregroundColor: CGColor
+    public let foregroundColor: CGColor
     
     /// The font size of the endpoint label's text.
     ///
     /// Default value is `12`.
-    let fontSize: CGFloat
+    public let fontSize: CGFloat
     
     /// The alignment mode of the endpoint label's text within its layer.
     ///
     /// Default alignment mode is `.center`.
-    let aligmentMode: CATextLayerAlignmentMode
+    public let aligmentMode: CATextLayerAlignmentMode
     
     /// Initializes a `RangeEndpointsConfiguration` with the provided values or defaults.
     ///

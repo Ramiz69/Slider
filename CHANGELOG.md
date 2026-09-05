@@ -1,5 +1,71 @@
 # CHANGELOG
 
+## [0.3.0] - 2026-09-05
+
+### Added
+- iOS 26 Liquid Glass appearance via the new `GlassConfiguration`. The material is used
+  automatically on iOS 26 and later, and the slider silently keeps its flat look on earlier
+  systems, so no availability checks are needed at the call site.
+- `async` API: `setValue(_:animated:)` resumes once the animation finishes, `valueStream`
+  exposes the value as an `AsyncStream`, and `prepareHaptics()` warms up the haptic engine.
+- VoiceOver support: the slider is an adjustable accessibility element and reports its value.
+- `allowsTapToSeek` moves the thumb to a tapped position on the track (off by default).
+- `ThumbConfiguration.textColor` to override the automatically chosen label color.
+- Right-to-left support. Horizontal directions follow the interface layout direction the way
+  `UISlider` does; `resolvedDirection` reports the direction actually used, and
+  `respectsLayoutDirection` opts out. Vertical directions are never mirrored.
+- A test suite covering value clamping, geometry, memory, control events, right-to-left layout
+  and the glass configuration, running inside the example app so control events are dispatched
+  for real.
+
+### Fixed
+- `addTarget(_:action:for:)`, `removeTarget(_:action:for:)`, `addAction(_:for:)` and
+  `removeAction(_:for:)` were overridden with empty bodies, so every registration was silently
+  dropped and `.valueChanged` never reached its target. The overrides are gone.
+- `delegate` was a strong reference and kept its owner alive; it is now `weak`.
+- The haptic engine's `resetHandler` captured `self` strongly, so `HapticManager` and its
+  `CHHapticEngine` were never released.
+- The continuous-haptic timer captured `self` as `unowned` and was only cancelled when `step`
+  was greater than zero, which crashed or vibrated forever after tracking ended.
+- A `step` of `0` divided by zero during tracking and drove the value — and the layer
+  geometry — to `NaN`.
+- An empty range (`minimum == maximum`) produced `NaN` positions and could trip
+  `CALayerInvalidGeometry`.
+- Tracking that was cancelled by the system never released its display link or timer.
+- `usableTrackingLength` used the wrong thumb dimension on the vertical axis, so values were
+  off by the difference between the thumb's width and height.
+- `continuous` was ignored: `.valueChanged` was sent on every move even when it was `false`.
+- The delegate's `didContinueTracking(_:)` was declared but never called.
+- Setting `delegate` measured the thumb's new width but applied the old size.
+- Dynamic colors are now resolved against the current trait collection and refreshed when the
+  interface style changes, so dark mode no longer keeps the light appearance.
+- The thumb no longer plays a haptic while the slider is being created.
+- The filled part of the track picked up an implicit Core Animation action and visibly trailed
+  behind the thumb during fast drags.
+- `UIScreen.main` is no longer used to resolve the content scale.
+- Tap-to-seek only reacts to touches on the track, instead of anywhere in a slider that Auto
+  Layout stretched beyond it.
+
+### Removed
+- CocoaPods support. The library is distributed through the Swift Package Manager only, so
+  `RKSlider.podspec` and the vendored spec repository are gone. Consumers still on the
+  `RKSlider` pod should stay on `0.2.1` or move to SPM.
+- Objective-C support. The `Slider.h` umbrella header and the hand-written `Info.plist` are
+  gone; the framework is Swift only.
+- The pre-built DocC archives that were committed to the repository. The `Deploy DocC` workflow
+  builds and publishes the documentation on every push to `master`.
+
+### Changed
+- The minimum deployment target is now iOS 18.0, which removes the compatibility branches the
+  library carried for iOS 14 through 16.
+- Assigning a value outside `minimum...maximum` now clamps it instead of stretching the range.
+- The thumb has a minimum 44pt touch target.
+- `previousTouchPoint` and `usableTrackingLength` are read-only from outside the module.
+- `SliderDelegate` no longer requires conformers to be `Sendable`.
+- The haptic engine is only rebuilt when its parameters change, not on every configuration
+  assignment.
+
+
 ## [0.2.1] - 2025-01-06
 
 ### Added

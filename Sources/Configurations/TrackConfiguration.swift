@@ -27,7 +27,7 @@ import UIKit
 /// `TrackConfiguration` defines the appearance settings for the track of the `Slider` control.
 ///
 /// It provides properties to customize the track's colors, height, and inset.
-public struct TrackConfiguration {
+public struct TrackConfiguration: Sendable, Equatable {
 
     /// The color used for the track's background.
     ///

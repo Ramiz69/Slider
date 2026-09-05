@@ -22,32 +22,34 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
 import QuartzCore
 import CoreGraphics
 
+/// The layer that renders the thumb's label, vertically centering the text inside the thumb.
 final class ThumbLayer: CATextLayer {
-    
+
     // MARK: Life cycle
-    
+
     override func setNeedsDisplay() {
         super.setNeedsDisplay()
-        
+
         configureBorder()
     }
-    
+
     override func draw(in ctx: CGContext) {
-        let height = bounds.size.height
-        let yDiff = (height - fontSize) / 2 - fontSize / 10
-        
+        let yDiff = (bounds.height - fontSize) / 2 - fontSize / 10
+
         ctx.saveGState()
         ctx.translateBy(x: .zero, y: yDiff)
         super.draw(in: ctx)
-        
         ctx.restoreGState()
     }
-    
+
+    // MARK: Private methods
+
     private func configureBorder() {
+        guard borderWidth > .zero else { return }
+
         borderColor = foregroundColor
     }
 }

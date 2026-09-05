@@ -3,10 +3,10 @@
 @Metadata {
     @DisplayName("Slider")
     @SupportedLanguage(swift)
-    @Available(iOS, introduced: "14.0")
-    @Available(iPadOS, introduced: "14.0")
-    @Available(MacCatalyst, introduced: "14.0")
-    @Available("Slider", introduced: "0.2.0")
+    @Available(iOS, introduced: "18.0")
+    @Available(iPadOS, introduced: "18.0")
+    @Available(MacCatalyst, introduced: "18.0")
+    @Available("Slider", introduced: "0.3.0")
     @PageColor(green)
 }
 
@@ -96,17 +96,6 @@ Normally you'll want to depend on the `Slider` target:
 ```swift
 .product(name: "Slider", package: "Slider")
 ```
-
-### CocoaPods
-
-[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Slider into your Xcode project using CocoaPods, specify it in your `Podfile`:
-
-```ruby
-pod 'RKSlider'
-```
-
-### Manually
-copy `Slider.swift` to your project
 
 ## Author
 

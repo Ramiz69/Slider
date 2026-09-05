@@ -25,16 +25,16 @@
 import UIKit
 
 extension String {
-    
-    func size(withConstrainedWidth width: CGFloat, font: UIFont) -> CGRect {
-        let constraintRect = CGSize(width: width,
-                                    height: .greatestFiniteMagnitude)
-        let boundingBox = self.boundingRect(with: constraintRect,
+
+    /// The width required to lay the string out on a single line with the given font.
+    func width(with font: UIFont) -> CGFloat {
+        let constraint = CGSize(width: CGFloat.greatestFiniteMagnitude,
+                                height: CGFloat.greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraint,
                                             options: .usesLineFragmentOrigin,
                                             attributes: [.font: font],
                                             context: nil)
-        
-        return boundingBox
+
+        return boundingBox.width.rounded(.up)
     }
-    
 }

@@ -39,6 +39,11 @@
   behind the thumb during fast drags.
 - `UIScreen.main` is no longer used to resolve the content scale.
 
+### Removed
+- CocoaPods support. The library is distributed through the Swift Package Manager only, so
+  `RKSlider.podspec` and the vendored spec repository are gone. Consumers still on the
+  `RKSlider` pod should stay on `0.2.1` or move to SPM.
+
 ### Changed
 - Assigning a value outside `minimum...maximum` now clamps it instead of stretching the range.
 - The thumb has a minimum 44pt touch target.

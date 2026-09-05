@@ -1,9 +1,9 @@
 # Slider
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ramiz69/Slider/swift.yml)
-[![Version](https://img.shields.io/cocoapods/v/RKSlider.svg?style=flat)](https://cocoapods.org/pods/RKSlider)
-[![License](https://img.shields.io/cocoapods/l/RKSlider.svg?style=flat)](https://cocoapods.org/pods/RKSlider)
-[![Platform](https://img.shields.io/cocoapods/p/RKSlider.svg?style=flat)](https://cocoapods.org/pods/RKSlider)
+[![Swift Package Manager](https://img.shields.io/badge/SPM-supported-brightgreen.svg?style=flat)](https://swift.org/package-manager/)
+![Platform](https://img.shields.io/badge/platform-iOS%2014.0%2B-lightgrey.svg?style=flat)
+[![License](https://img.shields.io/github/license/ramiz69/Slider.svg?style=flat)](https://github.com/Ramiz69/Slider/blob/master/LICENSE)
 ![GitHub Release](https://img.shields.io/github/v/release/ramiz69/Slider)
 
 - [Installation](#installation)
@@ -32,11 +32,10 @@
 
 ## Installation
 
-### Swift Package Manager
+Slider is distributed through the [Swift Package Manager](https://swift.org/package-manager/) only.
 
-The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler.
-
-Once you have your Swift package set up, adding Slider as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift` or the Package list in Xcode.
+Add it to the `dependencies` value of your `Package.swift`, or to the package list in Xcode
+(File ▸ Add Package Dependencies…).
 
 ```swift
 dependencies: [
@@ -49,17 +48,6 @@ Normally you'll want to depend on the `Slider` target:
 ```swift
 .product(name: "Slider", package: "Slider")
 ```
-
-### CocoaPods
-
-[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Slider into your Xcode project using CocoaPods, specify it in your `Podfile`:
-
-```ruby
-pod 'RKSlider'
-```
-
-### Manually
-copy `Slider.swift` to your project
 
 ## Usage
 

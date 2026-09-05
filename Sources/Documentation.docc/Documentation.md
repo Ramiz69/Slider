@@ -97,17 +97,6 @@ Normally you'll want to depend on the `Slider` target:
 .product(name: "Slider", package: "Slider")
 ```
 
-### CocoaPods
-
-[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Slider into your Xcode project using CocoaPods, specify it in your `Podfile`:
-
-```ruby
-pod 'RKSlider'
-```
-
-### Manually
-copy `Slider.swift` to your project
-
 ## Author
 
 ramiz69, ramiz161@icloud.com [Github](https://github.com/ramiz69)

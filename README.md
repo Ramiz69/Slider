@@ -5,7 +5,7 @@
 ![Platform](https://img.shields.io/badge/platform-iOS%2018.0%2B-lightgrey.svg?style=flat)
 [![License](https://img.shields.io/github/license/ramiz69/Slider.svg?style=flat)](https://github.com/Ramiz69/Slider/blob/master/LICENSE)
 ![GitHub Release](https://img.shields.io/github/v/release/ramiz69/Slider)
-[![Swift](https://img.shields.io/badge/swift-5.9-orange.svg)](https://swift.org)
+[![Swift](https://img.shields.io/badge/swift-6.0-orange.svg)](https://swift.org)
 
 - [Installation](#installation)
 - [Usage](#usage)

@@ -17,7 +17,9 @@ concurrency:
 jobs:
   test:
     name: Build & Test
-    runs-on: macos-latest
+    # Swift 6.4 ships with Xcode 27, which GitHub only provides on the dedicated
+    # xcode-27 image for now; macos-latest still tops out at Xcode 26.
+    runs-on: xcode-27
     defaults:
       run:
         # Without pipefail a failing xcodebuild is hidden by whatever it is piped into,
@@ -26,10 +28,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Select Xcode
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: '27'
+      - name: Require Xcode 27
+        run: |
+          version=$(xcodebuild -version | awk 'NR == 1 { print $2 }')
+          echo "Xcode $version"
+          if [[ "${version%%.*}" != "27" ]]; then
+            echo "::error::Package.swift needs Swift 6.4 (Xcode 27), but the runner provides Xcode $version"
+            exit 1
+          fi
 
       - name: Show toolchain
         run: |
@@ -69,17 +75,23 @@ jobs:
 
   spm:
     name: Swift Package Manager manifest
-    runs-on: macos-latest
+    # Swift 6.4 ships with Xcode 27, which GitHub only provides on the dedicated
+    # xcode-27 image for now; macos-latest still tops out at Xcode 26.
+    runs-on: xcode-27
     defaults:
       run:
         shell: bash -euo pipefail {0}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Select Xcode
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: '27'
+      - name: Require Xcode 27
+        run: |
+          version=$(xcodebuild -version | awk 'NR == 1 { print $2 }')
+          echo "Xcode $version"
+          if [[ "${version%%.*}" != "27" ]]; then
+            echo "::error::Package.swift needs Swift 6.4 (Xcode 27), but the runner provides Xcode $version"
+            exit 1
+          fi
 
       # The library is iOS-only, so the package cannot be built on the runner itself;
       # this keeps Package.swift honest for consumers that depend on it via SwiftPM.

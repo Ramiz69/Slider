@@ -285,6 +285,10 @@ struct SliderControlEventTests {
 @MainActor
 struct SliderMemoryTests {
 
+    // Every release check drains an autorelease pool first. UIKit can hand a view to the
+    // current pool while it is configured, which delayed the release past the weak check on a
+    // loaded simulator; a genuine retain cycle still survives the drained pool and fails.
+
     private final class DelegateSpy: SliderDelegate {
         func slider(_ slider: Slider, displayTextForValue value: CGFloat) -> String {
             "\(Int(value))"
@@ -296,7 +300,7 @@ struct SliderMemoryTests {
         let slider = Slider(frame: CGRect(x: 0, y: 0, width: 320, height: 36))
         weak var weakDelegate: DelegateSpy?
 
-        do {
+        autoreleasepool {
             let delegate = DelegateSpy()
             weakDelegate = delegate
             slider.delegate = delegate
@@ -311,7 +315,7 @@ struct SliderMemoryTests {
     func sliderIsReleased() {
         weak var weakSlider: Slider?
 
-        do {
+        autoreleasepool {
             let slider = Slider(frame: CGRect(x: 0, y: 0, width: 320, height: 36))
             slider.layoutIfNeeded()
             slider.value = 40
@@ -326,7 +330,7 @@ struct SliderMemoryTests {
     func hapticManagerIsReleased() {
         weak var weakManager: HapticManager?
 
-        do {
+        autoreleasepool {
             let manager = HapticManager()
             weakManager = manager
             try? manager.playTransientHaptic(intensity: 1, sharpness: 1)

@@ -46,7 +46,7 @@ Add it to the `dependencies` value of your `Package.swift`, or to the package li
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/Ramiz69/Slider.git", .upToNextMajor(from: "0.3.0"))
+    .package(url: "https://github.com/Ramiz69/Slider.git", .upToNextMajor(from: "0.4.0"))
 ]
 ```
 

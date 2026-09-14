@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [Unreleased]
+## [0.4.0] - 2026-09-15
 
 ### Changed
 - The package now requires Swift 6.4 (`swift-tools-version: 6.4`, Xcode 27). Projects still on

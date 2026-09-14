@@ -32,7 +32,6 @@ extension Slider {
         let startsOnThumb = thumbContains(location)
         guard startsOnThumb || (allowsTapToSeek && trackContains(location)) else { return false }
 
-        trackTouchPoint(location)
         didBeginTracking()
         let (sharpness, intensity) = sharpnessAndIntensityAt(location: location)
         try? hapticManager.playTransientHaptic(intensity: intensity, sharpness: sharpness)
@@ -40,6 +39,8 @@ extension Slider {
             // Tap-to-seek jumps straight to the tapped position before the drag continues.
             applyTrackedValue(steppedValue(value(at: location)))
         }
+        // Anchored after a seek, so the drag continues from the value the tap produced.
+        beginTrackingAnchor(at: location)
         startTransientTimerIfNeeded()
 
         return true
@@ -48,28 +49,9 @@ extension Slider {
     /// Notifies the control when a touch event for the control updates.
     public override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let touchPoint = touch.location(in: self)
-        let deltaLocation = switch direction.axis {
-        case .x: touchPoint.x - previousTouchPoint.x
-        case .y: touchPoint.y - previousTouchPoint.y
-        }
-        guard usableTrackingLength > .zero else {
-            trackTouchPoint(touchPoint)
-
-            return true
-        }
-
-        let ratio = deltaLocation / usableTrackingLength
-        let deltaValue = (maximum - minimum) * ratio
-        let rawValue = resolvedDirection.isReversed ? value - deltaValue : value + deltaValue
-        let currentValue = steppedValue(rawValue).clamped(to: minimum...max(minimum, maximum))
-        playEndpointHapticIfNeeded(for: currentValue)
-        guard currentValue != value else {
-            // The touch is kept as the reference point only once the value actually moves,
-            // otherwise sub-step movements would be discarded instead of accumulating.
-            return true
-        }
-
         trackTouchPoint(touchPoint)
+        let currentValue = trackedValue(for: touchPoint)
+        playEndpointHapticIfNeeded(for: currentValue)
         applyTrackedValue(currentValue)
 
         return true
@@ -93,6 +75,7 @@ extension Slider {
 
     private func finishTracking() {
         endTracking()
+        clearTrackingAnchor()
         value = steppedValue(value)
         delegate?.didEndTracking(self)
         if !continuous {

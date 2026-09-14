@@ -309,6 +309,8 @@ open class Slider: UIControl {
     private var isDirectionChangeAnimationInProgress = false
     private var isPerformingExplicitAnimation = false
     private var isAdjustingThumbWidth = false
+    /// Where the current drag started, and the value the slider had at that moment.
+    private var trackingAnchor: (point: CGPoint, value: CGFloat)?
     private var valueContinuations: [UUID: AsyncStream<CGFloat>.Continuation] = [:]
 
     private var storedValue: CGFloat = 10
@@ -527,6 +529,36 @@ open class Slider: UIControl {
         guard storedStep > .zero, rawValue.isFinite else { return rawValue }
 
         return (rawValue / storedStep).rounded(.toNearestOrEven) * storedStep
+    }
+
+    /// Records where a drag starts so every later position is measured from that point.
+    func beginTrackingAnchor(at point: CGPoint) {
+        trackingAnchor = (point, storedValue)
+        previousTouchPoint = point
+    }
+
+    func clearTrackingAnchor() {
+        trackingAnchor = nil
+    }
+
+    /// The value for the current finger position during a drag.
+    ///
+    /// The value is derived from the total distance travelled since the drag began rather than
+    /// accumulated event by event. Accumulating rounded per-event deltas turned a half-step
+    /// movement into a whole step each time, so the thumb ran ahead of the finger — by more than
+    /// 1.5× on a vertical slider — and past the ends it detached from the finger entirely.
+    func trackedValue(for point: CGPoint) -> CGFloat {
+        guard let trackingAnchor, usableTrackingLength > .zero else { return storedValue }
+
+        let distance = switch direction.axis {
+        case .x: point.x - trackingAnchor.point.x
+        case .y: point.y - trackingAnchor.point.y
+        }
+        let delta = (storedMaximum - storedMinimum) * distance / usableTrackingLength
+        let rawValue = resolvedDirection.isReversed ? trackingAnchor.value - delta
+                                                    : trackingAnchor.value + delta
+
+        return steppedValue(rawValue).clamped(to: storedMinimum...max(storedMinimum, storedMaximum))
     }
 
     func trackTouchPoint(_ point: CGPoint) {

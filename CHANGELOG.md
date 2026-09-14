@@ -12,6 +12,13 @@
   stays Swift 6 — Swift 6.4 does not introduce a new one.
 - Verified on iOS 27.0.
 
+### Fixed
+- The thumb no longer drifts away from the finger during a drag. Each touch event rounded the
+  accumulated value to the nearest step, so half-step movements counted as whole steps: the
+  thumb ran about 10% ahead horizontally and more than 1.5× ahead on a vertical slider, and
+  after the finger went past an end it came back detached by tens of points. The value is now
+  derived from the total distance since the drag began.
+
 ## [0.3.0] - 2026-09-05
 
 ### Added

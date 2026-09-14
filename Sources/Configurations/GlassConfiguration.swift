@@ -5,7 +5,7 @@
 //  Copyright © 2026 Ramiz Kichibekov. All rights reserved.
 //
 
-import UIKit
+public import UIKit
 
 /// Describes how the slider adopts the iOS 26 Liquid Glass material.
 ///

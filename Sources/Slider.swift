@@ -22,7 +22,7 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+public import UIKit
 import QuartzCore
 
 /// An open class that extends `UIControl` to create a customizable slider component.
@@ -300,7 +300,7 @@ open class Slider: UIControl {
 
     let thumbLayer = ThumbLayer()
     var hapticManager = HapticManager()
-    var transientTimer: DispatchSourceTimer?
+    var transientTimer: (any DispatchSourceTimer)?
 
     private let trackLayer = SliderTrackLayer()
     private let minimumLayer = TextLayer()

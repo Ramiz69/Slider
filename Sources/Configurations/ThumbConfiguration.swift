@@ -22,7 +22,7 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+public import UIKit
 
 /// `ThumbConfiguration` defines the appearance settings for the thumb of the `Slider` control.
 ///

@@ -22,7 +22,7 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+public import UIKit
 
 extension Slider {
 

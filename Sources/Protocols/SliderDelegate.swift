@@ -23,7 +23,7 @@
 //
 
 import Foundation
-import CoreFoundation
+public import CoreFoundation
 
 /// A protocol that defines methods to respond to slider value changes and tracking events.
 ///

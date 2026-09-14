@@ -23,7 +23,7 @@
 //
 
 import Foundation
-import QuartzCore
+public import QuartzCore
 
 /// `RangeEndpointsConfiguration` defines the appearance and positioning of the endpoint labels on a `Slider`.
 ///

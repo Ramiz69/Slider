@@ -22,7 +22,7 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+public import UIKit
 
 /// `TrackConfiguration` defines the appearance settings for the track of the `Slider` control.
 ///

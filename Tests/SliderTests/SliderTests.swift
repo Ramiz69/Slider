@@ -285,6 +285,10 @@ struct SliderControlEventTests {
 @MainActor
 struct SliderMemoryTests {
 
+    // Every release check drains an autorelease pool first. UIKit can hand a view to the
+    // current pool while it is configured, which delayed the release past the weak check on a
+    // loaded simulator; a genuine retain cycle still survives the drained pool and fails.
+
     private final class DelegateSpy: SliderDelegate {
         func slider(_ slider: Slider, displayTextForValue value: CGFloat) -> String {
             "\(Int(value))"
@@ -296,7 +300,7 @@ struct SliderMemoryTests {
         let slider = Slider(frame: CGRect(x: 0, y: 0, width: 320, height: 36))
         weak var weakDelegate: DelegateSpy?
 
-        do {
+        autoreleasepool {
             let delegate = DelegateSpy()
             weakDelegate = delegate
             slider.delegate = delegate
@@ -311,7 +315,7 @@ struct SliderMemoryTests {
     func sliderIsReleased() {
         weak var weakSlider: Slider?
 
-        do {
+        autoreleasepool {
             let slider = Slider(frame: CGRect(x: 0, y: 0, width: 320, height: 36))
             slider.layoutIfNeeded()
             slider.value = 40
@@ -326,7 +330,7 @@ struct SliderMemoryTests {
     func hapticManagerIsReleased() {
         weak var weakManager: HapticManager?
 
-        do {
+        autoreleasepool {
             let manager = HapticManager()
             weakManager = manager
             try? manager.playTransientHaptic(intensity: 1, sharpness: 1)
@@ -378,6 +382,89 @@ struct SliderAsyncTests {
         let values = await task.value
 
         #expect(values == [10, 20, 30])
+    }
+}
+
+@MainActor
+struct SliderTrackingTests {
+
+    /// Replays a drag the way UIKit delivers it: one small touch event after another.
+    private func drag(_ slider: Slider, from start: CGPoint, to end: CGPoint, events: Int) {
+        slider.beginTrackingAnchor(at: start)
+        for index in 1...events {
+            let progress = CGFloat(index) / CGFloat(events)
+            let point = CGPoint(x: start.x + (end.x - start.x) * progress,
+                                y: start.y + (end.y - start.y) * progress)
+            slider.applyTrackedValue(slider.trackedValue(for: point))
+        }
+    }
+
+    @Test("A horizontal drag keeps the thumb under the finger across many small events")
+    func horizontalDragTracksFinger() {
+        let slider = Slider(frame: CGRect(x: 0, y: 0, width: 320, height: 36))
+        slider.minimum = 0
+        slider.maximum = 1500
+        slider.step = 10
+        slider.value = 0
+        slider.layoutIfNeeded()
+        let start = slider.thumbCenterForTesting
+
+        // 130pt of a 260pt usable track, delivered as 1pt events.
+        drag(slider, from: start, to: CGPoint(x: start.x + 130, y: start.y), events: 130)
+
+        #expect(slider.value == 750)
+        #expect(abs(slider.thumbCenterForTesting.x - (start.x + 130)) <= 1)
+    }
+
+    @Test("A vertical drag keeps the thumb under the finger across many small events")
+    func verticalDragTracksFinger() {
+        let slider = Slider(direction: .bottomToTop, frame: CGRect(x: 0, y: 0, width: 36, height: 320))
+        slider.minimum = 0
+        slider.maximum = 1500
+        slider.step = 10
+        slider.value = 0
+        slider.layoutIfNeeded()
+        let start = slider.thumbCenterForTesting
+
+        // Upwards on bottomToTop; previously this ran more than 1.5x ahead of the finger.
+        drag(slider, from: start, to: CGPoint(x: start.x, y: start.y - 130), events: 260)
+
+        #expect(slider.value == 750)
+        #expect(abs(slider.thumbCenterForTesting.y - (start.y - 130)) <= 1)
+    }
+
+    @Test("Dragging past the end and back picks the finger up again where it is")
+    func dragPastEndReturnsWithFinger() {
+        let slider = Slider(frame: CGRect(x: 0, y: 0, width: 320, height: 36))
+        slider.minimum = 0
+        slider.maximum = 1500
+        slider.step = 10
+        slider.value = 0
+        slider.layoutIfNeeded()
+        let start = slider.thumbCenterForTesting
+
+        slider.beginTrackingAnchor(at: start)
+        slider.applyTrackedValue(slider.trackedValue(for: CGPoint(x: start.x + 1_000, y: start.y)))
+        #expect(slider.value == 1500)
+
+        slider.applyTrackedValue(slider.trackedValue(for: CGPoint(x: start.x + 130, y: start.y)))
+        #expect(slider.value == 750)
+    }
+
+    @Test("A drag that starts off-centre on the thumb keeps that offset instead of jumping")
+    func offCentreGrabDoesNotJump() {
+        let slider = Slider(frame: CGRect(x: 0, y: 0, width: 320, height: 36))
+        slider.minimum = 0
+        slider.maximum = 1500
+        slider.step = 10
+        slider.value = 750
+        slider.layoutIfNeeded()
+        let grab = CGPoint(x: slider.thumbCenterForTesting.x + 20, y: 18)
+
+        slider.beginTrackingAnchor(at: grab)
+        slider.applyTrackedValue(slider.trackedValue(for: grab))
+
+        #expect(slider.value == 750)
     }
 }
 

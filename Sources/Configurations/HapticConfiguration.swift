@@ -6,7 +6,7 @@
 //  Copyright © 2025 Ramiz Kichibekov. All rights reserved.
 //
 
-import Foundation
+public import Foundation
 
 /// A structure describing the configuration for haptic feedback.
 public struct HapticConfiguration: Sendable, Equatable {
